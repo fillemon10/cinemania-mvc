@@ -1,0 +1,15 @@
+{
+    "name": "filipsjolander/cinemania",
+    "authors": [
+        {
+            "name": "fillemon10",
+            "email": "filip.sjolander@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}
