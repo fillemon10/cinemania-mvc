@@ -27,7 +27,7 @@ class Request
         return $this->method() === 'post';
     }
 
-    public function getBody()
+    public function getData()
     {
         $data = [];
         if ($this->isGet()) {
