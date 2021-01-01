@@ -57,7 +57,7 @@ class User extends UserModel
         ];
     }
 
-    public function getDisplayName(): string {
+    public function getUsername(): string {
         return $this->username;
     }
 }
