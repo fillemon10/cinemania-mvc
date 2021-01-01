@@ -7,6 +7,11 @@ use app\core\db\DbModel;
 
 class Application
 {
+    const EVENT_BEFORE_REQUEST = 'beforeRequest';
+    const EVENT_AFTER_REQUEST = 'afterRequest';
+
+    protected array $eventListeners;
+
     public static string $ROOT_DIR;
 
     public string $layout = "main";
@@ -34,10 +39,10 @@ class Application
 
         $this->db = new Database($config['db']);
 
-        $primaryValue = $this->session->get('user');
-        if ($primaryValue) {
+        $userId = $this->session->get('user');
+        if ($userId) {
             $primaryKey = $this->userClass::primaryKey();
-            $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
+            $this->user = $this->userClass::findOne([$primaryKey => $userId]);
         } else {
             $this->user = null;
         }
@@ -45,6 +50,7 @@ class Application
 
     public function run()
     {
+        $this->triggerEvent(self::EVENT_BEFORE_REQUEST);
         try {
             echo $this->router->resolve();
         } catch (\Exception $e) {
@@ -66,8 +72,8 @@ class Application
     {
         $this->user = $user;
         $primaryKey = $user->primaryKey();
-        $primaryValue = $user->{$primaryKey};
-        $this->session->set('user', $primaryValue);
+        $userId = $user->{$primaryKey};
+        $this->session->set('user', $userId);
         return true;
     }
 
@@ -80,5 +86,17 @@ class Application
     public static function isGuest()
     {
         return !self::$app->user;
+    }
+
+    public function triggerEvent($eventName) {
+        $callbacks = $this->eventListeners[$eventName] ?? [];
+        foreach ($callbacks as $callback) {
+            call_user_func($callback);
+        }
+    }
+
+    public function on($eventName, $callback)
+    {
+        $this->eventListeners[$eventName][] = $callback;
     }
 }
