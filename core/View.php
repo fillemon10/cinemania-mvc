@@ -8,18 +8,19 @@ class View
 
     public function renderView($view, $params = [])
     {
-        $viewContent = $this->renderOnlyView($view, $params);
-        $layoutContent = $this->layoutContent();
-        return str_replace('{{content}}', $viewContent, $layoutContent);
+        $view_content = $this->renderOnlyView($view, $params);
+        $layout_content = $this->layout_content();
+
+        return str_replace('{{content}}', $view_content, $layout_content);
     }
 
-    public function renderContent($viewContent)
+    public function renderContent($view_content)
     {
-        $layoutContent = $this->layoutContent();
-        return str_replace('{{content}}', $viewContent, $layoutContent);
+        $layout_content = $this->layout_content();
+        return str_replace('{{content}}', $view_content, $layout_content);
     }
 
-    public function layoutContent()
+    public function layout_content()
     {
         $layout = Application::$app->layout;
         if (Application::$app->controller) {

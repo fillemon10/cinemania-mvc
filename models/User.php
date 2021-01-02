@@ -6,15 +6,10 @@ use app\core\UserModel;
 
 class User extends UserModel
 {
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_DELETED = 2;
-
     public string $username = "";
     public string $email = "";
     public string $password = "";
     public string $confirmPassword = "";
-    public int $status = self::STATUS_INACTIVE;
 
     public function tableName(): string
     {
@@ -27,7 +22,6 @@ class User extends UserModel
 
     public function save()
     {
-        $this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
     }
@@ -44,7 +38,7 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['username', 'email', 'password', 'status'];
+        return ['username', 'email', 'password'];
     }
 
     public function labels(): array

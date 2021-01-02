@@ -13,10 +13,9 @@ class SiteController extends Controller
 {
     public function home()
     {
-        $params = [
-            'name' => "cinemania"
-        ];
-        return $this->render('home', $params);
+        $this->setLayout('home');
+
+        return $this->render('home');
     }
     public function contact(Request $request, Response $response)
     {

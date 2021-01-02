@@ -11,8 +11,10 @@ $user = Application::$app->user;
 <?php include("includes/navbar.php"); ?>
 <?php include("includes/banner.php"); ?>
 
-<section class="<?php echo $this->title ?>-section pt-50 pb-20">
-    <?php include("includes/success_message.php"); ?>
+<section class="<?php echo $this->title ?>-section pb-20">
+    <div class="container">
+        <?php include("includes/success_message.php"); ?>
+    </div>
     {{content}}
 </section>
 

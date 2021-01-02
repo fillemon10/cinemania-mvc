@@ -62,9 +62,9 @@ abstract class Model
                 }
                 if ($ruleName === self::RULE_UNIQUE) {
                     $className = $rule['class'];
-                    $uniqueAttr = $rule['attribute'] ?? $attribute;
-                    $tableName = $className::tableName();
-                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
+                    $unique_attr = $rule['attribute'] ?? $attribute;
+                    $table_name = $className::tableName();
+                    $statement = Application::$app->db->prepare("SELECT * FROM $table_name WHERE $unique_attr = :attr");
                     $statement->bindValue(":attr", $value);
                     $statement->execute();
                     $record = $statement->fetchObject();

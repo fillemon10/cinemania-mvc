@@ -1,6 +1,15 @@
-<?php $this->title = "Blog"; ?>
+<?php
+
+use app\core\Post;
+
+$this->title = "Blog";
+
+$posts = array_reverse($model);
+
+?>
 <section class="review-section pt-50 pb-20">
     <?php foreach ($posts as $post) { ?>
+        <?php $post = (array) $post ?>
         <div class="container blog-container">
             <div class="single-blog all-published box-style">
                 <div class="row">
@@ -11,11 +20,10 @@
                                 <h2 class="mb-0 wow fadeInLeft" data-wow-delay=".2s"><?php echo $post['title'] ?></h2>
                             </a>
                         </div>
-                        <?php if (isset($post['topic']['name'])) : ?>
-                            <a class="mb-0" href="/blog/topic/<?php echo $post['topic']['id'] ?>"> <span class="wow fadeInLeft" data-wow-delay=".4s"> <?php echo $post['topic']['name'] ?></span></a>
+                        <?php if (isset($post['topic'])) : ?>
+                            <a class="mb-0" href="/blog/topic/<?php echo $post['topic_slug'] ?>"> <span class="wow fadeInLeft" data-wow-delay=".4s"> <?php echo $post['topic']?></span></a>
                         <?php endif ?>
-                        <div class="mb-10 wow fadeInLeft" data-wow-delay=".6s"><?php // echo htmlspecialchars_decode( shorten_string($post['body'], 40)) 
-                                                                                ?></div>
+                        <div class="mb-10 wow fadeInLeft" data-wow-delay=".6s"><?php echo htmlspecialchars_decode($post['body_short']) ?></div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 text-right">
                         <a class="mb-0" href="/post/<?php echo $post['slug']; ?>">

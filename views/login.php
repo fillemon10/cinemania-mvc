@@ -2,6 +2,8 @@
 
 /** @var $model \app\models\User */
 $this->title = "Login";
+
+use \app\core\form\Form;
 ?>
 
 <section class="form-section pt-50 pb-20 wow fadeInUp" data-wow-delay=".8s">
@@ -13,11 +15,11 @@ $this->title = "Login";
                     <div class="row">
                         <div class="container">
                             <h2 class="mb-10 mt-10">Login on Cinemania</h2>
-                            <?php $form =  \app\core\form\Form::begin('', "post") ?>
+                            <?php $form = Form::begin('', "post") ?>
                             <?php echo $form->field($model, 'email') ?>
                             <?php echo $form->field($model, 'password')->passwordField() ?>
                             <button type="submit" class="theme-btn mt-20 mb-20 wow fadeInUp float-right">Login</button>
-                            <?php \app\core\form\Form::end() ?>
+                            <?php Form::end() ?>
                         </div>
                         <div class="row">
                             <div class="col-7">

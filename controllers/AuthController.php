@@ -22,6 +22,7 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $loginForm->loadData($request->getData());
             if ($loginForm->validate() && $loginForm->login()) {
+                Application::$app->session->setFlash('success', 'You have successfully logged in');
                 $response->redirect('/');
                 return;
             }
@@ -32,21 +33,24 @@ class AuthController extends Controller
     public function register(Request $request, Response $response)
     {
         $user = new User();
-
         if ($request->isPost()) {
-            $user->loadData($request->getData());
-
-
+            $user->loadData($request->GetData());
             if ($user->validate() && $user->save()) {
                 Application::$app->session->setFlash('success', 'Thanks for registering');
-                $response->redirect('/');
-                exit;
-            }
-            return $this->render('register', ['model' => $user]);
-        }
 
+                //loggar in användaren efter registering
+                $primary_key = $user->findOne(['username' => $user->username]);
+                Application::$app->login($primary_key);
+
+                //skickar användaren till / (home)
+                Application::$app->response->redirect('/');
+                return;
+            }
+        }
         $this->setLayout('auth');
-        return $this->render('register', ['model' => $user]);
+        return $this->render('register', [
+            'model' => $user
+        ]);
     }
 
     public function logout(Request $request, Response $response)
@@ -57,7 +61,7 @@ class AuthController extends Controller
 
     public function myaccount()
     {
-        
+
         return $this->render('myaccount');
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
 use app\controllers\AuthController;
+use app\controllers\BlogController;
 use app\controllers\SiteController;
 use app\core\Application;
 
-require_once __DIR__ . '/..//vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $config = [
@@ -18,8 +20,7 @@ $config = [
 ];
 
 $app = new Application(dirname(__DIR__), $config);
-$app->on(Application::EVENT_BEFORE_REQUEST, function() {
-    echo "before request";
+$app->on(Application::EVENT_BEFORE_REQUEST, function () {
 });
 
 $app->router->get('/', [SiteController::class, 'home']);
@@ -33,6 +34,9 @@ $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/myaccount', [AuthController::class, 'myaccount']);
+
+$app->router->get('/blog', [BlogController::class, 'blog']);
+
 
 
 

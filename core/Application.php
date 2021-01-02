@@ -39,10 +39,10 @@ class Application
 
         $this->db = new Database($config['db']);
 
-        $userId = $this->session->get('user');
+        $userId = Application::$app->session->get('user');
         if ($userId) {
-            $primaryKey = $this->userClass::primaryKey();
-            $this->user = $this->userClass::findOne([$primaryKey => $userId]);
+            $key = $this->userClass::primaryKey();
+            $this->user = $this->userClass::findOne([$key => $userId]);
         } else {
             $this->user = null;
         }
@@ -54,6 +54,7 @@ class Application
         try {
             echo $this->router->resolve();
         } catch (\Exception $e) {
+
             $this->response->setStatusCode($e->getCode());
             echo $this->view->renderView('_error', ['exception' => $e]);
         }
@@ -71,9 +72,10 @@ class Application
     public function login(UserModel $user)
     {
         $this->user = $user;
-        $primaryKey = $user->primaryKey();
-        $userId = $user->{$primaryKey};
-        $this->session->set('user', $userId);
+        $primary_key = $user->primaryKey();
+        $value = $user->{$primary_key};
+        Application::$app->session->set('user', $value);
+
         return true;
     }
 
@@ -88,15 +90,16 @@ class Application
         return !self::$app->user;
     }
 
-    public function triggerEvent($eventName) {
-        $callbacks = $this->eventListeners[$eventName] ?? [];
+    public function triggerEvent($event_name)
+    {
+        $callbacks = $this->eventListeners[$event_name] ?? [];
         foreach ($callbacks as $callback) {
             call_user_func($callback);
         }
     }
 
-    public function on($eventName, $callback)
+    public function on($event_name, $callback)
     {
-        $this->eventListeners[$eventName][] = $callback;
+        $this->eventListeners[$event_name][] = $callback;
     }
 }
