@@ -9,10 +9,10 @@ $user = Application::$app->user;
 ?>
 <?php include("includes/head.php"); ?>
 <?php include("includes/navbar.php"); ?>
-<?php include("includes/banner.php"); ?>
 
-<section class="<?php echo $this->title ?>-section pt-50 pb-20">
+<section class="<?php echo $this->title ?>-section pt-120 pb-20">
     <?php include("includes/success_message.php"); ?>
+
     {{content}}
 </section>
 
