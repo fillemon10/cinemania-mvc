@@ -3,9 +3,8 @@
 namespace app\models;
 
 use app\core\db\DbModel;
-use PDO;
 
-class Post extends DbModel
+class Blog extends DbModel
 {
     public string $id = "";
     public string $user_id = "";
@@ -20,13 +19,14 @@ class Post extends DbModel
     public string $body_short = "";
     public string $topic = "";
     public string $topic_slug = "";
-
+    public string $topic_id = "";
 
     public function setExternals()
     {
-        $this->body_short = $this->setShortBody();
-        $this->username = $this->setUsername();
-        $topic_info = $this->setTopic();
+        $this->body_short = $this->getShortBody();
+        $this->username = $this->getUsername();
+        $topic_info = $this->getTopic();
+        $this->topic_id = $topic_info['id'];
         $this->topic = $topic_info['topic'];
         $this->topic_slug = $topic_info['slug'];
     }
@@ -53,33 +53,35 @@ class Post extends DbModel
 
     public static function GetAllPublishedPosts()
     {
-        $table_name = static::tableName();
-        $statement = self::prepare("SELECT * FROM $table_name WHERE published='1'");
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+        return self::findAll(['published' => '1']) ?? false;
     }
 
-    public function setShortBody()
+    public function getShortBody(): string
     {
         return $this->shortenString($this->body, 50);
     }
 
-    public function setUsername()
+    public function getUsername(): string
     {
-        $statement = self::prepare("SELECT username FROM users WHERE id=$this->user_id");
-        $statement->execute();
-        $username = $statement->fetchColumn();
+        $username = User::findOne(['id' => $this->user_id])->{'username'};
         return $username;
     }
 
-    public function setTopic()
+    public function getTopic()
     {
-        $statement = self::prepare("SELECT * FROM topics WHERE id=(SELECT topic_id FROM post_topic WHERE post_id=$this->id) LIMIT 1");
-        $statement->execute();
-        $result = $statement->fetchObject();
+        $result = $this->fetchOne("SELECT * FROM topics WHERE id=(SELECT topic_id FROM post_topic WHERE post_id=$this->id) LIMIT 1");
+        $topic_id = $result->{"id"};
         $topic = $result->{"name"};
         $topic_slug = $result->{"slug"};
-        return ['topic' => $topic, 'slug' => $topic_slug];
+        return ['topic' => $topic, 'slug' => $topic_slug, 'id' => $topic_id];
+    }
+
+    public function getAllTopics() {
+        return parent::fetchAll("SELECT * FROM topics");;
+    }
+
+    public function GetAllPublishedPostsByTopic($topic_id){
+        return parent::fetchAll("SELECT * FROM posts WHERE id IN (SELECT post_id FROM post_topic pt WHERE topic_id=$topic_id GROUP BY post_id HAVING COUNT(1) = 1)");
     }
     /* * * * * * * * * * * *
     *  Gör string kortare, tar bort ord

@@ -42,6 +42,32 @@ abstract class DbModel extends Model
         return $statement->fetchObject(static::class);
     }
 
+    public static function findAll($where)
+    {
+        $table_name = static::tableName();
+        $attributes = array_keys($where);
+        $sql = implode(" AND ", array_map(fn ($attr) => "$attr = :$attr", $attributes));
+        $statement = self::prepare("SELECT * FROM $table_name WHERE $sql");
+        foreach ($where as $key => $item) {
+            $statement->bindValue(":$key", $item);
+        }
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+
+    public static function FetchAll($sql)
+    {
+        $statement = self::prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+    public static function FetchOne($sql)
+    {
+        $statement = self::prepare($sql);
+        $statement->execute();
+        return $statement->fetchObject();
+    }
+
     public static function prepare($sql)
     {
         return Application::$app->db->pdo->prepare($sql);

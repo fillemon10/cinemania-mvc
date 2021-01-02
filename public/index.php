@@ -4,6 +4,7 @@ use app\controllers\AuthController;
 use app\controllers\BlogController;
 use app\controllers\SiteController;
 use app\core\Application;
+use app\models\Blog;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
