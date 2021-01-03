@@ -25,19 +25,13 @@ use app\core\Application;
                                     <a class="page-scroll" href="/">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll dd-menu" href="/reviews">Reviews</a>
+                                    <a class="page-scroll dd-menu" href="/blog">Reviews and Articles</a>
 
                                     <ul class="sub-menu">
                                         <li class="nav-item"><a href="/reviews/movies">Latests Movie</a></li>
-                                        <li class="nav-item"><a href="/reviews/movies/best">Best Movies</a></li>
                                         <li class="nav-item"><a href="/reviews/series">Latests TV/Streaming</a></li>
-                                        <li class="nav-item"><a href="/reviews/series/best">Best TV/Streaming</a></li>
                                         <li class="nav-item"><a href="/genres">Genres</a></li>
-                                        <li class="nav-item"><a href="/reviews">All</a></li>
                                     </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="/blog">Blog</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/about">About</a>

@@ -2,9 +2,10 @@
 
 namespace app\models;
 
+use app\core\BlogModel;
 use app\core\db\DbModel;
 
-class Post extends DbModel
+class Post extends BlogModel
 {
     public string $id = "";
     public string $user_id = "";
@@ -50,31 +51,6 @@ class Post extends DbModel
     {
         return [];
     }
-
-    public static function GetAllPublishedPosts()
-    {
-        $posts = self::findAll(['published' => '1']) ?? false;
-        $posts_array = [];
-        foreach ($posts as $post) {
-            $post_object = new Post();
-            $post_object->loadData($post);
-            $post_object->setExternals();
-            array_push($posts_array, $post_object);
-        }
-        return $posts_array;
-    }
-
-    public function getShortBody(): string
-    {
-        return $this->shortenString($this->body, 50);
-    }
-
-    public function getUsername(): string
-    {
-        $username = User::findOne(['id' => $this->user_id])->{'username'};
-        return $username;
-    }
-
     public function getPost()
     {
         return self::findOne(['post-slug' => $this->slug]);
@@ -83,9 +59,10 @@ class Post extends DbModel
     public function getTopic()
     {
         $result = $this->QueryOne("SELECT * FROM topics WHERE id=(SELECT topic_id FROM post_topic WHERE post_id=$this->id) LIMIT 1");
-        $topic_id = $result->{"id"};
-        $topic = $result->{"name"};
-        $topic_slug = $result->{"slug"};
+        $result = (array) $result;
+        $topic_id = $result["id"];
+        $topic = $result["name"];
+        $topic_slug = $result["slug"];
         return ['topic' => $topic, 'slug' => $topic_slug, 'id' => $topic_id];
     }
 
@@ -109,22 +86,5 @@ class Post extends DbModel
             array_push($posts_array, $post_object);
         }
         return $posts_array;
-    }
-    /* * * * * * * * * * * *
-    *  Gör string kortare, tar bort ord
-    * * * * * * * * * * * * */
-    public function shortenString($string, $words_returned)
-    {
-        $returned_string = $string;
-        $string = preg_replace('/(?<=\S,)(?=\S)/', ' ', $string);
-        $string = str_replace("\n", " ", $string);
-        $array = explode(" ", $string);
-        if (count($array) <= $words_returned) {
-            $returned_string = $string;
-        } else {
-            array_splice($array, $words_returned);
-            $returned_string = implode(" ", $array) . "...";
-        }
-        return $returned_string;
     }
 }
