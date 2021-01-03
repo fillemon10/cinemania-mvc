@@ -55,13 +55,13 @@ abstract class DbModel extends Model
         return $statement->fetchAll();
     }
 
-    public static function FetchAll($sql)
+    public static function QueryAll($sql)
     {
         $statement = self::prepare($sql);
         $statement->execute();
         return $statement->fetchAll();
     }
-    public static function FetchOne($sql)
+    public static function QueryOne($sql)
     {
         $statement = self::prepare($sql);
         $statement->execute();

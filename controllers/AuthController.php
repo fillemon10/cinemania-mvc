@@ -43,7 +43,7 @@ class AuthController extends Controller
                 Application::$app->login($primary_key);
 
                 //skickar användaren till / (home)
-                Application::$app->response->redirect('/');
+                $response->redirect('/');
                 return;
             }
         }

@@ -27,6 +27,7 @@ class SiteController extends Controller
                 return $response->redirect('/contact');
             }
         }
+        
         return $this->render('contact', ['model' => $contact]);
     }
     public function handleContact(Request $request)
