@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use app\core\BlogModel;
-use app\core\db\DbModel;
+use app\models\BlogModel;
 
 class Post extends BlogModel
 {
@@ -22,15 +21,14 @@ class Post extends BlogModel
     public string $topic_slug = "";
     public string $topic_id = "";
 
-    public function setExternals()
+    public function setTopic()
     {
-        $this->body_short = $this->getShortBody();
-        $this->username = $this->getUsername();
         $topic_info = $this->getTopic();
         $this->topic_id = $topic_info['id'];
         $this->topic = $topic_info['topic'];
         $this->topic_slug = $topic_info['slug'];
     }
+
 
     public function tableName(): string
     {
@@ -82,7 +80,6 @@ class Post extends BlogModel
             //skapa new
             $post_object = new Post();
             $post_object->loadData($post);
-            $post_object->setExternals();
             array_push($posts_array, $post_object);
         }
         return $posts_array;

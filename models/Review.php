@@ -23,11 +23,9 @@ class Review extends Post
     public string $type = "";
     public array $genre = [];
 
-    public function setExternals()
+    public function getGenre()
     {
-        $this->body_short = $this->getShortBody();
-        $this->username = $this->getUsername();
-        $this->genre  = $this->getGenre();
+        $this->genre = parent::QueryAll("SELECT genre FROM review_genres WHERE review_id=$this->id");
     }
 
     public function tableName(): string
@@ -38,12 +36,5 @@ class Review extends Post
     public function primaryKey(): string
     {
         return 'id';
-    }
-
-
-    public function getGenre()
-    {
-        $result = self::QueryAll("SELECT genre FROM review_genres WHERE review_id=$this->id");
-        return $result;
     }
 }

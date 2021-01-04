@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use app\core\Application;
 
@@ -25,7 +25,7 @@ use app\core\Application;
                                     <a class="page-scroll" href="/">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll dd-menu" href="/blog">Reviews and Articles</a>
+                                    <a class="page-scroll dd-menu" href="/reviews">Reviews</a>
 
                                     <ul class="sub-menu">
                                         <li class="nav-item"><a href="/reviews/movies">Latests Movie</a></li>
@@ -34,16 +34,20 @@ use app\core\Application;
                                     </ul>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="/blog">Blog</a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="/about">About</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="page-scroll" href="/contact">Contact</a>
-                                </li>                      <li class="nav-item">
-                                <form action="search" class="search-form">
-                                    <input name="search" type="text" placeholder="Search" />
-                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                </form>
-                            </li>
+                                </li>
+                                <li class="nav-item">
+                                    <form action="search" class="search-form">
+                                        <input name="search" type="text" placeholder="Search" />
+                                        <button type="submit"><i class="fas fa-search"></i></button>
+                                    </form>
+                                </li>
                                 <?php if (Application::isGuest()) : ?>
                                     <li class="nav-item">
                                         <a class="page-scroll theme-btn login-btn" href="/login"><i class="fas fa-sign-in-alt"></i>&#8192;Login</a>

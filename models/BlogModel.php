@@ -1,17 +1,18 @@
 <?php
 
-namespace app\core;
+namespace app\models;
 
 use app\core\db\DbModel;
-use app\models\Post;
-use app\models\Review;
-use app\models\User;
+
 
 abstract class BlogModel extends DbModel
 {
-    abstract public function tableName(): string;
 
-    abstract public function primaryKey(): string;
+    public function setShortBodyAndUsername()
+    {
+        $this->body_short = $this->getShortBody();
+        $this->username = $this->getUsername();
+    }
 
     public function getShortBody(): string
     {
@@ -24,21 +25,17 @@ abstract class BlogModel extends DbModel
         return $username;
     }
 
-    public function setExternals()
-    {
-        $this->body_short = $this->getShortBody();
-        $this->username = $this->getUsername();
-    }
-
-
     public static function GetPublishedBlogPosts(int $limit)
     {
-        $posts = self::QueryAll("SELECT * FROM posts WHERE published='1' LIMIT $limit");
+        $tableName = static::tableName();
+        $posts = self::QueryAll("SELECT * FROM $tableName WHERE published='1' LIMIT $limit");
+
         $posts_array = [];
         foreach ($posts as $post) {
             $post_object = new Post();
             $post_object->loadData($post);
-            $post_object->setExternals();
+            $post_object->setTopic();
+            $post_object->setShortBodyAndUsername();
             array_push($posts_array, $post_object);
         }
         return $posts_array;
@@ -51,7 +48,8 @@ abstract class BlogModel extends DbModel
         foreach ($reviews as $review) {
             $review_object = new Review();
             $review_object->loadData($review);
-            $review_object->setExternals();
+            $review_object->getGenre();
+            $review_object->setShortBodyAndUsername();
             array_push($reviews_array, $review_object);
         }
         return $reviews_array;
