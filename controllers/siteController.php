@@ -19,6 +19,8 @@ class SiteController extends Controller
 {
     public function home()
     {
+        $this->setLayout('home');
+
         return $this->render('home', [
             'name' => 'Cinemania'
         ]);

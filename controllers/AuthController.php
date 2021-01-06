@@ -12,8 +12,7 @@ use app\models\LoginForm;
 use app\models\User;
 
 /**
- * Class AtuhController
- *
+ * AuthController Class
  */
 class AuthController extends Controller
 {
