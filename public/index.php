@@ -1,14 +1,15 @@
 <?php
 
-use app\controllers\AboutController;
+use app\controllers\AuthController;
 use app\controllers\SiteController;
+use app\controllers\BlogController;
+
 use app\core\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 $config = [
-    'userClass' => \app\models\User::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -23,13 +24,23 @@ $app->on(Application::EVENT_BEFORE_REQUEST, function(){
 });
 
 $app->router->get('/', [SiteController::class, 'home']);
-$app->router->get('/register', [SiteController::class, 'register']);
-$app->router->post('/register', [SiteController::class, 'register']);
-$app->router->get('/login', [SiteController::class, 'login']);
-$app->router->post('/login', [SiteController::class, 'login']);
-$app->router->get('/logout', [SiteController::class, 'logout']);
 $app->router->get('/contact', [SiteController::class, 'contact']);
-$app->router->get('/about', [AboutController::class, 'index']);
-$app->router->get('/profile', [SiteController::class, 'profile']);
+$app->router->get('/about', [SiteController::class, 'about']);
+
+
+
+$app->router->get('/register', [AuthController::class, 'register']);
+$app->router->post('/register', [AuthController::class, 'register']);
+$app->router->get('/login', [AuthController::class, 'login']);
+$app->router->post('/login', [AuthController::class, 'login']);
+$app->router->get('/logout', [AuthController::class, 'logout']);
+$app->router->get('/profile', [AuthController::class, 'profile']);
+
+$app->router->get('/blog', [BlogController::class, 'blog']);
+$app->router->get('/blog/post', [BlogController::class, 'singlePost']);
+$app->router->get('/blog/topic', [BlogController::class, 'topicFilter']);
+
+
+
 
 $app->run();
