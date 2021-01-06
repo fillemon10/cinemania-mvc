@@ -1,0 +1,17 @@
+{
+    "name": "filipsjolander/phpmvc-framework",
+    "authors": [
+        {
+            "name": "Filip Sjölander",
+            "email": "filip.sjolander@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "."
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.0"
+    }
+}
