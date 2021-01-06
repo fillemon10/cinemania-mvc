@@ -19,8 +19,8 @@ class BlogController extends Controller
         foreach ($posts as $post) {
             $post_object = new Post();
             $slug = $post["slug"];
-            $post_object->loadData($post_object->getPost($slug));
-            $post_object->setTopicAndUser();
+            $post_object->loadPost($post_object->getPost($slug));
+
             array_push($post_array, $post_object);
         }
         $post_array = array_reverse($post_array);
@@ -30,21 +30,22 @@ class BlogController extends Controller
     public function singlePost(Request $request)
     {
         $post = new Post();
-        $slug = $request->getBody()['slug'];
-        $post->loadData($post->getPost($slug));
+        $slug = $request->getData()['slug'];
+        $post->loadPost($post->getPost($slug));
+        $this->setLayout('single');
 
         return $this->render('single_post', ['post' => $post]);
     }
 
     public function topicFilter(Request $request)
     {
-        $topic_id = $request->getBody()["topic_id"];
+        $topic_id = $request->getData()["topic_id"];
         $posts = Post::getAllPublishedPostByTopic($topic_id);
         $post_array = [];
         foreach ($posts as $post) {
             $post_object = new Post();
             $slug = $post["slug"];
-            $post_object->loadData($post_object->getPost($slug));
+            $post_object->loadPost($post_object->getPost($slug));
             array_push($post_array, $post_object);
         }
         $post_array = array_reverse($post_array);

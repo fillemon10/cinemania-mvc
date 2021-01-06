@@ -25,7 +25,7 @@ class AuthController extends Controller
     {
         $loginForm = new LoginForm();
         if ($request->isPost()) {
-            $loginForm->loadData($request->getBody());
+            $loginForm->loadData($request->getData());
             if ($loginForm->validate() && $loginForm->login()) {
                 Application::$app->response->redirect('/');
                 return;
@@ -41,7 +41,7 @@ class AuthController extends Controller
     {
         $registerModel = new User();
         if ($request->isPost()) {
-            $registerModel->loadData($request->getBody());
+            $registerModel->loadData($request->getData());
             if ($registerModel->validate() && $registerModel->save()) {
                 Application::$app->session->setFlash('success', 'Thanks for registering');
                 Application::$app->response->redirect('/');

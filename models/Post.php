@@ -72,7 +72,9 @@ class Post extends DbModel
         return $statement->fetchObject();
     }
 
-    public function setTopicAndUser(){
+    public function loadPost($request)
+    {
+        parent::loadData($request);
         $this->username = $this->getUsername()->{"username"};
         $this->topic = $this->getTopic()->{'name'};
         $this->topic_id = $this->getTopic()->{'id'};

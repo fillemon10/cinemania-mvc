@@ -1,12 +1,20 @@
 <?php
 
+/**
+ * index.php
+ * alla request går igenom denna fil
+ */
+
 use app\controllers\AuthController;
 use app\controllers\SiteController;
 use app\controllers\BlogController;
-
 use app\core\Application;
 
+
+// require autoloadaren
 require_once __DIR__ . '/../vendor/autoload.php';
+
+//hämtar .env filen
 $dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 $config = [
@@ -17,12 +25,15 @@ $config = [
     ]
 ];
 
+//skapar en instans av applikationen
 $app = new Application(dirname(__DIR__), $config);
 
+//event listener, ska fixa
 $app->on(Application::EVENT_BEFORE_REQUEST, function(){
    // echo "Before request from second installation";
 });
 
+//alla routes på webbplatsen
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->get('/about', [SiteController::class, 'about']);
@@ -38,7 +49,5 @@ $app->router->get('/blog', [BlogController::class, 'blog']);
 $app->router->get('/blog/post', [BlogController::class, 'singlePost']);
 $app->router->get('/blog/topic', [BlogController::class, 'topicFilter']);
 
-
-
-
+//kör applikationen
 $app->run();
