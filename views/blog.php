@@ -17,7 +17,7 @@ $this->title = "Blog" ?>
                         </a>
                     </div>
                     <?php if (isset($post->{'topic'})) : ?>
-                        <a class="mb-0" href="/topic/<?php echo $post->{"topic_id"}?>"> <span class="wow fadeInLeft" data-wow-delay=".4s"> <?php echo $post->{'topic'} ?></span></a>
+                        <a class="mb-0" href="/topic/<?php echo $post->{"topic_id"} ?>"> <span class="wow fadeInLeft" data-wow-delay=".4s"> <?php echo $post->{'topic'} ?></span></a>
                     <?php endif ?>
                     <div class="mb-10 wow fadeInLeft" data-wow-delay=".6s"><?php echo htmlspecialchars_decode($post->{"body"}) ?></div>
                 </div>
