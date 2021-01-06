@@ -2,36 +2,29 @@
 
 namespace app\core;
 
+
+/**
+ * Class View
+ *
+ */
 class View
 {
     public string $title = '';
 
-    public function renderView($view, $params = [])
+    public function renderView($view, array $params)
     {
-        $view_content = $this->renderOnlyView($view, $params);
-        $layout_content = $this->layout_content();
-
-        return str_replace('{{content}}', $view_content, $layout_content);
-    }
-
-    public function renderContent($view_content)
-    {
-        $layout_content = $this->layout_content();
-        return str_replace('{{content}}', $view_content, $layout_content);
-    }
-
-    public function layout_content()
-    {
-        $layout = Application::$app->layout;
+        $layoutName = Application::$app->layout;
         if (Application::$app->controller) {
-            $layout = Application::$app->controller->layout;
+            $layoutName = Application::$app->controller->layout;
         }
+        $viewContent = $this->renderViewOnly($view, $params);
         ob_start();
-        include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
-        return ob_get_clean();
+        include_once Application::$ROOT_DIR . "/views/layouts/$layoutName.php";
+        $layoutContent = ob_get_clean();
+        return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    public function renderOnlyView($view, $params = [])
+    public function renderViewOnly($view, array $params)
     {
         foreach ($params as $key => $value) {
             $$key = $value;

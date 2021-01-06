@@ -2,86 +2,62 @@
 
 namespace app\models;
 
-use app\models\BlogModel;
 
-class Post extends BlogModel
+use app\core\db\DbModel;
+
+/**
+ * Class PostModel
+ *
+ */
+class Post extends DbModel
 {
-    public string $id = "";
-    public string $user_id = "";
-    public string $title = "";
-    public string $slug = "";
-    public string $views = "";
-    public string $image = "";
-    public string $body = "";
-    public string $published = "";
-    public string $created_at = "";
-    public string $username = "";
-    public string $body_short = "";
-    public string $topic = "";
-    public string $topic_slug = "";
-    public string $topic_id = "";
+    public int $id = 0;
+    public int $user_id = 0;
+    public int $published = 0;
+    public string $title = '';
+    public string $slug = '';
+    public string $image = '';
+    public string $body = '';
+    public string $created_at = '';
+    public string $updated_at = '';
 
-    public function setTopic()
-    {
-        $topic_info = $this->getTopic();
-        $this->topic_id = $topic_info['id'];
-        $this->topic = $topic_info['topic'];
-        $this->topic_slug = $topic_info['slug'];
-    }
-
-
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'posts';
-    }
-
-    public function primaryKey(): string
-    {
-        return 'id';
-    }
-
-    public function rules(): array
-    {
-        return [];
     }
 
     public function attributes(): array
     {
         return [];
     }
-    public function getPost()
+
+    public function labels(): array
     {
-        return self::findOne(['post-slug' => $this->slug]);
+        return [];
     }
 
-    public function getTopic()
+    public function rules()
     {
-        $result = $this->QueryOne("SELECT * FROM topics WHERE id=(SELECT topic_id FROM post_topic WHERE post_id=$this->id) LIMIT 1");
-        $result = (array) $result;
-        $topic_id = $result["id"];
-        $topic = $result["name"];
-        $topic_slug = $result["slug"];
-        return ['topic' => $topic, 'slug' => $topic_slug, 'id' => $topic_id];
+        return [];
     }
 
-    public function getAllTopics()
-    {
-        return parent::QueryAll("SELECT * FROM topics");;
+    public static function getAllPublishedPost(){
+        return parent::findAll(['published' => '1']);
+    }
+    public static function getAllPublishedPostByTopic($topic_id){
+        
+        $statement = self::prepare("SELECT * FROM posts WHERE id IN (SELECT post_id FROM post_topic WHERE topic_id=:topic_id GROUP BY post_id HAVING COUNT(1) = 1)");
+        $statement->bindValue(':topic_id', $topic_id);
+        $statement->execute();
+        return $statement->fetchAll();
     }
 
-    public static function GetAllPublishedPostsByTopic($topic_id)
-    {
-        //skapa en array
-        $posts = parent::QueryAll("SELECT * FROM posts WHERE id IN (SELECT post_id FROM post_topic pt WHERE topic_id=$topic_id GROUP BY post_id HAVING COUNT(1) = 1)");
+    public function getPost($slug){
+        return $this->findOne(['slug' => $slug, 'published' => 1]);
+    }
 
-        $posts_array = [];
-        //för varje post som med en topic id
-        foreach ($posts as $post) {
-            //skapa new
-            $post_object = new Post();
-            $post_object->loadData($post);
-            array_push($posts_array, $post_object);
-        }
-        return $posts_array;
+    public function getUsername()
+    {
+        return "test";
     }
 }

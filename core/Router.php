@@ -4,11 +4,15 @@ namespace app\core;
 
 use app\core\exception\NotFoundException;
 
+/**
+ * Class Router
+ *
+ */
 class Router
 {
-    public Request $request;
-    public Response $response;
-    protected array $routes = [];
+    private Request $request;
+    private Response $response;
+    private array $routeMap = [];
 
     public function __construct(Request $request, Response $response)
     {
@@ -16,37 +20,50 @@ class Router
         $this->response = $response;
     }
 
-    public function get($url, $callback)
+    public function get(string $url, $callback)
     {
-        $this->routes['get'][$url] = $callback;
+        $this->routeMap['get'][$url] = $callback;
     }
 
-    public function post($url, $callback)
+    public function post(string $url, $callback)
     {
-        $this->routes['post'][$url] = $callback;
+        $this->routeMap['post'][$url] = $callback;
     }
 
     public function resolve()
     {
+        $method = $this->request->getMethod();
         $url = $this->request->getUrl();
-        $method = $this->request->method();
-        $callback = $this->routes[$method][$url] ?? false;
-        if ($callback === false) {
+        $callback = $this->routeMap[$method][$url] ?? false;
+        if (!$callback) {
             throw new NotFoundException();
         }
         if (is_string($callback)) {
-            return Application::$app->view->renderView($callback);
+            return $this->renderView($callback);
         }
         if (is_array($callback)) {
-            /** @var \app\core\Controller $controller */
-            $controller = new $callback[0]();
-            Application::$app->controller = $controller;
+            /**
+             * @var $controller \app\core\Controller
+             */
+            $controller = new $callback[0];
             $controller->action = $callback[1];
-            $callback[0] = $controller;
-            foreach ($controller->getMiddlewares() as $middleware) {
+            Application::$app->controller = $controller;
+            $middlewares = $controller->getMiddlewares();
+            foreach ($middlewares as $middleware) {
                 $middleware->execute();
             }
+            $callback[0] = $controller;
         }
         return call_user_func($callback, $this->request, $this->response);
+    }
+
+    public function renderView($view, $params = [])
+    {
+        return Application::$app->view->renderView($view, $params);
+    }
+
+    public function renderViewOnly($view, $params = [])
+    {
+        return Application::$app->view->renderViewOnly($view, $params);
     }
 }

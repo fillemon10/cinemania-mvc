@@ -2,37 +2,35 @@
 
 namespace app\controllers;
 
+
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
-use app\models\ContactForm;
+use app\models\LoginForm;
+use app\models\User;
 
-
+/**
+ * Class SiteController
+ *
+ */
 class SiteController extends Controller
 {
     public function home()
     {
-        $this->setLayout('home');
+        return $this->render('home', [
+            'name' => 'Cinemania'
+        ]);
+    }
 
-        return $this->render('home');
-    }
-    public function contact(Request $request, Response $response)
+    public function contact()
     {
-        $contact = new ContactForm();
-        if($request->isPost()) {
-            $contact->loadData($request->getData());
-            if ($contact->validate() && $contact->send()) {
-                Application::$app->session->setFlash('success', 'Thanks for contacting us');
-                return $response->redirect('/contact');
-            }
-        }
-        
-        return $this->render('contact', ['model' => $contact]);
+        return $this->render('contact');
     }
-    public function handleContact(Request $request)
+
+    public function about()
     {
-        $body = $request->getData();
-        return "Handling submitted data";
+        return $this->render('about');
     }
 }

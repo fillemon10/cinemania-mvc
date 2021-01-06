@@ -2,16 +2,20 @@
 
 namespace app\core\form;
 
-use app\core\Model;
 
+/**
+ * Class TextareaField
+ *
+ */
 class TextareaField extends BaseField
 {
-    public function renderInput(): string
+    public function renderInput()
     {
-        return sprintf('<textarea name="%s" class="form-control %s">%s</textarea>',
+        return sprintf(
+            '<textarea class="form-control%s" name="%s">%s</textarea>',
+            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
             $this->attribute,
-            $this->model->hasError($this->attribute) ? 'is-invalid' : '',
-            $this->model->{$this->attribute}
-    );
+            $this->model->{$this->attribute},
+        );
     }
 }

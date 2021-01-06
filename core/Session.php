@@ -2,6 +2,11 @@
 
 namespace app\core;
 
+
+/**
+ * Class Session
+ *
+ */
 class Session
 {
     protected const FLASH_KEY = 'flash_messages';
@@ -9,13 +14,13 @@ class Session
     public function __construct()
     {
         session_start();
-        $flash_messages = $_SESSION[self::FLASH_KEY] ?? [];
-        foreach ($flash_messages as $key => &$flashMessage) {
-            //mark to be removed
+        $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];
+        foreach ($flashMessages as $key => &$flashMessage) {
             $flashMessage['remove'] = true;
         }
-        $_SESSION[self::FLASH_KEY] = $flash_messages;
+        $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
+
     public function setFlash($key, $message)
     {
         $_SESSION[self::FLASH_KEY][$key] = [
@@ -33,6 +38,7 @@ class Session
     {
         $_SESSION[$key] = $value;
     }
+
     public function get($key)
     {
         return $_SESSION[$key] ?? false;
@@ -45,13 +51,17 @@ class Session
 
     public function __destruct()
     {
-        $flash_messages = $_SESSION[self::FLASH_KEY] ?? [];
-        foreach ($flash_messages as $key => &$flash_message) {
-            if ($flash_message['remove']) {
-                unset($flash_messages[$key]);
+        $this->removeFlashMessages();
+    }
+
+    private function removeFlashMessages()
+    {
+        $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];
+        foreach ($flashMessages as $key => $flashMessage) {
+            if ($flashMessage['remove']) {
+                unset($flashMessages[$key]);
             }
         }
-
-        $_SESSION[self::FLASH_KEY] = $flash_messages;
+        $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
 }
