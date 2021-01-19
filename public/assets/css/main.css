@@ -35,6 +35,8 @@ body {
   overflow-x: hidden;
 }
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -1430,7 +1432,6 @@ p {
   width: 236px;
   height: 56px;
   border-radius: 50px;
-  margin-right: 20px;
   margin-top: 4px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1651,6 +1652,7 @@ p {
 .client-logo-section .client-logo-wrapper .client-logo-carousel .client-logo img:hover {
   opacity: 1;
 }
+
 
 .box-style {
   padding: 40px 30px;
@@ -2013,6 +2015,7 @@ p {
 .post-reply {
   visibility: visible !important;
 }
+
 /*===========================
     07. review CSS 
 ===========================*/

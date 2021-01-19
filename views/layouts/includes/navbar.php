@@ -50,7 +50,10 @@ use app\core\Application;
                                 </li>
                                 <?php if (Application::isGuest()) : ?>
                                     <li class="nav-item">
-                                        <a class="page-scroll theme-btn login-btn" href="/login"><i class="fas fa-sign-in-alt"></i>&#8192;Login</a>
+                                        <a class="page-scroll" href="/login">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll theme-btn login-btn" href="/register">Register</a>
                                     </li>
                                 <?php else : ?>
                                     <li class="nav-item">

@@ -2,6 +2,7 @@
 
 /** @var $model \app\models\LoginForm */
 
+use app\core\Application;
 use app\core\form\Form;
 
 $this->title = "Login";
@@ -17,20 +18,27 @@ $this->title = "Login";
                     <div class="row">
                         <div class="container">
                             <h2>Login on Cinemania</h2>
+                            <?php echo '<pre>';
+                            var_dump($google);
+                            echo '</pre>';
+                            exit; ?>
+                            <a href="<?php echo $google->createAuthUrl(); ?>" class="btn btn-primary"></a>
                             <?php $form = Form::begin('', 'post') ?>
                             <?php echo $form->field($model, 'email') ?>
                             <?php echo $form->field($model, 'password')->passwordField() ?>
-                            <button type="submit" class="theme-btn mt-20 mb-20 wow fadeInUp float-right" data-wow-delay="1.1s" name="login_btn">Login</button>
-                            <?php Form::end() ?>
-                        </div>
-                        <div class="row">
-                            <div class="col-7">
-                                <p class="wow fadeInUp" data-wow-delay="1.3s">Not yet a member? <a class="red" href="/register">Sign up</a></p>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="wow fadeInUp mt-35" data-wow-delay="1.3s">Not yet a member? <a class="red" href="/register">Sign up</a></p>
+                                    <a class="red text-right wow fadeInUp mt-10" data-wow-delay="1.3s" href="/forgot_password">Forgotten Password?</a></p>
 
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="theme-btn mt-20 mb-20 wow fadeInUp float-right" data-wow-delay="1.1s" name="login_btn">Login</button>
+                                </div>
                             </div>
-                            <div class="col-5">
-                                <a class="red text-right wow fadeInUp float-right" data-wow-delay="1.3s" href="/forgot_password">Forgotten Password?</a></p>
+                            <div class="row">
                             </div>
+                            <?php Form::end() ?>
                         </div>
                     </div>
                 </div>

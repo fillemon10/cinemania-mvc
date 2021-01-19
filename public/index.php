@@ -21,7 +21,13 @@ $config = [
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
-        'password' => $_ENV['DB_PASSWORD'],
+        'password' => $_ENV['DB_PASSWORD']
+    ],
+    'google' => [
+        'client_id' => $_ENV["GOOGLE_CLIENT_ID"],
+        'secret' => $_ENV["GOOGLE_SECRET"],
+        'url' => $_ENV["GOOGLE_REDIRECT_URI"]
+
     ]
 ];
 

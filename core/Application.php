@@ -27,6 +27,7 @@ class Application
     public Session $session;
     public View $view;
     public ?UserModel $user;
+    public GoogleAuth $google_auth;
 
     public function __construct($rootDir, $config)
     {
@@ -42,6 +43,8 @@ class Application
         //skapar PDO connection
         $this->db = new Database($config['db']);
 
+        $this->google_auth = new GoogleAuth($config['google']);
+
         $this->session = new Session();
         $this->view = new View();
 
@@ -50,7 +53,6 @@ class Application
 
         //om user id är satt
         if ($userId) {
-
             //sätter user till user där id är session user (se rad 79-80 för förklaring)
             $this->user = User::findOne(['id' => $userId]);
         }

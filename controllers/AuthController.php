@@ -5,6 +5,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\GoogleAuth;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
@@ -33,7 +34,8 @@ class AuthController extends Controller
         }
         $this->setLayout('auth');
         return $this->render('login', [
-            'model' => $loginForm
+            'model' => $loginForm,
+            'google' => Application::$app->google_auth
         ]);
     }
 
@@ -50,7 +52,8 @@ class AuthController extends Controller
         }
         $this->setLayout('auth');
         return $this->render('register', [
-            'model' => $registerModel
+            'model' => $registerModel,
+            'google' => Application::$app->google_auth
         ]);
     }
 
