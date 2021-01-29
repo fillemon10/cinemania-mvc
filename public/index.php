@@ -26,7 +26,7 @@ $config = [
     'google' => [
         'client_id' => $_ENV["GOOGLE_CLIENT_ID"],
         'secret' => $_ENV["GOOGLE_SECRET"],
-        'url' => $_ENV["GOOGLE_REDIRECT_URI"]
+        'uri' => $_ENV["GOOGLE_REDIRECT_URI"]
 
     ]
 ];
@@ -44,12 +44,17 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->get('/about', [SiteController::class, 'about']);
 
+//login
 $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/profile', [AuthController::class, 'profile']);
+
+//google login
+$app->router->get('/register/google', [AuthController::class, 'googleRegister']);
+
 
 $app->router->get('/blog', [BlogController::class, 'blog']);
 $app->router->get('/blog/post', [BlogController::class, 'singlePost']);

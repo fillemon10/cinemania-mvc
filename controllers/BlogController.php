@@ -14,16 +14,32 @@ class BlogController extends Controller
 {
     public function blog()
     {
+        //hämtar alla published posts
         $posts = Post::getAllPublishedPost();
+
+        //sätter en tom array
         $post_array = [];
+
+        //för varje post i posts
         foreach ($posts as $post) {
+
+            //skapa ett post objekt
             $post_object = new Post();
+
+            //hämta slugen
             $slug = $post["slug"];
+
+            //ladda posten
             $post_object->loadPost($post_object->getPost($slug));
 
+            //lägg till posten i post_array
             array_push($post_array, $post_object);
         }
+
+        //vänd på arrayen
         $post_array = array_reverse($post_array);
+
+        //rendera viewn blog och för med parametrarna posts och title
         return $this->render('blog', ['posts' => $post_array, 'title' => 'Blog']);
     }
 

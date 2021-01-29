@@ -35,7 +35,6 @@ class AuthController extends Controller
         $this->setLayout('auth');
         return $this->render('login', [
             'model' => $loginForm,
-            'google' => Application::$app->google_auth
         ]);
     }
 
@@ -53,7 +52,6 @@ class AuthController extends Controller
         $this->setLayout('auth');
         return $this->render('register', [
             'model' => $registerModel,
-            'google' => Application::$app->google_auth
         ]);
     }
 
@@ -66,5 +64,16 @@ class AuthController extends Controller
     public function profile()
     {
         return $this->render('profile');
+    }
+
+    public function googleRegister() {
+        echo '<pre>';
+        var_dump(Application::$app->google_auth->auth());
+        echo '</pre>';
+        exit;
+        Application::$app->google_auth->auth();
+        
+        return $this->render('google', [
+        ]);
     }
 }

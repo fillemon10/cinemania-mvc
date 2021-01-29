@@ -2,7 +2,6 @@
 
 namespace app\core;
 
-
 /**
  * Class Response
  *

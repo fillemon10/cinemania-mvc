@@ -18,11 +18,7 @@ $this->title = "Login";
                     <div class="row">
                         <div class="container">
                             <h2>Login on Cinemania</h2>
-                            <?php echo '<pre>';
-                            var_dump($google);
-                            echo '</pre>';
-                            exit; ?>
-                            <a href="<?php echo $google->createAuthUrl(); ?>" class="btn btn-primary"></a>
+                            <a href="" class="btn btn-primary">Login with Google</a>
                             <?php $form = Form::begin('', 'post') ?>
                             <?php echo $form->field($model, 'email') ?>
                             <?php echo $form->field($model, 'password')->passwordField() ?>

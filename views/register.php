@@ -16,7 +16,7 @@ $form = new Form();
                     <div class="row">
                         <div class="container">
                             <h2>Register on Cinemania</h2>
-                            <button class="btn btn-primary" href="">Register with Google</button>
+                            <a class="btn btn-primary" href="register/google">Register with Googles</a>
                             <?php $form = Form::begin('', 'post') ?>
                             <?php echo $form->field($model, 'username') ?>
                             <?php echo $form->field($model, 'email') ?>
