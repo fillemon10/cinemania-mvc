@@ -57,8 +57,12 @@ class User extends UserModel
         return parent::save();
     }
 
-    public function getDisplayName(): string
+    public function getUsername(): string
     {
         return $this->username;
+    }
+    public function getEmail(): string
+    {
+        return $this->email;
     }
 }

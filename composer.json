@@ -9,10 +9,13 @@
     "autoload": {
         "psr-4": {
             "app\\": "."
-        }
+        },
+                "classmap": [
+            "vendor/google/auth/src"
+        ]
     },
     "require": {
         "vlucas/phpdotenv": "^5.0",
-        "google/apiclient": "2.0"
-    }
+        "google/auth": "^1.14",
+        "google/apiclient-services": "^0.158.0"    }
 }

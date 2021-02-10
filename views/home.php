@@ -133,14 +133,14 @@
 </section>
 <!--========================= about-section end========================= -->
 
-<!-- ========================= blog-section start ========================= -->
-<section id="blog" class="blog-section pt-130 pb-80">
+<!-- ========================= news-section start ========================= -->
+<section id="news" class="news-section pt-130 pb-80">
   <div class="container">
     <div class="row">
       <div class="col-xl-6 col-lg-7 col-md-9 mx-auto">
         <div class="section-title text-center mb-55">
-          <span class="wow fadeInDown" data-wow-delay=".2s">Blog</span>
-          <h2 class="wow fadeInUp" data-wow-delay=".4s">The Latests Blog Posts</h2>
+          <span class="wow fadeInDown" data-wow-delay=".2s">News</span>
+          <h2 class="wow fadeInUp" data-wow-delay=".4s">The Latests News Posts</h2>
           <p class="wow fadeInUp" data-wow-delay=".6s">
             At vero eos et accusamus et iusto odio dignissimos ducimus quiblanditiis praesentium
           </p>
@@ -148,30 +148,38 @@
       </div>
     </div>
     <div class="row ">
-  <!--    <?php// for ($i = 0; $i < 3; $i++) : ?>
-        <div class="col-lg-4 col-md-8 col-xl-4 blog-col-index">
-          <div class="container  box-style blog-container wow fadeInup" data-wow-delay=".2s">
-            <div class="single-blog all-published blog-index-post">
-              <img class="blog-img wow fadeInRight mb-10" data-wow-delay=".4s" src="<?php //echo $posts[$i]['image']; ?>" alt="post-image">
+      <!--    <?php// for ($i = 0; $i < 3; $i++) : ?>
+        <div class="col-lg-4 col-md-8 col-xl-4 news-col-index">
+          <div class="container  box-style news-container wow fadeInup" data-wow-delay=".2s">
+            <div class="single-news all-published news-index-post">
+              <img class="news-img wow fadeInRight mb-10" data-wow-delay=".4s" src="<?php //echo $posts[$i]['image']; 
+                                                                                    ?>" alt="post-image">
               <h3 class="wow fadeInLeft" data-wow-delay=".2s"><?php// echo $posts[$i]['title'] ?></h3>
               <?php// if (isset($posts[$i]['topic']['name'])) : ?>
                 <div class="row">
-                  <a class="mb-10" href="/topic/<?php //$posts[$i]['topic']['id'] ?>"> <span class="wow fadeInLeft red" data-wow-delay=".4s"> <?php //echo $posts[$i]['topic']['name'] ?></span></a>
+                  <a class="mb-10" href="/topic/<?php //$posts[$i]['topic']['id'] 
+                                                ?>"> <span class="wow fadeInLeft red" data-wow-delay=".4s"> <?php //echo $posts[$i]['topic']['name'] 
+                                                                                                            ?></span></a>
                 </div>
-              <?php //endif ?>
-              <p class="wow fadeInLeft" data-wow-delay=".6s"><?php //echo //shorten_string($posts[$i]['body'], 20) ?></p>
-              <div class="row mt-10 blog-btn-index">
+              <?php //endif 
+              ?>
+              <p class="wow fadeInLeft" data-wow-delay=".6s"><?php //echo //shorten_string($posts[$i]['body'], 20) 
+                                                              ?></p>
+              <div class="row mt-10 news-btn-index">
                 <div class="col-xl-8 col-lg-8 col-md-8">
-                  <a href="/post/<?php //echo $posts[$i]['slug']; ?>" class="theme-btn readmore-btn wow fadeInUp" data-wow-delay=".8s">Read more</a>
+                  <a href="/post/<?php //echo $posts[$i]['slug']; 
+                                  ?>" class="theme-btn readmore-btn wow fadeInUp" data-wow-delay=".8s">Read more</a>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4">
-                  <p class="wow fadeInUp" data-wow-delay=".8s"><?php //echo date("F j, Y ", strtotime($posts[$i]["created_at"])); ?></p>
+                  <p class="wow fadeInUp" data-wow-delay=".8s"><?php //echo date("F j, Y ", strtotime($posts[$i]["created_at"])); 
+                                                                ?></p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      <?php //endfor ?> ->>
+      <?php //endfor 
+      ?> ->>
     </div>
 </section>
-<!-- ========================= blog-section end ========================= -->
+<!-- ========================= news-section end ========================= -->

@@ -43,7 +43,7 @@ class Application
         //skapar PDO connection
         $this->db = new Database($config['db']);
 
-        $this->google_auth = new GoogleAuth($config['google']);
+        //$this->google_auth = new GoogleAuth($config['google']);
 
         $this->session = new Session();
         $this->view = new View();

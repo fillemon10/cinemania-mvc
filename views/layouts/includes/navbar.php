@@ -34,7 +34,7 @@ use app\core\Application;
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/blog">Blog</a>
+                                    <a href="/news">News</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/about">About</a>

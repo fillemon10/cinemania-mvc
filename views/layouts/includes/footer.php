@@ -17,7 +17,7 @@
                             <a href="javascript:void(0)">Home</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">Blog</a>
+                            <a href="javascript:void(0)">News</a>
                         </li>
                         <li>
                             <a href="javascript:void(0)">About Us</a>

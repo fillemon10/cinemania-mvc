@@ -7,7 +7,8 @@
 
 use app\controllers\AuthController;
 use app\controllers\SiteController;
-use app\controllers\BlogController;
+use app\controllers\NewsController;
+use app\controllers\ReviewsController;
 use app\core\Application;
 
 
@@ -35,11 +36,13 @@ $config = [
 $app = new Application(dirname(__DIR__), $config);
 
 //event listener, ska fixa
-$app->on(Application::EVENT_BEFORE_REQUEST, function(){
-   // echo "Before request from second installation";
+$app->on(Application::EVENT_BEFORE_REQUEST, function () {
+    // echo "Before request from second installation";
 });
 
 //alla routes på webbplatsen
+
+//basic
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->get('/about', [SiteController::class, 'about']);
@@ -50,15 +53,22 @@ $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
-$app->router->get('/profile', [AuthController::class, 'profile']);
+$app->router->get('/myaccount', [AuthController::class, 'myaccount']);
 
 //google login
 $app->router->get('/register/google', [AuthController::class, 'googleRegister']);
 
+//news
+$app->router->get('/news', [NewsController::class, 'news']);
+$app->router->get('/news/post', [NewsController::class, 'singlePost']);
+$app->router->get('/news/topic', [NewsController::class, 'topicFilter']);
 
-$app->router->get('/blog', [BlogController::class, 'blog']);
-$app->router->get('/blog/post', [BlogController::class, 'singlePost']);
-$app->router->get('/blog/topic', [BlogController::class, 'topicFilter']);
+//reviews
+$app->router->get('/reviews', [ReviewsController::class, 'reviews']);
+$app->router->get('/reviews/review', [ReviewsController::class, 'singleReview']);
+$app->router->get('/reviews/genre', [ReviewsController::class, 'genreFilter']);
+$app->router->get('/reviews/type', [ReviewsController::class, 'typeFilter']);
+
 
 //kör applikationen
 $app->run();

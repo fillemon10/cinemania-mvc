@@ -8,11 +8,11 @@ Index Of css
 04. About CSS
 05. Service CSS
 06. Process CSS
-07. blog CSS
+07. news CSS
 08. review CSS
 09. Team CSS
 10. Subscribe CSS
-11. Blog CSS
+11. News CSS
 12. Contact CSS
 13. Footer CSS
 14. Form CSS
@@ -28,14 +28,12 @@ html {
 
 body {
   font-family: 'Poppins', sans-serif;
-  
+
   font-weight: normal;
   font-style: normal;
   color: #523b3b;
   overflow-x: hidden;
 }
-
-
 
 * {
   margin: 0;
@@ -342,8 +340,14 @@ p {
 }
 
 @keyframes reveal {
-  0% {transform: scale(1.05); opacity: 0;}
-  100% {transform: scale(1); opacity: 1;}
+  0% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .section-title p {
@@ -1070,7 +1074,7 @@ p {
   padding-bottom: 225px;
 }
 .p-10 {
-  padding:10px !important;
+  padding: 10px !important;
 }
 /*===========================
     02. Header CSS 
@@ -1251,7 +1255,10 @@ p {
 .navbar-nav .nav-item a.dd-menu::after {
   content: '\f078';
   color: #523b3b;
-    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f078";  position: absolute;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f078';
+  position: absolute;
   right: 18px;
   font-size: 12px;
   margin-left: 5px;
@@ -1653,9 +1660,8 @@ p {
   opacity: 1;
 }
 
-
 .box-style {
-  padding: 40px 30px;
+  padding: 30px 22px;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
   margin-bottom: 30px;
@@ -1664,7 +1670,7 @@ p {
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
-    -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
   -moz-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
   box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
 }
@@ -1851,19 +1857,19 @@ p {
 }
 
 /*===========================
-    07. blog CSS 
+    07. news CSS 
 ===========================*/
-.blog-section .blog-btn ul {
+.news-section .news-btn ul {
   display: inline-flex;
   border: 1px solid #f4eefb;
   border-radius: 50px;
 }
 @media (max-width: 767px) {
-  .blog-section .blog-btn ul {
+  .news-section .news-btn ul {
     margin-bottom: 40px;
   }
 }
-.blog-section .blog-btn ul li.nav-item a {
+.news-section .news-btn ul li.nav-item a {
   background: #fff;
   padding: 24px 35px;
   font-size: 16px;
@@ -1872,12 +1878,12 @@ p {
   box-shadow: 0px 0px 47px rgba(255, 161, 161, 0.16);
 }
 @media (max-width: 767px) {
-  .blog-section .blog-btn ul li.nav-item a {
+  .news-section .news-btn ul li.nav-item a {
     padding: 20px;
     font-size: 14px;
   }
 }
-.blog-section .blog-btn ul li.nav-item a.active {
+.news-section .news-btn ul li.nav-item a.active {
   color: #fff;
   background: linear-gradient(to left, #eb3737 0%, #e85858 50.39%, #eb3737 100%);
   background-size: 200%;
@@ -1887,38 +1893,38 @@ p {
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
 }
-.blog-section .blog-btn ul li.nav-item:first-child .nav-link {
+.news-section .news-btn ul li.nav-item:first-child .nav-link {
   border-radius: 50px 0 0 50px;
 }
 @media (max-width: 767px) {
-  .blog-section .blog-btn ul li.nav-item:first-child .nav-link {
+  .news-section .news-btn ul li.nav-item:first-child .nav-link {
     border-radius: 50px;
     padding: 20px 35px;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-  .blog-section .blog-btn ul li.nav-item:first-child .nav-link {
+  .news-section .news-btn ul li.nav-item:first-child .nav-link {
     border-radius: 50px 0 0 50px;
     padding: 20px 30px;
   }
 }
-.blog-section .blog-btn ul li.nav-item:last-child .nav-link {
+.news-section .news-btn ul li.nav-item:last-child .nav-link {
   border-radius: 0 50px 50px 0;
 }
 @media (max-width: 767px) {
-  .blog-section .blog-btn ul li.nav-item:last-child .nav-link {
+  .news-section .news-btn ul li.nav-item:last-child .nav-link {
     border-radius: 50px;
     padding: 20px 35px;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-  .blog-section .blog-btn ul li.nav-item:last-child .nav-link {
+  .news-section .news-btn ul li.nav-item:last-child .nav-link {
     border-radius: 0 50px 50px 0;
     padding: 20px 30px;
   }
 }
 
-.blog-section .single-blog {
+.news-section .single-news {
   text-align: left;
   padding: 30px;
   border-radius: 10px;
@@ -1927,31 +1933,31 @@ p {
   position: relative;
   z-index: 1;
 }
-.blog-section .single-blog h4 {
+.news-section .single-news h4 {
   margin-bottom: 25px;
   color: #926a6a;
   font-weight: 600;
 }
-.blog-section .single-blog h3 {
+.news-section .single-news h3 {
   margin-bottom: 25px;
   font-weight: 600;
   font-size: 40px;
 }
-.blog-section .single-blog ul {
+.news-section .single-news ul {
   margin-bottom: 30px;
 }
-.blog-section .single-blog ul li {
+.news-section .single-news ul li {
   font-size: 16px;
   line-height: 40px;
 }
-.blog-section .single-blog a {
+.news-section .single-news a {
   margin-bottom: 20px;
 }
-.blog-section .single-blog a.border-btn:hover {
+.news-section .single-news a.border-btn:hover {
   background: rgba(235, 55, 55, 0.8);
   color: #fff;
 }
-.blog-section .single-blog.active {
+.news-section .single-news.active {
   -webkit-transform: scale(1.15);
   -moz-transform: scale(1.15);
   -ms-transform: scale(1.15);
@@ -1959,28 +1965,28 @@ p {
   transform: scale(1.15);
   z-index: 2;
 }
-.blog-section .single-blog.active h3 {
+.news-section .single-news.active h3 {
   color: #eb3737;
 }
-.blog-container {
+.news-container {
   padding: 0 !important;
 }
-.blog-img {
+.news-img {
   width: 100% !important;
 }
 
-.blog-btn-index {
+.news-btn-index {
   justify-content: flex-end;
   display: flex;
 }
-.blog-index-post {
+.news-index-post {
   min-height: 800px !important;
 }
 .comment {
   padding: 15px !important;
 }
 .comment-info {
-  font-size: 12px !important; 
+  font-size: 12px !important;
 }
 .reply-btn {
   display: inline-block;
@@ -2153,7 +2159,7 @@ p {
 .rating-logo {
   height: 48px;
   width: auto;
-  max-width:134px;
+  max-width: 134px;
 }
 /*===========================
     10. Subscribe CSS 
@@ -2643,7 +2649,7 @@ p {
   color: #fff;
 }
 .footer-logo {
-max-width: 332px;
+  max-width: 332px;
 }
 /*===========================
     15. Form CSS 

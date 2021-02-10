@@ -49,7 +49,7 @@ $user = Application::$app->user;
                         <div class="mt-20 mb-20 row">
                             <div class="col-9">
                                 <p>Email:</p>
-                                <p><?php echo $_SESSION['user']['email'] ?></p>
+                                <p><?php echo $user->getEmail() ?></p>
                             </div>
                             <div class="col-3">
                                 <a href="javascript:void(0)" class="theme-btn float-right">Edit</a>

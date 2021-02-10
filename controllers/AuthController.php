@@ -61,9 +61,9 @@ class AuthController extends Controller
         $response->redirect('/');
     }
 
-    public function profile()
+    public function myaccount()
     {
-        return $this->render('profile');
+        return $this->render('myaccount');
     }
 
     public function googleRegister() {

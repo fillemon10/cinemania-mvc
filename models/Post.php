@@ -44,11 +44,11 @@ class Post extends DbModel
         return [];
     }
 
-    public static function getAllPublishedPost()
+    public static function getAllPublishedPosts()
     {
         return parent::findAll(['published' => '1']);
     }
-    public static function getAllPublishedPostByTopic($topic_id)
+    public static function getAllPublishedPostsByTopic($topic_id)
     {
         $statement = self::prepare("SELECT * FROM posts WHERE id IN (SELECT post_id FROM post_topic WHERE topic_id=:topic_id GROUP BY post_id HAVING COUNT(1) = 1)");
         $statement->bindValue(':topic_id', $topic_id);
