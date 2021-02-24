@@ -19,7 +19,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware(['profile']));
+        $this->registerMiddleware(new AuthMiddleware(['myaccount']));
     }
 
     public function login(Request $request)
@@ -51,7 +51,7 @@ class AuthController extends Controller
         }
         $this->setLayout('auth');
         return $this->render('register', [
-            'model' => $registerModel,
+            'model' => $registerModel
         ]);
     }
 

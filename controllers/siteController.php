@@ -21,9 +21,7 @@ class SiteController extends Controller
     {
         $this->setLayout('home');
 
-        return $this->render('home', [
-            'name' => 'Cinemania'
-        ]);
+        return $this->render('home');
     }
 
     public function contact()

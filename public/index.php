@@ -9,6 +9,8 @@ use app\controllers\AuthController;
 use app\controllers\SiteController;
 use app\controllers\NewsController;
 use app\controllers\ReviewsController;
+use app\controllers\AdminController;
+
 use app\core\Application;
 
 
@@ -69,6 +71,11 @@ $app->router->get('/reviews/review', [ReviewsController::class, 'singleReview'])
 $app->router->get('/reviews/genre', [ReviewsController::class, 'genreFilter']);
 $app->router->get('/reviews/type', [ReviewsController::class, 'typeFilter']);
 
+//admin
+$app->router->get('/admin', [AdminController::class, 'dashboard']);
+$app->router->get('/admin/users', [AdminController::class, 'users']);
+$app->router->get('/admin/posts', [AdminController::class, 'posts']);
+$app->router->get('/admin/reviews', [AdminController::class, 'reviews']);
 
 //kör applikationen
 $app->run();

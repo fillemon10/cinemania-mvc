@@ -16,7 +16,7 @@ $this->title = "Login";
             <div class="col-xl-6 col-lg-6 col-md-8 mx-auto">
                 <div class="container  box-style pt-15 pb-15">
                     <div class="row">
-                        <div class="container">
+                        <div class="container ">
                             <h2>Login on Cinemania</h2>
                             <a href="" class="btn btn-primary">Login with Google</a>
                             <?php $form = Form::begin('', 'post') ?>
