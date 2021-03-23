@@ -18,10 +18,10 @@
                 <div class="hero-img">
                     <div class="d-inline-block hero-img-right">
                         <?php if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) { ?>
-                        <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1609332071/hero-img_tyib9b.webp"
+                        <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/hero_wdbmad.webp"
                             alt="projector" class="wow fadeInRight" data-wow-delay=".5s" />
                         <?php } else { ?>
-                        <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1609332071/hero-img_elulau.png"
+                        <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534464/hero_ewnw87.png"
                             alt="projector" class="wow fadeInRight" data-wow-delay=".5s" />
                         <?php } ?>
                     </div>
@@ -72,10 +72,10 @@
                     <div class="about-img-wrapper">
                         <div class="about-img position-relative d-inline-block wow fadeInLeft" data-wow-delay=".3s">
                             <?php if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) { ?>
-                            <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1609332077/about-img_wmzk3b.webp"
+                            <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/about_nb9zsn.webp"
                                 alt="cinema seats" class="wow fadeInLeft" data-wow-delay=".5s" />
                             <?php } else { ?>
-                            <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1609332077/about-img_a5umkh.png"
+                            <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/about_m06kgh.png"
                                 alt="cinema seats" class="wow fadeInLeft" data-wow-delay=".5s" />
                             <?php } ?>
                             <div class="about-experience">

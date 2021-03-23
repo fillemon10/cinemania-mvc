@@ -248,9 +248,9 @@ p {
 .theme-btn:focus {
   background-position: right center;
   color: #fff;
-  -webkit-box-shadow: 0px 0px 30px rgba(217, 46, 46, 0.45);
-  -moz-box-shadow: 0px 0px 30px rgba(217, 46, 46, 0.45);
-  box-shadow: 0px 0px 30px rgba(217, 46, 46, 0.45);
+  -webkit-box-shadow: 0px 0px 20px rgba(217, 46, 46, 0.45);
+  -moz-box-shadow: 0px 0px 20px rgba(217, 46, 46, 0.45);
+  box-shadow: 0px 0px 20px rgba(217, 46, 46, 0.45);
 }
 .theme-btn.border-btn {
   padding: 14px 40px;
@@ -1567,7 +1567,8 @@ p {
   top: 107px;
   width: 48%;
   text-align: right;
-}
+
+        }
 @media only screen and (min-width: 1400px) {
   .hero-section .hero-img {
     top: 70px;
@@ -1949,7 +1950,7 @@ p {
 .news-section .single-news {
   text-align: left;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 20px;
   background: #fff;
   box-shadow: 0px 0px 47px rgba(255, 161, 161, 0.16);
   position: relative;
@@ -2115,7 +2116,7 @@ p {
 .review-section .single-review {
   text-align: left;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 20px;
   background: #fff;
   box-shadow: 0px 0px 47px rgba(255, 161, 161, 0.16);
   position: relative;
@@ -2267,7 +2268,7 @@ p {
 .contact-section .contact-item-wrapper .contact-item {
   display: flex;
   border: 1px solid #fbeeee;
-  border-radius: 10px;
+  border-radius: 20px;
   background: #fff;
   margin-bottom: 30px;
   padding: 20px 30px;
@@ -2350,7 +2351,7 @@ p {
   background: #fff;
   border: 1px solid #f4eefb;
   margin-left: 0px;
-  border-radius: 10px;
+  border-radius: 20px;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
