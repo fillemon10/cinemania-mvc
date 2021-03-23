@@ -3,9 +3,11 @@
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6">
                 <div class="footer-widget mb-60 wow fadeInLeft" data-wow-delay=".2s">
-                    <a href="/index" class="footer-logo mb-30"><img class="footer-logo" src="/assets/img/logo/logo.svg" alt="logo" /></a>
+                    <a href="/index" class="footer-logo mb-30"><img class="footer-logo" src="/assets/img/logo/logo.svg"
+                            alt="logo" /></a>
                     <p class="mb-30 footer-desc">
-                        Read reviews of new And old movies. Cinemania is the #1 place to find good movies to watch. Check out the latests reviews.
+                        Read reviews of new And old movies. Cinemania is the #1 place to find good movies to watch.
+                        Check out the latests reviews.
                     </p>
                 </div>
             </div>
@@ -14,36 +16,30 @@
                     <h4>Quick Link</h4>
                     <ul class="footer-links">
                         <li>
-                            <a href="javascript:void(0)">Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">News</a>
+                            <a href="/about">About</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">About Us</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">Contact</a>
+                            <a href="/contact">Contact</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6">
                 <div class="footer-widget mb-60 wow fadeInUp" data-wow-delay=".6s">
-                    <h4>Legal</h4>
+                    <h4>Reviews and News</h4>
                     <ul class="footer-links">
 
                         <li>
-                            <a href="/terms">Terms of service</a>
+                            <a href="/reviews">Reviews</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">Privacy Policy</a>
+                            <a href="/news">News</a>
                         </li>
                         <li>
-                            <a href="/license">License</a>
-                        </li>
-                        <li>
-                            <a href="/security">Security</a>
+                            <a href="/memberreviews">Member Reviews</a>
                         </li>
                     </ul>
                 </div>
@@ -72,16 +68,16 @@
                     <div class="footer-social-links">
                         <ul class="d-flex">
                             <li>
-                                <a href="instagram.com"><i class="red fab fa-instagram-square"></i></a>
+                                <a href="https://www.instagram.com"><i class="red fab fa-instagram-square"></i></a>
                             </li>
                             <li>
-                                <a href="facebook.com"><i class="red fab fa-facebook-square"></i></a>
+                                <a href="https://www.facebook.com"><i class="red fab fa-facebook-square"></i></a>
                             </li>
                             <li>
-                                <a href="twitter.com"><i class="red fab fa-twitter-square"></i></a>
+                                <a href="https://www.twitter.com"><i class="red fab fa-twitter-square"></i></a>
                             </li>
                             <li>
-                                <a href="linkedin.com"><i class="red fab fa-linkedin"></i></a>
+                                <a href="https://www.linkedin.com"><i class="red fab fa-linkedin"></i></a>
                             </li>
                         </ul>
                     </div>

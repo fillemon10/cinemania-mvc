@@ -5,18 +5,27 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\Review;
+use app\models\MemberReview;
 use app\core\OMDb;
+use app\core\middlewares\MemberMiddleware;
+
 
 /**
- * Class ReviewsController
+ * Class MemberReviewsController
  */
-class ReviewsController extends Controller
+class MemberReviewsController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new MemberMiddleware(['createreview']));
+                $this->registerMiddleware(new MemberMiddleware(['managereview']));
+
+    }
+    
     public function reviews()
     {
         //hämtar alla published reviews
-        $reviews = Review::getAllPublishedReviews();
+        $reviews = MemberReview::getAllPublishedReviews();
 
         //sätter en tom array
         $review_array = [];
@@ -25,7 +34,7 @@ class ReviewsController extends Controller
         foreach ($reviews as $review) {
 
             //skapa ett review objekt
-            $review_object = new Review();
+            $review_object = new MemberReview();
 
             //hämta slugen
             $slug = $review["slug"];
@@ -41,7 +50,7 @@ class ReviewsController extends Controller
         $review_array = array_reverse($review_array);
 
         //rendera viewn reviews och för med parametrarna reviews och title
-        return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Reviews']);
+        return $this->render('memberreviews', ['reviews' => $review_array, 'title' => 'Member Reviews']);
     }
 
     public function singleReview(Request $request)
@@ -71,8 +80,7 @@ class ReviewsController extends Controller
             array_push($review_array, $review_object);
         }
         $review_array = array_reverse($review_array);
-        
-        return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Genre: ' . ucwords($genre)]);
+        return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Genre: ' . $genre]);
     }
     public function typeFilter(Request $request)
     {

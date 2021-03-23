@@ -46,7 +46,7 @@ class NewsController extends Controller
     public function singlePost(Request $request)
     {
         $post = new Post();
-        $slug = $request->getData()['slug'];
+        $slug = $request->getData()['p'];
         $post->loadPost($post->getPost($slug));
         $this->setLayout('single');
 
@@ -55,16 +55,19 @@ class NewsController extends Controller
 
     public function topicFilter(Request $request)
     {
-        $topic_id = $request->getData()["topic_id"];
+        $topic_id = $request->getData()["t"];
         $posts = Post::getAllPublishedPostsByTopic($topic_id);
         $post_array = [];
         foreach ($posts as $post) {
             $post_object = new Post();
             $slug = $post["slug"];
             $post_object->loadPost($post_object->getPost($slug));
+            $topic = $post_object->topic;
             array_push($post_array, $post_object);
         }
         $post_array = array_reverse($post_array);
-        return $this->render('news/news', ['posts' => $post_array, 'title' => 'Genre: ' . $topic_id]);
+
+
+        return $this->render('news/news', ['posts' => $post_array, 'title' => 'Topic: ' . $topic]);
     }
 }

@@ -57,7 +57,7 @@ class Router
             //visa viewn callback
             return $this->renderView($callback);
         }
-        
+
         //om callbacken är en array (ANVÄNDS)
         if (is_array($callback)) {
             /**

@@ -22,7 +22,9 @@ class Post extends DbModel
     public string $updated_at = '';
     public string $topic = "";
     public string $topic_id = "";
-    public string $username = "";
+    public string $username = "(deleted user)";
+    public string $short_body = "";
+
 
     public static function tableName(): string
     {
@@ -61,11 +63,13 @@ class Post extends DbModel
         return $this->findOne(['slug' => $slug, 'published' => 1]);
     }
 
-    public function getUsername(){
+    public function getUsername()
+    {
         return User::findOne(['id' => $this->user_id]);
     }
 
-    public function getTopic(){
+    public function getTopic()
+    {
         $statement = self::prepare("SELECT * FROM topics WHERE id=(SELECT topic_id FROM post_topic WHERE post_id=:post_id) LIMIT 1");
         $statement->bindValue(':post_id', $this->id);
         $statement->execute();
@@ -78,5 +82,21 @@ class Post extends DbModel
         $this->username = $this->getUsername()->{"username"};
         $this->topic = $this->getTopic()->{'name'};
         $this->topic_id = $this->getTopic()->{'id'};
+        $this->short_body = $this->shorten_string($this->body, 40);
+    }
+
+    public function shorten_string($string, $wordsreturned)
+    {
+        $retval = $string;
+        $string = preg_replace('/(?<=\S,)(?=\S)/', ' ', $string);
+        $string = str_replace("\n", " ", $string);
+        $array = explode(" ", $string);
+        if (count($array) <= $wordsreturned) {
+            $retval = $string;
+        } else {
+            array_splice($array, $wordsreturned);
+            $retval = implode(" ", $array) . "...";
+        }
+        return $retval;
     }
 }

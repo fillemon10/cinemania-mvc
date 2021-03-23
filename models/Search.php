@@ -6,15 +6,15 @@ namespace app\models;
 use app\core\db\DbModel;
 
 /**
- * Class ReviewModel
+ * Class Search
  *
  */
-class Review extends DbModel
+class Search extends DbModel
 {
-    public int $id = 0;
+    public int $ques = 0;
     public int $user_id = 0;
     public int $published = 0;
-    public string $imdb_id = '';
+    public string $query = '';
     public string $title = '';
     public string $title_of = '';
     public string $slug = '';

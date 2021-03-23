@@ -10,6 +10,8 @@ use app\controllers\SiteController;
 use app\controllers\NewsController;
 use app\controllers\ReviewsController;
 use app\controllers\AdminController;
+use app\controllers\MemberReviewsController;
+
 
 use app\core\Application;
 
@@ -18,7 +20,8 @@ use app\core\Application;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 //hämtar .env filen
-$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
 $dotenv->load();
 $config = [
     'db' => [
@@ -31,16 +34,13 @@ $config = [
         'secret' => $_ENV["GOOGLE_SECRET"],
         'uri' => $_ENV["GOOGLE_REDIRECT_URI"]
 
-    ]
+    ],
+    'omdb' => $_ENV["OMDB_APIKEY"]
 ];
 
 //skapar en instans av applikationen
 $app = new Application(dirname(__DIR__), $config);
 
-//event listener, ska fixa
-$app->on(Application::EVENT_BEFORE_REQUEST, function () {
-    // echo "Before request from second installation";
-});
 
 //alla routes på webbplatsen
 
@@ -62,20 +62,28 @@ $app->router->get('/register/google', [AuthController::class, 'googleRegister'])
 
 //news
 $app->router->get('/news', [NewsController::class, 'news']);
-$app->router->get('/news/post', [NewsController::class, 'singlePost']);
-$app->router->get('/news/topic', [NewsController::class, 'topicFilter']);
+$app->router->get('/post', [NewsController::class, 'singlePost']);
+$app->router->get('/topic', [NewsController::class, 'topicFilter']);
 
 //reviews
 $app->router->get('/reviews', [ReviewsController::class, 'reviews']);
-$app->router->get('/reviews/review', [ReviewsController::class, 'singleReview']);
-$app->router->get('/reviews/genre', [ReviewsController::class, 'genreFilter']);
-$app->router->get('/reviews/type', [ReviewsController::class, 'typeFilter']);
+$app->router->get('/review', [ReviewsController::class, 'singleReview']);
+$app->router->get('/genre', [ReviewsController::class, 'genreFilter']);
+$app->router->get('/type', [ReviewsController::class, 'typeFilter']);
 
 //admin
 $app->router->get('/admin', [AdminController::class, 'dashboard']);
 $app->router->get('/admin/users', [AdminController::class, 'users']);
 $app->router->get('/admin/posts', [AdminController::class, 'posts']);
 $app->router->get('/admin/reviews', [AdminController::class, 'reviews']);
+
+//Member Reviews
+$app->router->get('/memberreviews', [MemberReviewsController::class, 'reviews']);
+
+//search
+$app->router->get('/search', [SiteController::class, 'search']);
+
+
 
 //kör applikationen
 $app->run();

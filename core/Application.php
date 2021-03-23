@@ -28,6 +28,7 @@ class Application
     public View $view;
     public ?UserModel $user;
     public GoogleAuth $google_auth;
+    public static string $omdbAPIkey;
 
     public function __construct($rootDir, $config)
     {
@@ -43,6 +44,10 @@ class Application
         //skapar PDO connection
         $this->db = new Database($config['db']);
 
+        //omdb Api Key
+        self::$omdbAPIkey = $config['omdb'];
+
+
         //$this->google_auth = new GoogleAuth($config['google']);
 
         $this->session = new Session();
@@ -56,6 +61,7 @@ class Application
             //sätter user till user där id är session user (se rad 79-80 för förklaring)
             $this->user = User::findOne(['id' => $userId]);
         }
+
     }
 
     //kollar om personen är guest eller inloggad

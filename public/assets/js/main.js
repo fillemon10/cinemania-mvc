@@ -30,11 +30,11 @@
   });
 
   //WOW Scroll Spy
-  var wow = new WOW({
+  //var wow = new WOW({
     //disabled for mobile
-    mobile: false,
-  });
-  wow.init();
+    //mobile: false,
+  //});
+  //wow.init();
 
   var navLinks = document.querySelectorAll('.navbar-nav .nav-item a');
 
@@ -58,3 +58,4 @@
 function openSinglePost(slug) {
   window.url = 'single_post?post-slug=' + slug;
 }
+

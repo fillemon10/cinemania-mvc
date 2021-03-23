@@ -16,16 +16,16 @@ $user = Application::$app->user;
             <div class="col-2">
                 <ul>
                     <li>
-                        <a class="red mt-10" href="/myaccount?page=edit">Edit Account</a>
+                        <a class="red mt-10" href="/myaccount/edit">Edit Account</a>
                     </li>
                     <li>
-                        <a class="red mt-10" href="/myaccount?page=email">Email Preferences</a>
+                        <a class="red mt-10" href="/myaccount/email">Email Preferences</a>
                     </li>
                     <li>
-                        <a class="red mt-10" href="/myaccount?page=contributions">View Contributions</a>
+                        <a class="red mt-10" href="/myaccount/contributions">View Contributions</a>
                     </li>
                     <li>
-                        <a class="red mt-10" href="/myaccount?page=delete">Delete Account</a>
+                        <a class="red mt-10" href="/myaccount/delete">Delete Account</a>
                     </li>
                 </ul>
             </div>
@@ -71,11 +71,16 @@ $user = Application::$app->user;
                         <div class="mt-20 mb-20 row">
                             <div class="col-9">
                                 <p>Role:</p>
-                                <p><?php echo $_SESSION['user']['role'] ?></p>
+                                <p><?php echo $user->getRole() ?></p>
                             </div>
                         </div>
                         <hr>
-
+                        <div class="mt-20 mb-20 row">
+                            <div class="col-9">
+                                <p>Account created at:</p>
+                                <p><?php echo $user->getCreated() ?></p>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

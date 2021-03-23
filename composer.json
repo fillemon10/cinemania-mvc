@@ -1,21 +1,12 @@
 {
-    "name": "filipsjolander/phpmvc-framework",
-    "authors": [
-        {
-            "name": "Filip Sjölander",
-            "email": "filip.sjolander@gmail.com"
-        }
-    ],
+    "name": "filipsjolander/gya",
+    "require": {
+        "vlucas/phpdotenv": "^5.3",
+        "phpmailer/phpmailer": "^6.3"    },
+
     "autoload": {
         "psr-4": {
-            "app\\": "."
-        },
-                "classmap": [
-            "vendor/google/auth/src"
-        ]
-    },
-    "require": {
-        "vlucas/phpdotenv": "^5.0",
-        "google/auth": "^1.14",
-        "google/apiclient-services": "^0.158.0"    }
+            "app\\": "./"
+        }
+    }
 }

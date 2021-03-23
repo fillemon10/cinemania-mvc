@@ -8,16 +8,11 @@ $user = Application::$app->user;
 
 ?>
 <?php include("includes/head.php"); ?>
+<?php include("includes/success_message.php"); ?>
 <?php include("includes/navbar.php"); ?>
 <?php include("includes/banner.php"); ?>
 
-<section class="<?php echo $this->title ?>-section pt-30 pb-20">
-    <div class="container">
-        <div class="w-50">
-            <?php include("includes/success_message.php"); ?>
-        </div>
-    </div>
-
+<section class="<?php echo $this->title ?>-section pt-30">
     {{content}}
 </section>
 

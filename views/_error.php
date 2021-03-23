@@ -1,5 +1,19 @@
 <?php
 /** @var $exception \Exception */
+$this->title = $exception->getCode();
 ?>
-
-<h3><?php echo $exception->getCode() ?> - <?php echo $exception->getMessage() ?></h3>
+<section class="page-404-section pt-100 pb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-404-content text-center">
+                    <h2 class=""><?php echo $exception->getCode() ?></h2>
+                    <h4 class=" ">
+                        <?php echo $exception->getMessage() ?>
+                        <br>
+                        <a href="/" class="btn theme-btn mt-30">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

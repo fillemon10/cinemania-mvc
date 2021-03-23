@@ -9,7 +9,7 @@ use app\core\db\DbModel;
  * Class ReviewModel
  *
  */
-class Review extends DbModel
+class MemberReview extends DbModel
 {
     public int $id = 0;
     public int $user_id = 0;
@@ -30,7 +30,7 @@ class Review extends DbModel
 
     public static function tableName(): string
     {
-        return 'reviews';
+        return 'member_reviews';
     }
 
     public function attributes(): array
@@ -54,7 +54,7 @@ class Review extends DbModel
     }
     public static function getAllPublishedReviewByGenre($genre)
     {
-        $statement = self::prepare("SELECT * FROM reviews WHERE id IN (SELECT review_id FROM review_genres WHERE genre=:genre GROUP BY review_id HAVING COUNT(1) = 1) AND published = 1");
+        $statement = self::prepare("SELECT * FROM member_reviews WHERE id IN (SELECT review_id FROM review_genres WHERE genre=:genre GROUP BY review_id HAVING COUNT(1) = 1) AND published = 1");
         $statement->bindValue(':genre', $genre);
         $statement->execute();
         return $statement->fetchAll();
@@ -76,7 +76,7 @@ class Review extends DbModel
 
     public function getGenre()
     {
-        $statement = self::prepare("SELECT genre FROM `review_genres` WHERE review_id IN (SELECT review_id FROM review_genres WHERE review_ID = :review_id)");
+        $statement = self::prepare("SELECT genre FROM `member_review_genres` WHERE review_id IN (SELECT review_id FROM member_review_genres WHERE review_id = :review_id)");
         $statement->bindValue(':review_id', $this->id);
         $statement->execute();
         return $statement->fetchAll();

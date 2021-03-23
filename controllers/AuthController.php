@@ -43,7 +43,8 @@ class AuthController extends Controller
         $registerModel = new User();
         if ($request->isPost()) {
             $registerModel->loadData($request->getData());
-            if ($registerModel->validate() && $registerModel->save()) {
+            if ($registerModel->validate() && $registerModel->save() ) {
+                        Application::$app->session->set('user', $registerModel->id);
                 Application::$app->session->setFlash('success', 'Thanks for registering');
                 Application::$app->response->redirect('/');
                 return 'Show success page';
@@ -66,14 +67,14 @@ class AuthController extends Controller
         return $this->render('myaccount');
     }
 
-    public function googleRegister() {
+    public function googleRegister()
+    {
         echo '<pre>';
         var_dump(Application::$app->google_auth->auth());
         echo '</pre>';
         exit;
         Application::$app->google_auth->auth();
-        
-        return $this->render('google', [
-        ]);
+
+        return $this->render('google', []);
     }
 }
