@@ -37,7 +37,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-lg-7 col-md-9 mx-auto">
-                <div class="section-title text-center mb-55">
+                <div class="section-title text-center mb-40">
                     <span class="wow fadeInDown" data-wow-delay=".2s">Recommendations</span>
                     <h2 class="wow fadeInUp" data-wow-delay=".4s">Random Picks For You</h2>
                     <p class="wow fadeInUp" data-wow-delay=".6s">
@@ -49,7 +49,7 @@
 
         <div class="row">
             <?php foreach ($reviews as $review) { ?>
-            <div class="col mb-20 justify-content-center d-flex">
+            <div class="col mb-20 justify-content-center d-flex ">
                 <a class="mb-0" href="/review?r=<?php echo $review->slug; ?>">
 
                     <img class=" box-style p-0 wow fadeInRight mb-0 box-style" data-wow-delay=".4s" height=400px
@@ -64,7 +64,7 @@
 <!-- ========================= feature-section end ========================= -->
 
 <!--========================= about-section start========================= -->
-<section id="about" class="pt-50">
+<section id="about" class="pt-40">
     <div class="about-section">
         <div class="container">
             <div class="row">

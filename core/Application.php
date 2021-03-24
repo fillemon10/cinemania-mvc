@@ -71,6 +71,17 @@ class Application
         return !self::$app->user;
     }
 
+        //kollar om personen är member
+    public static function isNotMember()
+    {
+        if (self::$app->user->getRole() == "Admin" || self::$app->user->getRole() == "Author" || self::$app->user->getRole() == "Moderator") {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     //inloggings funktionen
     public function login(UserModel $user)
     {

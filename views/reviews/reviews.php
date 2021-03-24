@@ -9,7 +9,7 @@ $this->title = $title ?>
 <div class="container news-container">
     <div class="single-news all-published box-style">
         <div class="row">
-            <div class="col-xl-8 col-lg-8 col-md-8 section-title">
+            <div class="col-xl-10 col-lg-8 col-md-8 section-title">
                 <p class="wow fadeInDown" data-wow-delay=".4s"><i
                         class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review->created_at)); ?>&#8192;&#8192;<i
                         class="p-mask fas fa-user"></i>&#8192;<?php echo $review->username  ?></p>
@@ -36,9 +36,9 @@ $this->title = $title ?>
                         data-wow-delay=".2s">TV/Streaming</span></a>
                 <?php endif ?>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 text-right">
+            <div class="col-xl-2 col-lg-4 col-md-4 text-right">
                 <a class="mb-0" href="/review?r=<?php echo $review->slug; ?>">
-                    <img class=" box-style p-0 wow fadeInRight mb-0" width="50%" data-wow-delay=".4s"
+                    <img class=" box-style p-0 wow fadeInRight mb-0" width=100% data-wow-delay=".4s"
                         src="<?php echo $review->poster ?>" alt="post-image">
                 </a>
             </div>

@@ -64,9 +64,11 @@ class SiteController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->getData()["q"];
+        $search = $request->getData()["q"];
 
-        return $this->render('search', ['search' => $search]);
+        $reviews = Review::findAll(['published' => '1', 'title' => $search]);
+
+        return $this->render('search', ['search' => $reviews]);
 
     }
 }

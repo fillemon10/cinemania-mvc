@@ -1,3 +1,5 @@
+ <?php $this->title = "Search: " . $search . "" ?>
+
 <div class="container">
-    <?php echo $search->query ?>
+    <?php echo $search ?>
 </div>

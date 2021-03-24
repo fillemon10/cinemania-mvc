@@ -79,6 +79,9 @@ $app->router->get('/admin/reviews', [AdminController::class, 'reviews']);
 
 //Member Reviews
 $app->router->get('/memberreviews', [MemberReviewsController::class, 'reviews']);
+$app->router->get('/memberreviews/manage', [MemberReviewsController::class, 'manage']);
+$app->router->get('/memberreviews/create', [MemberReviewsController::class, 'create']);
+
 
 //search
 $app->router->get('/search', [SiteController::class, 'search']);

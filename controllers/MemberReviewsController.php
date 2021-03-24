@@ -50,7 +50,7 @@ class MemberReviewsController extends Controller
         $review_array = array_reverse($review_array);
 
         //rendera viewn reviews och för med parametrarna reviews och title
-        return $this->render('memberreviews', ['reviews' => $review_array, 'title' => 'Member Reviews']);
+        return $this->render('memberreviews/memberreviews', ['reviews' => $review_array, 'title' => 'Member Reviews']);
     }
 
     public function singleReview(Request $request)
@@ -62,10 +62,9 @@ class MemberReviewsController extends Controller
         $omdb = new OMDb(['plot' => 'full', 'apikey' => $apikey]);
         $movie = $omdb->get_by_id($review->imdb_id);
 
-
         $this->setLayout('single');
 
-        return $this->render('reviews/single_review', ['review' => $review, 'movie' => $movie]);
+        return $this->render('memberreviews/single_review', ['review' => $review, 'movie' => $movie]);
     }
 
     public function genreFilter(Request $request)
@@ -80,7 +79,7 @@ class MemberReviewsController extends Controller
             array_push($review_array, $review_object);
         }
         $review_array = array_reverse($review_array);
-        return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Genre: ' . $genre]);
+        return $this->render('memberreviews/memberreviews', ['reviews' => $review_array, 'title' => 'Genre: ' . $genre]);
     }
     public function typeFilter(Request $request)
     {
@@ -100,6 +99,13 @@ class MemberReviewsController extends Controller
         } else {
             $type_name = "TV/Streaming";
         }
-        return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Type: ' . $type_name]);
+        return $this->render('memberreviews/memberreviews', ['reviews' => $review_array, 'title' => 'Type: ' . $type_name]);
+    }
+
+    public function manage() {
+        return $this->render('memberreviews/manage');
+    }
+        public function create() {
+        return $this->render('memberreviews/create');
     }
 }
