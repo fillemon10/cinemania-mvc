@@ -8,7 +8,7 @@ use app\core\Request;
 use app\models\MemberReview;
 use app\core\OMDb;
 use app\core\middlewares\MemberMiddleware;
-
+use app\models\MemberReviewForm;
 
 /**
  * Class MemberReviewsController
@@ -102,10 +102,21 @@ class MemberReviewsController extends Controller
         return $this->render('memberreviews/memberreviews', ['reviews' => $review_array, 'title' => 'Type: ' . $type_name]);
     }
 
-    public function manage() {
-        return $this->render('memberreviews/manage');
+    public function manage(Request $request) {
+
     }
-        public function create() {
-        return $this->render('memberreviews/create');
+    public function create(Request $request) {
+        $memberReview = new MemberReviewForm();
+        if ($request->isPost()) {
+            $loginForm->loadData($request->getData());
+            if ($loginForm->validate() && $loginForm->login()) {
+                Application::$app->response->redirect('/');
+                return;
+            }
+        }
+        $this->setLayout('auth');
+        return $this->render('memberreviews/create', [
+            'model' => $memberReview,
+        ]);
     }
 }

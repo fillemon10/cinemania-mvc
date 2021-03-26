@@ -23,7 +23,11 @@ $this->title = $title ?>
                         data-wow-delay=".4s"> <?php echo $post->topic ?></span></a>
                 <?php endif ?>
                 <div class="mb-10 wow fadeInLeft" data-wow-delay=".6s">
-                    <?php echo htmlspecialchars_decode($post->short_body) ?></div>
+                    <a class="mb-0" href="/post?p=<?php echo $post->slug; ?>">
+                    <p><?php echo htmlspecialchars_decode($post->short_body) ?></p>
+                                        </a>
+
+                </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 text-right">
                 <a class="mb-0" href="/post?p=<?php echo $post->slug; ?>">

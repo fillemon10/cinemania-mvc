@@ -49,4 +49,10 @@ class Field extends BaseField
         $this->type = self::TYPE_FILE;
         return $this;
     }
+
+    public function numberField()
+    {
+        $this->type = self::TYPE_NUMBER;
+        return $this;
+    }
 }

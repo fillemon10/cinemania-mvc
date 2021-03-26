@@ -1643,11 +1643,11 @@ p {
 }
 .form-control {
     width: 100% !important;
-  height: 56px !important;
-  padding: 0 25px !important;
+  min-height: 56px ;
+  padding: 0 25px;
   border: 1px solid #c7c6c6 !important;
   background: #fff !important;
-  border-radius: 50px !important;
+  border-radius: 50px ;
   margin-top: 10px !important;
   margin-bottom: 10px !important;
   -webkit-transition: all 0.3s ease-out 0s;
@@ -1655,6 +1655,13 @@ p {
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
+}
+textarea {
+  min-height: 250px !important;
+border-radius: 30px !important;
+box-sizing: border-box !important;
+padding: 20px !important;
+
 }
 
 .client-logo-section .client-logo-wrapper .client-logo-carousel .client-logo {

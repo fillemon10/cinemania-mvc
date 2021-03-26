@@ -19,7 +19,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware(['admin']));
+        $this->registerMiddleware(new AuthMiddleware(['dashboard']));
     }
     public function dashboard()
     {
