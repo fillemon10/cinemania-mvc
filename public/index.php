@@ -29,6 +29,11 @@ $config = [
         'user' => $_ENV['DB_USER'],
         'password' => $_ENV['DB_PASSWORD']
     ],
+    'mail' => [
+        'host' => $_ENV['MAIL_HOST'],
+        'user' => $_ENV['MAIL_USERNAME'],
+        'password' => $_ENV['MAIL_PASSWORD']
+    ],
     'google' => [
         'client_id' => $_ENV["GOOGLE_CLIENT_ID"],
         'secret' => $_ENV["GOOGLE_SECRET"],

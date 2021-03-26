@@ -5,6 +5,7 @@ namespace app\core;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 /**
  * Class Mail
@@ -15,12 +16,18 @@ class Mail
 {
     public $mail;
 
-    public function __construct()
+    public function __construct($mailConfig)
     {
         $this->mail = new PHPMailer(true);
-        //From email address and name
-        $this->mail->From = "filip@sjolander.name";
-        $this->mail->FromName = "Filip Sjölander";
+        //Server settings
+        $this->mail->isSMTP();                                            //Send using SMTP
+        $this->mail->Host       =  $mailConfig['host'] ?? '';                     //Set the SMTP server to send through
+        $this->mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $this->mail->Username   = $mailConfig['user'] ?? '';                     //SMTP username
+        $this->mail->Password   = $mailConfig['password'] ?? '';                                //SMTP password
+        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+        $this->mail->Port       = 587;
+        $this->mail->setFrom($mailConfig['user'] ?? '', 'Cinemania');
     }
 
     public function send($email, $subject, $body)

@@ -29,6 +29,7 @@ class Application
     public ?UserModel $user;
     public GoogleAuth $google_auth;
     public static string $omdbAPIkey;
+    public Mail $mail;
 
     public function __construct($rootDir, $config)
     {
@@ -44,6 +45,8 @@ class Application
         //skapar PDO connection
         $this->db = new Database($config['db']);
 
+        //fixar mail server
+        $this->mail = new Mail($config['mail']);
         //omdb Api Key
         self::$omdbAPIkey = $config['omdb'];
 
