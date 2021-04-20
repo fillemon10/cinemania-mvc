@@ -61,6 +61,7 @@ class Application
 
         //om user id är satt
         if ($userId) {
+
             //sätter user till user där id är session user (se rad 79-80 för förklaring)
             $this->user = User::findOne(['id' => $userId]);
         }
@@ -75,7 +76,7 @@ class Application
     }
 
         //kollar om personen är member
-    public static function isNotMember()
+    public static function isMember()
     {
         if (self::$app->user->getRole() == "Admin" || self::$app->user->getRole() == "Author" || self::$app->user->getRole() == "Moderator") {
             return false;
@@ -90,6 +91,10 @@ class Application
     {
         //sätter applikationens user till UserModel user
         $this->user = $user;
+        if ($this->user->verified == "0"){
+            Application::$app->response->redirect('/register/verify');
+            return false;
+        }
 
         //hämtar primary key för user (id)
         $primaryKey = $user->primaryKey();

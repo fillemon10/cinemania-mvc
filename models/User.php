@@ -5,6 +5,7 @@ namespace app\models;
 
 use app\core\DbModel;
 use app\core\UserModel;
+use app\core\Application;
 
 /**
  * Class Register
@@ -19,6 +20,8 @@ class User extends UserModel
     public string $passwordConfirm = '';
     public string $role = '';
     public string $created_at = '';
+    public string $verified = '';
+    public string $verify_token = '';
 
     public static function tableName(): string
     {
@@ -27,7 +30,7 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['username', 'email', 'password'];
+        return ['username', 'email', 'password', 'verify_token'];
     }
 
     public function labels(): array
@@ -59,6 +62,28 @@ class User extends UserModel
         return parent::save();
     }
 
+    public function sendVerify()
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 50; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $token = $randomString;
+        $this->verify_token = $token;
+        Application::$app->mail->send($this->email, "Verify your account with Cinemania", "Hello " . $this->username . "<br><br> Please confirm your email address by click this link: <br>http://cinemania.sjolander.name/register/verify?t=" . $token . "<br><br> Please contact filip@sjolander.name if you believe this is an error."); 
+        return true;
+    }
+    public function verify($token){
+        $statement = self::prepare("UPDATE users SET verified=1 WHERE verify_token=:token");
+
+        $statement->bindValue("token", $token);
+
+        $statement->execute();
+
+    }
+
     public function getUsername(): string
     {
         return $this->username;
@@ -67,11 +92,19 @@ class User extends UserModel
     {
         return $this->email;
     }
-        public function getRole(): string
+    public function getRole(): string
     {
         return $this->role;
     }
-        public function getCreated(): string
+    public function getCreated(): string
+    {
+        return $this->created_at;
+    }
+    public function getVerified(): string
+    {
+        return $this->verified;
+    }
+    public function getVerifyToken(): string
     {
         return $this->created_at;
     }

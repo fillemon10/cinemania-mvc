@@ -3,6 +3,7 @@
 /** @var $model \app\models\MemberReviews 
  * 
  */
+
 use app\core\form\Form;
 use app\core\form\TextareaField;
 
@@ -12,9 +13,10 @@ $this->title = "Create Member Review" ?>
 </div>
 <div class="container news-container">
     <div class="single-news all-published box-style ">
+
         <?php $form = Form::begin('', 'post') ?>
         <?php echo $form->field($model, 'title') ?>
-        <?php echo $form->field($model, 'title_of') ?>
+        <?php echo $form->field($model, 'imdb_id') ?>
         <?php echo $form->field($model, 'our_rating') ?>
         <?php echo new TextareaField($model, 'body') ?>
         <div class="col text-right">

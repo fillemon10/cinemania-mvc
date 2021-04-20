@@ -7,7 +7,7 @@ use app\core\Application;
 use app\core\exception\ForbiddenException;
 
 /**
- * Class MemberMiddleware
+ * Class AuthMiddleware
  *
  */
 class MemberMiddleware extends BaseMiddleware
@@ -23,8 +23,7 @@ class MemberMiddleware extends BaseMiddleware
     {
         if (Application::isGuest()) {
             if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
-                Application::$app->session->setFlash('success', 'You have to login to access this page');
-                Application::$app->response->redirect('/login');
+                throw new ForbiddenException();
             }
         }
     }

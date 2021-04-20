@@ -3,8 +3,7 @@
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6">
                 <div class="footer-widget mb-60 wow fadeInLeft" data-wow-delay=".2s">
-                    <a href="/index" class="footer-logo mb-30"><img class="footer-logo" src="/assets/img/logo/logo.svg"
-                            alt="logo" /></a>
+                    <a href="/index" class="footer-logo mb-30"><img class="footer-logo" src="/assets/img/logo/logo.svg" alt="logo" /></a>
                     <p class="mb-30 footer-desc">
                         Read reviews of new And old movies. Cinemania is the #1 place to find good movies to watch.
                         Check out the latests reviews.
@@ -47,17 +46,20 @@
             <div class="col-xl-3 col-lg-3 col-md-6">
                 <div class="footer-widget mb-60 wow fadeInRight" data-wow-delay=".8s">
                     <h4>Contact</h4>
-                    <ul class="footer-contact">
+                    <ul class="footer-links">
                         <li>
-                            <p>0724262038</p>
+                            <a href="/contact">+46 724262038</a>
                         </li>
                         <li>
-                            <p>filip@sjolander.name</p>
+                            <a href="/contact">
+                                filip@sjolander.name
+                            </a>
                         </li>
                         <li>
-                            <p>Kärnåsenvägen 5 Hultafors</p>
+                            <a href="/contact">Kärnåsenvägen 5 Hultafors</a>
                         </li>
                     </ul>
+                    </a>
                 </div>
             </div>
         </div>
@@ -68,16 +70,16 @@
                     <div class="footer-social-links">
                         <ul class="d-flex">
                             <li>
-                                <a href="https://www.instagram.com"><i class="red fab fa-instagram-square"></i></a>
+                                <a href="https://www.instagram.com"><i class=" fab fa-instagram-square"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.facebook.com"><i class="red fab fa-facebook-square"></i></a>
+                                <a href="https://www.facebook.com"><i class=" fab fa-facebook-square"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.twitter.com"><i class="red fab fa-twitter-square"></i></a>
+                                <a href="https://www.twitter.com"><i class=" fab fa-twitter-square"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com"><i class="red fab fa-linkedin"></i></a>
+                                <a href="https://www.linkedin.com"><i class=" fab fa-linkedin"></i></a>
                             </li>
                         </ul>
                     </div>

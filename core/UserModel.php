@@ -12,5 +12,6 @@ abstract class UserModel extends DbModel
 {
     abstract public function getUsername(): string;
     abstract public function getEmail(): string;
+    abstract public function getVerified(): string;
 
 }

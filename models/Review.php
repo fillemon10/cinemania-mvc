@@ -88,4 +88,15 @@ class Review extends DbModel
         $this->genres = $this->getGenre();
         $this->username = $this->getUsername()->{"username"};
     }
+    
+    public static function getAllPublishedReviewsSearch($search)
+    {
+        $statement = self::prepare("SELECT * FROM reviews WHERE MATCH(title, title_of) AGAINST(:search IN NATURAL LANGUAGE MODE) AND published = 1");
+
+        $statement->bindValue("search", $search);
+
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 }

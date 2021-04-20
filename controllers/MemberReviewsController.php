@@ -17,11 +17,10 @@ class MemberReviewsController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new MemberMiddleware(['createreview']));
-                $this->registerMiddleware(new MemberMiddleware(['managereview']));
-
+        $this->registerMiddleware(new MemberMiddleware(['create']));
+        $this->registerMiddleware(new MemberMiddleware(['manage']));
     }
-    
+
     public function reviews()
     {
         //hämtar alla published reviews
@@ -102,21 +101,59 @@ class MemberReviewsController extends Controller
         return $this->render('memberreviews/memberreviews', ['reviews' => $review_array, 'title' => 'Type: ' . $type_name]);
     }
 
-    public function manage(Request $request) {
-
+    public function manage(Request $request)
+    {
     }
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
         $memberReview = new MemberReviewForm();
         if ($request->isPost()) {
-            $loginForm->loadData($request->getData());
-            if ($loginForm->validate() && $loginForm->login()) {
-                Application::$app->response->redirect('/');
-                return;
+            $memberReview->loadData($request->getData());
+            if ($memberReview->validate()) {
+                $apikey = Application::$omdbAPIkey;
+                $omdb = new OMDb(['plot' => 'full', 'apikey' => $apikey]);
+                $movie = $omdb->get_by_id($memberReview->imdb_id);
+                $memberReview->title_of = $movie["Title"];
+                $memberReview->poster = $movie["Poster"];
+                $memberReview->user_id = Application::$app->session->get('user');
+                $memberReview->poster = $movie["Poster"];
+                $memberReview->slug = MemberReviewsController::slugify($memberReview->title);
+
+                if ($memberReview->save()) {
+                    Application::$app->response->redirect('/memberreviews');
+                    return;
+                }
             }
         }
         $this->setLayout('auth');
         return $this->render('memberreviews/create', [
             'model' => $memberReview,
         ]);
+    }
+    public static function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 }

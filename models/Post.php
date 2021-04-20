@@ -99,4 +99,15 @@ class Post extends DbModel
         }
         return $retval;
     }
+
+    public static function getAllPublishedPostsSearch($search)
+    {
+        $statement = self::prepare("SELECT * FROM posts WHERE MATCH(title) AGAINST(:search IN NATURAL LANGUAGE MODE) AND published = 1");
+
+        $statement->bindValue("search", $search);
+
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 }

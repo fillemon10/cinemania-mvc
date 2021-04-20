@@ -6,7 +6,7 @@ namespace app\models;
 use app\core\db\DbModel;
 
 /**
- * Class ReviewModel
+ * Class MemberReviewForm
  *
  */
 class MemberReviewForm extends DbModel
@@ -37,26 +37,25 @@ class MemberReviewForm extends DbModel
     {
         return [
             'title' => 'Title Of Your Review',
-            'title_of' => 'Title Of The Movie Or Series (Don\'t mistype)',
+            'imdb_id' => 'IMDb ID Of The Movie Or Series (Find the ID on IMDB: "http://www.imdb.com/title/<strong>tt0123456</strong>/)',
             'our_rating' => 'Your Rating Of The Movie Or Series',
-                        'body' => 'Review Text'
+            'body' => 'Review Text'
 
         ];
     }
 
     public function attributes(): array
     {
-        return ['title', 'title_of', 'our_rating', 'body'];
+        return ['title', 'imdb_id', 'our_rating', 'body','poster', 'slug', 'user_id', "title_of"];
     }
 
     public function rules()
     {
         return [
             'title' => [self::RULE_REQUIRED],
-            'title_of' => [self::RULE_REQUIRED],
+            'imdb_id' => [self::RULE_REQUIRED],
             'our_rating' => [self::RULE_REQUIRED],
-                        'body' => [self::RULE_REQUIRED],
-
+            'body' => [self::RULE_REQUIRED],
         ];
     }
 

@@ -57,10 +57,20 @@ $app->router->get('/about', [SiteController::class, 'about']);
 //login
 $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
+$app->router->get('/register/verify', [AuthController::class, 'verify']);
+
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/myaccount', [AuthController::class, 'myaccount']);
+$app->router->get('/forgot_password', [AuthController::class, 'forgotPassword']);
+$app->router->post('/forgot_password', [AuthController::class, 'forgotPassword']);
+$app->router->get('/reset', [AuthController::class, 'resetPassword']);
+$app->router->post('/reset', [AuthController::class, 'resetPassword']);
+
+
+
+
 
 //google login
 $app->router->get('/register/google', [AuthController::class, 'googleRegister']);
@@ -86,12 +96,14 @@ $app->router->get('/admin/reviews', [AdminController::class, 'reviews']);
 $app->router->get('/memberreviews', [MemberReviewsController::class, 'reviews']);
 $app->router->get('/memberreviews/manage', [MemberReviewsController::class, 'manage']);
 $app->router->get('/memberreviews/create', [MemberReviewsController::class, 'create']);
+$app->router->post('/memberreviews/create', [MemberReviewsController::class, 'create']);
 
 
 //search
 $app->router->get('/search', [SiteController::class, 'search']);
 
-
+//verify newsletter
+$app->router->get('/newsletter-confirm', [SiteController::class, 'newsletter_verify']);
 
 //kör applikationen
 $app->run();

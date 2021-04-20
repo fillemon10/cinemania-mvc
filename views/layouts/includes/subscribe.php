@@ -5,11 +5,21 @@ use \app\core\Application;
 
 if (isset($_POST['subs-email'])) {
     $email = $_POST['subs-email'];
-    $statement = Application::$app->db->prepare("INSERT INTO newsletter (email) VALUES (:email)");
+
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < 50; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    $token = $randomString;
+    $statement = Application::$app->db->prepare("INSERT INTO newsletter (email, verify_token) VALUES (:email, :token)");
     $statement->bindValue(':email', $email);
+    $statement->bindValue(':token', $token);
     $statement->execute();
-    Application::$app->session->setFlash('success', 'Thanks for registering to the newsletter!');
-    Application::$app->response->redirect("#");
+    Application::$app->mail->send($email, "Confirm your subscription to Cinemania Newsletter", "Hello " . $email . "<br><br> Please confirm your subscription to the Cinemania Newsletter with this link: https://cinemania.sjolander.name/newsletter-confirm?t=" . $token . "<br><br> Please contact filip@sjolander.name if you believe this is an error.");
+    Application::$app->session->setFlash('success', 'Please check your inbox to confirm your subscription to Cinemania Newsletter!');
+    Application::$app->response->redirect("/newsletter-confirm"); 
 }
 ?>
 

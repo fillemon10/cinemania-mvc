@@ -12,7 +12,7 @@ use app\core\db\DbModel;
 class MemberReview extends DbModel
 {
     public int $id = 0;
-    public int $user_id = 0;
+    public int $user_id = 0 ;
     public int $published = 0;
     public string $imdb_id = '';
     public string $title = '';
@@ -87,5 +87,16 @@ class MemberReview extends DbModel
         parent::loadData($request);
         $this->genres = $this->getGenre();
         $this->username = $this->getUsername()->{"username"};
+    }
+
+    public static function getAllPublishedMemberReviewsSearch($search)
+    {
+        $statement = self::prepare("SELECT * FROM member_reviews WHERE MATCH(title, title_of) AGAINST(:search IN NATURAL LANGUAGE MODE) AND published = 1");
+
+        $statement->bindValue("search", $search);
+
+        $statement->execute();
+
+        return $statement->fetchAll();
     }
 }

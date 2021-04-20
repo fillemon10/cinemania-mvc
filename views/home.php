@@ -18,11 +18,9 @@
                 <div class="hero-img">
                     <div class="d-inline-block hero-img-right">
                         <?php if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) { ?>
-                        <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/hero_wdbmad.webp"
-                            alt="projector" class="wow fadeInRight" data-wow-delay=".5s" />
+                            <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/hero_wdbmad.webp" alt="projector" class="wow fadeInRight" data-wow-delay=".5s" />
                         <?php } else { ?>
-                        <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534464/hero_ewnw87.png"
-                            alt="projector" class="wow fadeInRight" data-wow-delay=".5s" />
+                            <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534464/hero_ewnw87.png" alt="projector" class="wow fadeInRight" data-wow-delay=".5s" />
                         <?php } ?>
                     </div>
                 </div>
@@ -33,7 +31,7 @@
 <!-- ========================= hero-section end ========================= -->
 
 <!-- ========================= recommendations-section start ========================= -->
-<section class="feature-section pt-100">
+<section class="feature-section pt-150">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-lg-7 col-md-9 mx-auto">
@@ -49,14 +47,12 @@
 
         <div class="row">
             <?php foreach ($reviews as $review) { ?>
-            <div class="col mb-20 justify-content-center d-flex ">
-                <a class="mb-0" href="/review?r=<?php echo $review->slug; ?>">
-
-                    <img class=" box-style p-0 wow fadeInRight mb-0 box-style" data-wow-delay=".4s" height=400px
-                        src="<?php echo $review->poster ?>" alt="post-image">
-                    <p class="text-center"><?php echo $review->title_of ?></p>
-                </a>
-            </div>
+                <div class="col mb-20 justify-content-center d-flex ">
+                    <a class="mb-0" href="/review?r=<?php echo $review->slug; ?>">
+                        <img class=" box-style p-0 wow fadeInRight mb-0 box-style" data-wow-delay=".4s" height=400px src="<?php echo $review->poster ?>" alt="post-image">
+                        <p class="text-center"><?php echo $review->title_of ?></p>
+                    </a>
+                </div>
             <?php } ?>
         </div>
     </div>
@@ -72,11 +68,9 @@
                     <div class="about-img-wrapper">
                         <div class="about-img position-relative d-inline-block wow fadeInLeft" data-wow-delay=".3s">
                             <?php if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) { ?>
-                            <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/about_nb9zsn.webp"
-                                alt="cinema seats" class="wow fadeInLeft" data-wow-delay=".5s" />
+                                <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/about_nb9zsn.webp" alt="cinema seats" class="wow fadeInLeft" data-wow-delay=".5s" />
                             <?php } else { ?>
-                            <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/about_m06kgh.png"
-                                alt="cinema seats" class="wow fadeInLeft" data-wow-delay=".5s" />
+                                <img src="https://res.cloudinary.com/daocxbh9k/image/upload/v1616534463/about_m06kgh.png" alt="cinema seats" class="wow fadeInLeft" data-wow-delay=".5s" />
                             <?php } ?>
                             <div class="about-experience">
                                 <h3>We have the best reviews on the internet*</h3>
@@ -98,15 +92,13 @@
                                 also like to write reviews in our Member Reviews. Only avaible to logged in users. </p>
                             <div class="counter-up wow fadeInUp" data-wow-delay=".5s">
                                 <div class="counter">
-                                    <span id="secondo" class="countup count color-1" cup-end="30"
-                                        cup-append="k">50+</span>
+                                    <span id="secondo" class="countup count color-1" cup-end="30" cup-append="k">50+</span>
                                     <h4>Happy Users</h4>
                                     <p>Good reviews, so many great movies
                                     </p>
                                 </div>
                                 <div class="counter">
-                                    <span id="secondo" class="countup count color-2" cup-end="42"
-                                        cup-append="k"><?php echo $amout ?></span>
+                                    <span id="secondo" class="countup count color-2" cup-end="42" cup-append="k"><?php echo $amout ?></span>
                                     <h4>Reviews Done</h4>
                                     <p>We have create <?php echo $amout ?> quality reviews
                                     </p>
@@ -136,18 +128,16 @@
 
         <div class="row">
             <?php foreach ($posts as $post) { ?>
-            <div class="col mb-20">
-                <div class="justify-content-center d-flex box-style  mr-10">
-                    <a class="mb-0" href="/post?p=<?php echo $post->slug; ?>">
-                        <img class=" box-style p-0 wow fadeInRight mb-0" data-wow-delay=".4s" width="100%"
-                            height="300px" style="object-fit: cover;" src=" <?php echo $post->image ?>"
-                            alt="post-image">
+                <div class="col mb-20">
+                    <div class="justify-content-center d-flex box-style  mr-10">
+                        <a class="mb-0" href="/post?p=<?php echo $post->slug; ?>">
+                            <img class=" box-style p-0 wow fadeInRight mb-0" data-wow-delay=".4s" width="100%" height="300px" style="object-fit: cover;" src=" <?php echo $post->image ?>" alt="post-image">
                             <i class="p-mask fas fa-calendar-alt mt-20"></i>&#8192;<p style="display: inline;"><?php echo  date("F j, Y ", strtotime($post->created_at)); ?> </p>
-                        <h5 class=""><?php echo $post->title ?></h5>
-                        <p class="text-right mt-10"><i class="p-mask fas fa-user"></i>&#8192;<?php echo $post->{'username'}  ?></p>
-                    </a>
+                            <h5 class=""><?php echo $post->title ?></h5>
+                            <p class="text-right mt-10"><i class="p-mask fas fa-user"></i>&#8192;<?php echo $post->{'username'}  ?></p>
+                        </a>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
         </div>
     </div>

@@ -68,7 +68,7 @@ use app\core\Application;
                                         href="javascript:void(0)"><?php echo $user->GetUsername() ?></a>
 
                                     <ul class="sub-menu">
-                                                                                <?php if(Application::isNotMember()) : ?>
+                                                                                <?php if(!Application::isMember()) : ?>
                                         <li class="nav-item"> <a class="page-scroll" href="/admin"><i class="fas fa-tools dark-red"></i>&#8192;CineAdmin</a></li>
                                         <?php endif ?>
                                         <li class="nav-item"> <a class="page-scroll" href="/myaccount"><i

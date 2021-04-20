@@ -39,9 +39,11 @@ class Mail
 
         try {
             $this->mail->send();
-            echo "Message has been sent successfully";
         } catch (Exception $e) {
             echo "Mailer Error: " . $this->mail->ErrorInfo;
         }
+        
+        $this->mail->clearAddresses();
+        $this->mail->clearAttachments();
     }
 }
