@@ -1753,6 +1753,10 @@ textarea {
   left: 10px;
   max-width: 270px;
 }
+.box-icon-style i {
+  color: #eb3737;
+}
+
 
 .box-style .box-icon-style::after {
   content: "";

@@ -1,9 +1,9 @@
-<section class="page-banner-section pt-30 pb-15 img-bg" style="background-image: url('/assets/img/bg/common-bg.svg')">
+<section class="page-banner-section pt-15 pb-10 img-bg" style="background-image: url('/assets/img/bg/common-bg.svg')">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
                 <div class="banner-content">
-                    <h2 class="text-white"><?php echo $this->title ?> </h2>
+                    <h2 class="text-white mb-10"><?php echo $this->title ?> </h2>
                     <div class="page-breadcrumb">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">

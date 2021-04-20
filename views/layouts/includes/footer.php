@@ -70,13 +70,13 @@
                     <div class="footer-social-links">
                         <ul class="d-flex">
                             <li>
-                                <a href="https://www.instagram.com"><i class=" fab fa-instagram-square"></i></a>
+                                <a href="https://www.instagram.com"><i class=" fab fa-instagram"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.facebook.com"><i class=" fab fa-facebook-square"></i></a>
+                                <a href="https://www.facebook.com"><i class=" fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.twitter.com"><i class=" fab fa-twitter-square"></i></a>
+                                <a href="https://www.twitter.com"><i class=" fab fa-twitter"></i></a>
                             </li>
                             <li>
                                 <a href="https://www.linkedin.com"><i class=" fab fa-linkedin"></i></a>
