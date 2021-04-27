@@ -7,11 +7,12 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
-use app\models\LoginForm;
 use app\models\MemberReview;
 use app\models\Review;
 use app\models\Post;
 use app\models\Search;
+use app\models\ContactForm;
+
 
 
 use app\models\User;
@@ -53,9 +54,18 @@ class SiteController extends Controller
         return $this->render('home', ['reviews' => $review_array, 'posts' => $post_array, 'amout' => $amout]);
     }
 
-    public function contact()
+    public function contact(Request $request)
     {
-        return $this->render('contact');
+        $contactForm = new ContactForm();
+        if ($request->isPost()) {
+            $contactForm->loadData($request->getData());
+            if ($contactForm->validate() && $contactForm->sendEmail()) {
+                Application::$app->session->setFlash('success', 'Message sent to Cinemania, we will respond in 48 hours');
+                Application::$app->response->redirect('/contact');
+
+            }
+        }
+        return $this->render('contact', ["model" => $contactForm]);
     }
 
     public function about()
@@ -95,7 +105,8 @@ class SiteController extends Controller
                 Application::$app->response->redirect('/');
             }
         }
+        $this->setLayout('auth');
 
-        return $this->render('verify_newsletter');
+        return $this->render('message', ["title" => "Confirm newsletter", "message" => "Please, check your inbox to confirm your newsletter subscription."]);
     }
 }

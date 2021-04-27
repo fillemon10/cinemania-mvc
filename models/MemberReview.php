@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-
+use app\core\Application;
 use app\core\db\DbModel;
 
 /**
@@ -12,7 +12,7 @@ use app\core\db\DbModel;
 class MemberReview extends DbModel
 {
     public int $id = 0;
-    public int $user_id = 0 ;
+    public int $user_id = 0;
     public int $published = 0;
     public string $imdb_id = '';
     public string $title = '';
@@ -68,7 +68,10 @@ class MemberReview extends DbModel
     {
         return $this->findOne(['slug' => $slug, 'published' => 1]);
     }
-
+    public function getAllReview($slug)
+    {
+        return $this->findOne(['slug' => $slug]);
+    }
     public function getUsername()
     {
         return User::findOne(['id' => $this->user_id]);
@@ -81,6 +84,7 @@ class MemberReview extends DbModel
         $statement->execute();
         return $statement->fetchAll();
     }
+
 
     public function loadReview($request)
     {
@@ -98,5 +102,10 @@ class MemberReview extends DbModel
         $statement->execute();
 
         return $statement->fetchAll();
+    }
+
+    public static function getAllReviewsByUser()
+    {
+        return parent::findAll(['user_id' => Application::$app->session->get("user")]);
     }
 }

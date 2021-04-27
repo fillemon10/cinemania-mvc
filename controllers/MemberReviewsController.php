@@ -103,7 +103,25 @@ class MemberReviewsController extends Controller
 
     public function manage(Request $request)
     {
+        $AllReviewsByUser = MemberReview::getAllReviewsByUser();
+        $review_array = [];
+        foreach ($AllReviewsByUser as $review) {
+            $review_object = new MemberReview();
+            $slug = $review["slug"];
+            $review_object->loadReview($review_object->getAllReview($slug));
+            array_push($review_array, $review_object);
+        }
+        $review_array = array_reverse($review_array);
+        $this->setLayout('onlybanner');
+        return $this->render('memberreviews/manage', ['reviews' => $review_array, 'title' => 'Your Member Reviews']);
     }
+
+    public function edit(Request $request) {
+        $review = new MemberReviewForm();
+        $review_id = $request->getData()['r'];
+        $review->loadReview($review->getReview($slug));
+    }
+
     public function create(Request $request)
     {
         $memberReview = new MemberReviewForm();
@@ -120,12 +138,14 @@ class MemberReviewsController extends Controller
                 $memberReview->slug = MemberReviewsController::slugify($memberReview->title);
 
                 if ($memberReview->save()) {
+                    $memberReview->setGenres($movie["Genre"]);
+
                     Application::$app->response->redirect('/memberreviews');
                     return;
                 }
             }
         }
-        $this->setLayout('auth');
+        $this->setLayout('onlybanner');
         return $this->render('memberreviews/create', [
             'model' => $memberReview,
         ]);

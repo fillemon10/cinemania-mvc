@@ -18,7 +18,7 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            'email' => [self::RULE_REQUIRED],
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
             'password' => [self::RULE_REQUIRED],
         ];
     }

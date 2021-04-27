@@ -14,6 +14,8 @@ class Field extends BaseField
     const TYPE_TEXT = 'text';
     const TYPE_PASSWORD = 'password';
     const TYPE_FILE = 'file';
+    const TYPE_EMAIL = 'email';
+
 
     /**
      * Field constructor.
@@ -55,4 +57,10 @@ class Field extends BaseField
         $this->type = self::TYPE_NUMBER;
         return $this;
     }
+    public function emailField()
+    {
+        $this->type = self::TYPE_EMAIL;
+        return $this;
+    }
+
 }

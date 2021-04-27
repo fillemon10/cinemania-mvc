@@ -52,6 +52,8 @@ $app = new Application(dirname(__DIR__), $config);
 //basic
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/contact', [SiteController::class, 'contact']);
+$app->router->post('/contact', [SiteController::class, 'contact']);
+
 $app->router->get('/about', [SiteController::class, 'about']);
 
 //login
@@ -95,6 +97,8 @@ $app->router->get('/admin/reviews', [AdminController::class, 'reviews']);
 //Member Reviews
 $app->router->get('/memberreviews', [MemberReviewsController::class, 'reviews']);
 $app->router->get('/memberreviews/manage', [MemberReviewsController::class, 'manage']);
+$app->router->get('/memberreviews/manage/edit', [MemberReviewsController::class, 'edit']);
+$app->router->get('/memberreviews/manage/delete', [MemberReviewsController::class, 'delete']);
 $app->router->get('/memberreviews/create', [MemberReviewsController::class, 'create']);
 $app->router->post('/memberreviews/create', [MemberReviewsController::class, 'create']);
 

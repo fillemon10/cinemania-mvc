@@ -46,7 +46,7 @@ class MemberReviewForm extends DbModel
 
     public function attributes(): array
     {
-        return ['title', 'imdb_id', 'our_rating', 'body','poster', 'slug', 'user_id', "title_of"];
+        return ['title', 'imdb_id', 'our_rating', 'body', 'poster', 'slug', 'user_id', "title_of"];
     }
 
     public function rules()
@@ -84,6 +84,17 @@ class MemberReviewForm extends DbModel
     {
         return User::findOne(['id' => $this->user_id]);
     }
+    public function setGenres($genres)
+    {
+        foreach ($genres as $genre) {
+            $statement = self::prepare("INSERT INTO member_review_genres (review_id, genre) VALUES (:review_id, :genre)");
+            $statement->bindValue(':review_id', MemberReview::findOne(['slug' => $this->slug])->id);
+            $statement->bindValue(':genre', $genre);
+            $statement->execute();
+        }
+        return;
+    }
+
 
     public function getGenre()
     {

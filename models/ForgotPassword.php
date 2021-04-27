@@ -21,7 +21,7 @@ class ForgotPassword extends DbModel
 
     public function attributes(): array
     {
-        return [ 'email', 'token', 'used'];
+        return ['email', 'token', 'used'];
     }
 
 
@@ -54,11 +54,13 @@ class ForgotPassword extends DbModel
         }
         $token = $randomString;
         $this->token = $token;
-        return
-        Application::$app->mail->send($this->email, "Reset your Cinemania password", "Hello " . $user->username . "<br><br> Reset your password by click this link: <br>http://cinemania.sjolander.name/reset?t=" . $token . "<br><br> Please contact filip@sjolander.name if you believe this is an error.");;
+        Application::$app->mail->send($this->email, "Reset your Cinemania password", "Hello " . $user->username . "<br><br> Reset your password by click this link: <br>http://cinemania.sjolander.name/reset?t=" . $token . "<br><br> Please contact filip@sjolander.name if you believe this is an error.");
+
+        return true;
     }
 
-    public function save() {
+    public function save()
+    {
         return parent::save();
     }
 }

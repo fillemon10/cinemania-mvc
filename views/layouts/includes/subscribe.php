@@ -19,12 +19,12 @@ if (isset($_POST['subs-email'])) {
     $statement->execute();
     Application::$app->mail->send($email, "Confirm your subscription to Cinemania Newsletter", "Hello " . $email . "<br><br> Please confirm your subscription to the Cinemania Newsletter with this link: https://cinemania.sjolander.name/newsletter-confirm?t=" . $token . "<br><br> Please contact filip@sjolander.name if you believe this is an error.");
     Application::$app->session->setFlash('success', 'Please check your inbox to confirm your subscription to Cinemania Newsletter!');
-    Application::$app->response->redirect("/newsletter-confirm"); 
+    Application::$app->response->redirect("/newsletter-confirm");
 }
 ?>
-
-<section class="subscribe-section pt-70 pb-70 img-bg" style="background-image: url('/assets/img/bg/common-bg.svg')">
-    <div class="container">
+<div class="container pb-40">
+    <section class="subscribe-section pt-70 pb-70 img-bg" style="background-image: url('/assets/img/bg/common-bg.svg')">
+        <div class=" container subscribe-container">
         <div class="row align-items-center">
             <div class="col-xl-6 col-lg-6">
                 <div class="section-title mb-30">
@@ -39,5 +39,6 @@ if (isset($_POST['subs-email'])) {
                 </form>
             </div>
         </div>
-    </div>
+</div>
 </section>
+</div>

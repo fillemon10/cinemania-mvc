@@ -7,6 +7,8 @@ use app\core\Controller;
 use app\core\Request;
 use app\models\Review;
 use app\core\OMDb;
+use app\models\ReviewComments;
+use app\models\ReviewReplies;
 
 /**
  * Class ReviewsController
@@ -52,11 +54,29 @@ class ReviewsController extends Controller
         $apikey = Application::$omdbAPIkey;
         $omdb = new OMDb(['plot' => 'full', 'apikey' => $apikey]);
         $movie = $omdb->get_by_id($review->imdb_id);
+        $comments = new ReviewComments();
+        $commentsArray = $comments->getComments($review->id);
+        
 
+        foreach ($commentsArray as $key => $comment ) {
+            $comment_user = $comments->getUsername($comment["user_id"]);
+            $commentsArray[$key]["username"] = $comment_user->username;
+        }
+        foreach ($commentsArray as $key => $replies) {
+
+            $replies = new ReviewReplies();
+
+            $repliesArray = $replies->getComments($commentsArray[$key]["id"]);
+
+            foreach ($repliesArray as $key => $reply) {
+                $comment_user = $replies->getUsername($reply["user_id"]);
+                $repliesArray[$key]["username"] = $comment_user->username;
+            }
+        }
 
         $this->setLayout('single');
 
-        return $this->render('reviews/single_review', ['review' => $review, 'movie' => $movie]);
+        return $this->render('reviews/single_review', ['review' => $review, 'movie' => $movie, 'comments' => $commentsArray, 'replies' => $repliesArray]);
     }
 
     public function genreFilter(Request $request)
@@ -71,7 +91,7 @@ class ReviewsController extends Controller
             array_push($review_array, $review_object);
         }
         $review_array = array_reverse($review_array);
-        
+
         return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Genre: ' . ucwords($genre)]);
     }
     public function typeFilter(Request $request)

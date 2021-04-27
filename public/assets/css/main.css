@@ -1667,6 +1667,19 @@ textarea {
   box-sizing: border-box !important;
   padding: 20px !important;
 }
+.closebtn {
+    position: absolute;
+    left: 238px;
+    top: 0px;
+  color: rgb(23, 112, 19) !important;
+  font-size: 30px;
+  cursor: pointer !important;
+  
+}
+.alert{
+  padding-right: 30px !important;
+  width: 270px !important;
+}
 
 .client-logo-section .client-logo-wrapper .client-logo-carousel .client-logo {
   padding: 10px;
@@ -1718,6 +1731,7 @@ textarea {
   color: #fff;
   border-color: transparent;
 }
+
 .box-style:hover .box-icon-style::after {
   opacity: 1;
   visibility: visible;
@@ -1767,7 +1781,6 @@ textarea {
   position: absolute;
   opacity: 0;
   visibility: hidden;
-  background: linear-gradient(#eb3737 0%, #e85858 100%);
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -1775,7 +1788,7 @@ textarea {
   transition: all 0.3s ease-out 0s;
   z-index: -1;
   border-radius: 50%;
-  border: 1px solid transparent;
+  border: 2px solid #eb3737;
 }
 .box-style .box-content-style h4 {
   font-size: 25px;
@@ -2231,9 +2244,20 @@ textarea {
 ===========================*/
 .subscribe-section {
   position: relative;
+  border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  -moz-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+    border: 1px solid #d1d1d1;
+
 }
 .subscribe-section .subscribe-form {
+  margin-left: 10px;
   position: relative;
+}
+.subscribe-container {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 .subscribe-section .subscribe-form input {
   border: 2px solid transparent;
@@ -2485,6 +2509,12 @@ textarea:focus,
 }
 .page-banner-section {
   margin-top: 107px;
+  border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  -moz-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+    border: 1px solid #d1d1d1;
+
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .page-banner-section {
@@ -2492,11 +2522,13 @@ textarea:focus,
   }
 }
 .page-banner-section .banner-content h2 {
+  margin-left: 28px;
   margin-bottom: 20px;
 }
 .page-banner-section .banner-content .page-breadcrumb nav ol {
   background: none;
   padding: 0;
+  margin-left: 28px;
 }
 .page-banner-section .banner-content .page-breadcrumb nav ol li {
   color: rgba(255, 255, 255, 0.7);

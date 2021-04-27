@@ -1,4 +1,14 @@
- <?php $this->title = "Contact"; ?>
+ <?php
+
+    use app\core\Application;
+
+    use app\core\form\Form;
+    use app\core\form\TextareaField;
+
+
+    $this->title = "Contact";
+
+    ?>
  <section class="contact-section pt-10">
      <div class="container">
          <div class="row">
@@ -20,7 +30,7 @@
                          <div class="col-12 col-md-6 col-xl-12">
                              <div class="contact-item">
                                  <div class="contact-icon">
-                                     <i class="lni lni-map-marker"></i>
+                                     <i class="fas fa-map-marked-alt"></i>
                                  </div>
                                  <div class="contact-content">
                                      <h4>Address</h4>
@@ -33,7 +43,7 @@
                          <div class="col-12 col-md-6 col-xl-12">
                              <div class="contact-item">
                                  <div class="contact-icon">
-                                     <i class="lni lni-alarm-clock"></i>
+                                     <i class="far fa-clock"></i>
                                  </div>
                                  <div class="contact-content">
                                      <h4>Shedule</h4>
@@ -46,47 +56,47 @@
                  </div>
              </div>
              <div class="col-xl-8">
-                 <div class="contact-form-wrapper">
+                 <div class="contact-form-wrapper pb-20">
                      <div class="row">
                          <div class="col-xl-10 col-lg-8 mx-auto">
                              <div class="section-title text-center mb-50">
                                  <span class="wow fadeInDown" data-wow-delay=".2s">Get in Touch</span>
                                  <h2 class="wow fadeInUp" data-wow-delay=".4s">Ready to Get Started</h2>
-                                 <p class="wow fadeInUp" data-wow-delay=".6s">At vero eos et accusamus et iusto odio dignissimos ducimus quiblanditiis praesentium</p>
+                                 <p class="wow fadeInUp" data-wow-delay=".6s">Do you have any question </p>
                              </div>
                          </div>
                      </div>
-                     <form action="assets/php/mail.php" class="contact-form">
-                         <div class="row">
-                             <div class="col-md-6">
-                                 <input type="text" name="name" id="name" placeholder="Name" required>
-                             </div>
-                             <div class="col-md-6">
-                                 <input type="email" name="email" id="email" placeholder="Email" required>
+                     <?php $form = Form::begin('', 'post') ?>
+                     <div class="row">
+                         <div class="col-md-6">
+                             <?php echo $form->field($model, 'name') ?>
+                         </div>
+                         <div class="col-md-6">
+                             <?php echo $form->field($model, 'email')->emailField() ?>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-md-6">
+                             <?php echo $form->field($model, 'phone') ?>
+                         </div>
+                         <div class="col-md-6">
+                             <?php echo $form->field($model, 'subject') ?>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-12">
+                             <?php echo new TextareaField($model, 'message') ?>
+                         </div>
+                     </div>
+                     <div class="row mt-20 mb-0">
+                         <div class="col-12">
+                             <div class="button text-right">
+                                 <button type="submit" class="theme-btn">Send Message</button>
                              </div>
                          </div>
-                         <div class="row">
-                             <div class="col-md-6">
-                                 <input type="text" name="phone" id="phone" placeholder="Phone" required>
-                             </div>
-                             <div class="col-md-6">
-                                 <input type="text" name="subject" id="email" placeholder="Subject" required>
-                             </div>
-                         </div>
-                         <div class="row">
-                             <div class="col-12">
-                                 <textarea name="message" id="message" placeholder="Type Message" rows="5"></textarea>
-                             </div>
-                         </div>
-                         <div class="row">
-                             <div class="col-12">
-                                 <div class="button text-center">
-                                     <button type="submit" class="theme-btn">Send Message</button>
-                                 </div>
-                             </div>
-                         </div>
-                     </form>
+                     </div>
                  </div>
+                 <?php Form::end() ?>
              </div>
          </div>
      </div>

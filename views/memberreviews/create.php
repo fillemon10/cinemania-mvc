@@ -22,5 +22,7 @@ $this->title = "Create Member Review" ?>
         <div class="col text-right">
             <button type="submit" class="theme-btn mt-20 mb-20 wow fadeInUp " data-wow-delay="1.1s" name="login_btn">Create Review</button>
         </div>
+        <?php Form::end() ?>
+
     </div>
 </div>

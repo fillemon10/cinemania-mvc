@@ -18,7 +18,7 @@ $this->title = "Login";
                         <div class="container ">
                             <h2 class="mb-20">Login on Cinemania</h2>
                             <?php $form = Form::begin('', 'post') ?>
-                            <?php echo $form->field($model, 'email') ?>
+                            <?php echo $form->field($model, 'email')->emailField() ?>
                             <?php echo $form->field($model, 'password')->passwordField() ?>
                             <div class="row">
                                 <div class="col">

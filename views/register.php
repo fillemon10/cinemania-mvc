@@ -17,7 +17,7 @@ $form = new Form();
                             <h2 class="mb-20">Register on Cinemania</h2>
                             <?php $form = Form::begin('', 'post') ?>
                             <?php echo $form->field($model, 'username') ?>
-                            <?php echo $form->field($model, 'email') ?>
+                            <?php echo $form->field($model, 'email')->emailField() ?>
                             <?php echo $form->field($model, 'password')->passwordField() ?>
                             <?php echo $form->field($model, 'passwordConfirm')->passwordField() ?>
                             <div class="row">

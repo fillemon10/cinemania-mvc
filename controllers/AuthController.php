@@ -30,6 +30,8 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $loginForm->loadData($request->getData());
             if ($loginForm->validate() && $loginForm->login()) {
+                Application::$app->session->setFlash('success', 'You are now logged in');
+
                 Application::$app->response->redirect('/');
                 return;
             }
@@ -48,8 +50,8 @@ class AuthController extends Controller
             if ($registerModel->validate() && $registerModel->sendVerify()) {
                 if ($registerModel->save()) {
                     Application::$app->session->setFlash('success', 'Please check your inbox to verify your account');
-                    $this->setLayout('home');
-                    return $this->render('home');
+                    $this->setLayout('auth');
+                    return $this->render('message', ["title" => "Verify account", "message" => "Please, check your inbox to verify your account."]);
                 }
             }
         }
@@ -61,11 +63,13 @@ class AuthController extends Controller
 
     public function verify(Request $request)
     {
+        $this->setLayout('auth');
+
         if (isset($request->getData()["t"])) {
             $token = $request->getData()["t"];
             $user = User::findOne(['verify_token' => $token]);
             if (!$user) {
-                echo "This verification token does not exist.";
+                return $this->render('message', ["title" => "Verify account", "message" => "This verification token does not exist."]);
             } else {
                 $user->verified = 1;
                 $user->verify($token);
@@ -73,9 +77,8 @@ class AuthController extends Controller
                 Application::$app->response->redirect('/login');
             }
         }
-        $this->setLayout('auth');
 
-        return $this->render('verify');
+        return $this->render('message', ["title" => "Verify account", "message" => "Please, check your inbox to verify your account."]);
     }
 
     public function logout(Request $request, Response $response)
@@ -88,15 +91,13 @@ class AuthController extends Controller
 
     public function myaccount()
     {
+        $this->setLayout('onlybanner');
+
         return $this->render('myaccount');
     }
 
     public function googleRegister()
     {
-        echo '<pre>';
-        var_dump(Application::$app->google_auth->auth());
-        echo '</pre>';
-        exit;
         Application::$app->google_auth->auth();
 
         return $this->render('google', []);
@@ -109,9 +110,10 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $forgotPassword->loadData($request->getData());
             if ($forgotPassword->validate() && $forgotPassword->sendEmail()) {
+                $forgotPassword->used = 0;
                 if ($forgotPassword->save()) {
-                    Application::$app->session->setFlash('success', 'Please check your inbox to recover your account');
-                    return $this->render('forgot_password_sent');
+                    Application::$app->session->setFlash('success', 'Please, check your inbox to recover your account');
+                    return $this->render('message', ["title" => "Verify account", "message" => "Please, check your inbox to recover your account."]);
                 }
             }
         }
@@ -157,6 +159,9 @@ class AuthController extends Controller
                             'model' => $model
                         ]);
                     }
+                }
+                else {
+                    return $this->render('message', ["title" => "Forgot Password", "message" => "Reset token already used."]);
                 }
             }
         }
