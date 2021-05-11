@@ -65,7 +65,7 @@ $user = Application::$app->user;
                             </li>
 
                             <li class="nav-item">
-                                <a class="page-scroll dd-menu" href="javascript:void(0)"><?php echo  $user->GetUsername()?></a>
+                                <a class="page-scroll dd-menu" href="javascript:void(0)"><?php echo  $user->GetUsername() ?></a>
 
                                 <ul class="sub-menu">
                                     <li class="nav-item"> <a class="page-scroll" href="/myaccount"><i class="fas fa-cog dark-red"></i>&#8192;My Account</a></li>
@@ -82,24 +82,24 @@ $user = Application::$app->user;
         </div>
     </div>
 </header>
-<section class="page-banner-section pt-30 pb-15 img-bg wow fadeInDown" data-wow-delay=".2s" style="background-image: url('/assets/img/bg/common-bg_admin.svg')">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-12">
-        <div class="banner-content">
-          <h2 class="text-white"><?php echo $this->title ?> </h2>
-          <div class="page-breadcrumb">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item wow fadeInLeft" data-wow-delay=".2s" aria-current="page"><a href="/dashboard">CineAdmin</a></li>
-                <li class="breadcrumb-item active  wow fadeInLeft" data-wow-delay=".4s"" aria-current=" page"><?php echo $this->title ?> </li>
-              </ol>
-            </nav>
-          </div>
+<section class="page-banner-section pt-30 pb-15 img-bg " style="background-image: url('/assets/img/bg/common-bg_admin.svg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="banner-content">
+                    <h2 class="text-white"><?php echo $this->title ?> </h2>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item " aria-current="page"><a href="/dashboard">CineAdmin</a></li>
+                                <li class="breadcrumb-item active  " " aria-current=" page"><?php echo $this->title ?> </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 

@@ -8,7 +8,7 @@ use app\core\form\Form;
 use app\core\form\TextareaField;
 
 
-$this->title = "Create Member Review" ?>
+$this->title = $title ?>
 <div class="container mb-1o text-right">
 </div>
 <div class="container news-container">
@@ -17,10 +17,10 @@ $this->title = "Create Member Review" ?>
         <?php $form = Form::begin('', 'post') ?>
         <?php echo $form->field($model, 'title') ?>
         <?php echo $form->field($model, 'imdb_id') ?>
-        <?php echo $form->field($model, 'our_rating') ?>
+        <?php echo $form->field($model, 'our_rating')->numberField("\" min=\"1\" max=\"10\"") ?>
         <?php echo new TextareaField($model, 'body') ?>
         <div class="col text-right">
-            <button type="submit" class="theme-btn mt-20 mb-20 wow fadeInUp " data-wow-delay="1.1s" name="login_btn">Create Review</button>
+            <button type="submit" class="theme-btn mt-20 mb-20  "><?php echo $button ?></button>
         </div>
         <?php Form::end() ?>
 

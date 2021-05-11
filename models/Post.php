@@ -82,7 +82,7 @@ class Post extends DbModel
         $this->username = $this->getUsername()->{"username"};
         $this->topic = $this->getTopic()->{'name'};
         $this->topic_id = $this->getTopic()->{'id'};
-        $this->short_body = $this->shorten_string($this->body, 40);
+        $this->short_body = $this->shorten_string($this->body, 40);   
     }
 
     public function shorten_string($string, $wordsreturned)

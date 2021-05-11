@@ -16,10 +16,10 @@ $user = Application::$app->user;
             <div class="col-2">
                 <ul>
                     <li>
-                        <a class="red mt-10" href="/myaccount/edit">Edit Account</a>
+                        <a class="red mt-10" href="/myaccount">Edit Account</a>
                     </li>
                     <li>
-                        <a class="red mt-10" href="/myaccount/email">Email Preferences</a>
+                        <a class="red mt-10" href="/myaccount/email_pref">Email Preferences</a>
                     </li>
                     <li>
                         <a class="red mt-10" href="/myaccount/contributions">View Contributions</a>
@@ -33,18 +33,6 @@ $user = Application::$app->user;
                 <h3 class="mt-10">Edit Account</h3>
                 <ul>
                     <li>
-                        <div class="mt-20 mb-20 row">
-                            <div class="col-9">
-                                <p>Username:</p>
-                                <p><?php echo $user->getUsername() ?></p>
-                            </div>
-                            <div class="col-3">
-                                <a href="javascript:void(0)" class="theme-btn float-right">Edit</a>
-                            </div>
-                        </div>
-                        <hr>
-                    </li>
-                    <li>
 
                         <div class="mt-20 mb-20 row">
                             <div class="col-9">
@@ -52,11 +40,11 @@ $user = Application::$app->user;
                                 <p><?php echo $user->getEmail() ?></p>
                             </div>
                             <div class="col-3">
-                                <a href="javascript:void(0)" class="theme-btn float-right">Edit</a>
+                                <a href="/myaccount/email" class="theme-btn float-right">Edit</a>
                             </div>
                         </div>
-                        <hr>
                     </li>
+                    <hr>
                     <li>
                         <div class="mt-20 mb-20 row">
                             <div class="col-9">
@@ -64,17 +52,32 @@ $user = Application::$app->user;
                                 <p>**********</p>
                             </div>
                             <div class="col-3">
-                                <a href="javascript:void(0)" class="theme-btn float-right">Edit</a>
+                                <a href="/myaccount/password" class="theme-btn float-right">Edit</a>
                             </div>
                         </div>
-                        <hr>
+                    </li>
+                    <hr>
+                    <li>
+                        <div class="mt-20 mb-20 row">
+                            <div class="col-9">
+                                <p>Username:</p>
+                                <p><?php echo $user->getUsername() ?></p>
+                            </div>
+                            <div class="col-3">
+                            </div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li>
                         <div class="mt-20 mb-20 row">
                             <div class="col-9">
                                 <p>Role:</p>
                                 <p><?php echo $user->getRole() ?></p>
                             </div>
                         </div>
-                        <hr>
+                    </li>
+                    <hr>
+                    <li>
                         <div class="mt-20 mb-20 row">
                             <div class="col-9">
                                 <p>Account created at:</p>

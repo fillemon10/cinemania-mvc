@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+use app\core\exception\ForbiddenException;
 
 /**
  * Class Model
@@ -15,16 +16,21 @@ class Model
     const RULE_MAX = 'max';
     const RULE_MATCH = 'match';
     const RULE_UNIQUE = 'unique';
+    const RULE_MIN_NUMBER = 'min_number';
+    const RULE_MAX_NUMBER = 'max_number';
+
 
     public array $errors = [];
 
     public function loadData($data)
     {
         foreach ($data as $key => $value) {
+            
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
             }
         }
+
     }
 
     public function attributes()
@@ -66,7 +72,7 @@ class Model
                     $this->addErrorByRule($attribute, self::RULE_MIN, ['min' => $rule['min']]);
                 }
                 if ($ruleName === self::RULE_MAX && strlen($value) > $rule['max']) {
-                    $this->addErrorByRule($attribute, self::RULE_MAX);
+                    $this->addErrorByRule($attribute, self::RULE_MAX, ['max' => $rule['max']]);
                 }
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addErrorByRule($attribute, self::RULE_MATCH, ['match' => $rule['match']]);
@@ -84,6 +90,12 @@ class Model
                         $this->addErrorByRule($attribute, self::RULE_UNIQUE);
                     }
                 }
+                if ($ruleName === self::RULE_MIN_NUMBER && $value < $rule['min']) {
+                    $this->addErrorByRule($attribute, self:: RULE_MIN_NUMBER, ['min' => $rule['min']]);
+                }
+                if ($ruleName === self::RULE_MAX_NUMBER && $value > $rule['max']) {
+                    $this->addErrorByRule($attribute, self::RULE_MAX_NUMBER, ['max' => $rule['max']]);
+                }
             }
         }
         return empty($this->errors);
@@ -91,11 +103,13 @@ class Model
 
     public function errorMessages()
     {
-        return [
+        return [    
             self::RULE_REQUIRED => 'This field is required',
             self::RULE_EMAIL => 'This field must be valid email address',
             self::RULE_MIN => 'Min length of this field must be {min}',
             self::RULE_MAX => 'Max length of this field must be {max}',
+            self::RULE_MIN_NUMBER => 'Min number of this field is {min}',
+            self::RULE_MAX_NUMBER => 'Max number of this field is {max}',
             self::RULE_MATCH => 'This field must be the same as {match}',
             self::RULE_UNIQUE => 'Record with with this {field} already exists',
         ];

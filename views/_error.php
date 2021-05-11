@@ -1,4 +1,5 @@
 <?php
+
 /** @var $exception \Exception */
 $this->title = $exception->getCode();
 ?>
@@ -10,8 +11,6 @@ $this->title = $exception->getCode();
                     <h2 class=""><?php echo $exception->getCode() ?></h2>
                     <h4 class=" ">
                         <?php echo $exception->getMessage() ?>
-                        <br>
-                        <a href="/" class="btn theme-btn mt-30">Back to Home</a>
                 </div>
             </div>
         </div>

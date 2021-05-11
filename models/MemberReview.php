@@ -52,14 +52,14 @@ class MemberReview extends DbModel
     {
         return parent::findAll(['published' => '1']);
     }
-    public static function getAllPublishedReviewByGenre($genre)
+    public static function getAllPublishedMemberReviewByGenre($genre)
     {
-        $statement = self::prepare("SELECT * FROM member_reviews WHERE id IN (SELECT review_id FROM review_genres WHERE genre=:genre GROUP BY review_id HAVING COUNT(1) = 1) AND published = 1");
+        $statement = self::prepare("SELECT * FROM member_reviews WHERE id IN (SELECT review_id FROM member_review_genres WHERE genre=:genre GROUP BY review_id HAVING COUNT(1) = 1) AND published = 1");
         $statement->bindValue(':genre', $genre);
         $statement->execute();
         return $statement->fetchAll();
     }
-    public static function getAllPublishedReviewByType($type)
+    public static function getAllPublishedMemberReviewByType($type)
     {
         return parent::findAll(['published' => '1', 'type' => $type]);
     }

@@ -10,23 +10,23 @@
                  <div class="single-news all-published box-style">
                      <div class="row">
                          <div class="col-xl-10 col-lg-8 col-md-8 section-title">
-                             <p class="wow fadeInDown" data-wow-delay=".4s"><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review["created_at"])); ?>/p>
+                             <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review["created_at"])); ?>/p>
 
                              <div class="row">
-                                 <a class="mb-0" href="/review?r=<?php echo $review["slug"]; ?>">
-                                     <h1 class="mb-0 wow fadeInLeft" data-wow-delay=".2s"> '<?php echo $review["title_of"] ?>':
+                                 <a class="mb-0" href="/reviews?single=<?php echo $review["slug"]; ?>">
+                                     <h1 class="mb-0 "> '<?php echo $review["title_of"] ?>':
                                          <?php echo $review["title"] ?></h1>
                                  </a>
                              </div>
                              <?php if ($review["type"] == 0) : ?>
-                                 <a class="mb-10 mt-10" href="/type?t=0"><span class="wow fadeInLeft" data-wow-delay=".2s">Movie</span></a>
+                                 <a class="mb-10 mt-10" href="/reviews?type=0"><span class="">Movie</span></a>
                              <?php else : ?>
-                                 <a class="mb-10 mt-10" href="/type?t=1"><span class="wow fadeInLeft" data-wow-delay=".2s">TV/Streaming</span></a>
+                                 <a class="mb-10 mt-10" href="/reviews?type=1"><span class="">TV/Streaming</span></a>
                              <?php endif ?>
                          </div>
                          <div class="col-xl-2 col-lg-4 col-md-4 text-right">
-                             <a class="mb-0" href="/review?r=<?php echo $review["slug"]; ?>">
-                                 <img class=" box-style p-0 wow fadeInRight mb-0" width=100% data-wow-delay=".4s" src="<?php echo $review["poster"] ?>" alt="post-image">
+                             <a class="mb-0" href="/reviews?single=<?php echo $review["slug"]; ?>">
+                                 <img class=" box-style p-0  mb-0" width=100% src="<?php echo $review["poster"] ?>" alt="post-image">
                              </a>
                          </div>
                      </div>
@@ -43,20 +43,20 @@
                  <div class="single-news all-published box-style">
                      <div class="row">
                          <div class="col-xl-8 col-lg-8 col-md-8 section-title">
-                             <p class="wow fadeInDown" data-wow-delay=".4s"><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($post["created_at"])); ?></p>
+                             <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($post["created_at"])); ?></p>
 
                              <div class="row">
-                                 <a class="mb-0" href="/post?p=<?php echo $post["slug"]; ?>">
-                                     <h2 class="mb-0 wow fadeInLeft" data-wow-delay=".2s"><?php echo $post["title"] ?></h2>
+                                 <a class="mb-0" href="/news?single=<?php echo $post["slug"]; ?>">
+                                     <h2 class="mb-0 "><?php echo $post["title"] ?></h2>
                                  </a>
                              </div>
                              <?php if (isset($post["topic"])) : ?>
-                                 <a class="mb-0" href="/topic?t=<?php echo $post["topic_id"] ?>"> <span class="wow fadeInLeft" data-wow-delay=".4s"> <?php echo $post["topic"] ?></span></a>
+                                 <a class="mb-0" href="/news?topic=<?php echo $post["topic_id"] ?>"> <span class=""> <?php echo $post["topic"] ?></span></a>
                              <?php endif ?>
                          </div>
                          <div class="col-xl-4 col-lg-4 col-md-4 text-right">
-                             <a class="mb-0" href="/post?p=<?php echo $post["slug"]; ?>">
-                                 <img class=" box-style p-0 news-img wow fadeInRight mb-0" width=10 data-wow-delay=".4s" src="<?php echo $post["image"] ?>" alt="post-image">
+                             <a class="mb-0" href="/news?single=<?php echo $post["slug"]; ?>">
+                                 <img class=" box-style p-0 news-img  mb-0" width=10 src="<?php echo $post["image"] ?>" alt="post-image">
                              </a>
                          </div>
                      </div>
@@ -73,22 +73,22 @@
                  <div class="single-news all-published box-style ">
                      <div class="row">
                          <div class="col-xl-8 col-lg-8 col-md-8 section-title">
-                             <p class="wow fadeInDown" data-wow-delay=".4s"><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review["created_at"])); ?></p>
+                             <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review["created_at"])); ?></p>
                              <div class="row">
-                                 <a class="mb-0 " href="/memberreview?r=<?php echo $review["slug"]; ?>">
-                                     <h1 class="mb-0 wow fadeInLeft" data-wow-delay=".2s">'<?php echo $review["title_of"] ?>':
+                                 <a class="mb-0 " href="/memberreviews?single=<?php echo $review["slug"]; ?>">
+                                     <h1 class="mb-0 ">'<?php echo $review["title_of"] ?>':
                                          <?php echo $review["title"] ?></h1>
                                  </a>
                              </div>
                              <?php if ($review["type"] == 0) : ?>
-                                 <a class="mb-10 mt-10" href="/membertype?t=0"><span class="wow fadeInLeft" data-wow-delay=".2s">Movie</span></a>
+                                 <a class="mb-10 mt-10" href="/memberreviews?type=0"><span class="">Movie</span></a>
                              <?php else : ?>
-                                 <a class="mb-10 mt-10" href="/membertype?t=1"><span class="wow fadeInLeft" data-wow-delay=".2s">TV/Streaming</span></a>
+                                 <a class="mb-10 mt-10" href="/memberreviews?type=1"><span class="">TV/Streaming</span></a>
                              <?php endif ?>
                          </div>
                          <div class="col-xl-4 col-lg-4 col-md-4 text-right">
-                             <a class="mb-0" href="/memberreview?r=<?php echo $review["slug"]; ?>">
-                                 <img class=" box-style p-0 wow fadeInRight mb-0" width="50%" data-wow-delay=".4s" src="<?php echo $review["poster"] ?>" alt="post-image">
+                             <a class="mb-0" href="/memberreviews?single=<?php echo $review["slug"]; ?>">
+                                 <img class=" box-style p-0  mb-0" width="50%" src="<?php echo $review["poster"] ?>" alt="post-image">
                              </a>
                          </div>
                      </div>

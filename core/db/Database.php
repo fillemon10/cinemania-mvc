@@ -28,3 +28,4 @@ class Database
         return $this->pdo->prepare($sql);
     }
 }
+ 

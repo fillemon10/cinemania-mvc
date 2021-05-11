@@ -1,9 +1,8 @@
-
-<footer class="footer pt-100">
+<footer class="footer pt-80">
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="footer-widget mb-60 wow fadeInLeft" data-wow-delay=".2s">
+                <div class="footer-widget mb-60 ">
                     <a href="/index" class="footer-logo mb-30"><img class="footer-logo" src="/assets/img/logo/logo.svg" alt="logo" /></a>
                     <p class="mb-30 footer-desc">
                         Read reviews of new And old movies. Cinemania is the #1 place to find good movies to watch.
@@ -12,7 +11,7 @@
                 </div>
             </div>
             <div class="col-xl-2 offset-xl-1 col-lg-2 col-md-6">
-                <div class="footer-widget mb-60 wow fadeInUp" data-wow-delay=".4s">
+                <div class="footer-widget mb-60 ">
                     <h4>Quick Link</h4>
                     <ul class="footer-links">
                         <li>
@@ -28,7 +27,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6">
-                <div class="footer-widget mb-60 wow fadeInUp" data-wow-delay=".6s">
+                <div class="footer-widget mb-60 ">
                     <h4>Reviews and News</h4>
                     <ul class="footer-links">
 
@@ -45,7 +44,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6">
-                <div class="footer-widget mb-60 wow fadeInRight" data-wow-delay=".8s">
+                <div class="footer-widget mb-60 ">
                     <h4>Contact</h4>
                     <ul class="footer-links">
                         <li>
@@ -86,7 +85,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <p class="wow fadeInUp" data-wow-delay=".3s">Cinemania &copy; <?php echo date('Y'); ?></p>
+                    <p class="">Cinemania &copy; <?php echo date('Y'); ?></p>
                 </div>
             </div>
         </div>

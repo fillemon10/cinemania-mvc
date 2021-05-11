@@ -8,8 +8,8 @@
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item wow fadeInLeft" data-wow-delay=".2s" aria-current="page"><a href="/">Cinemania</a></li>
-                                    <li class="breadcrumb-item active  wow fadeInLeft" data-wow-delay=".4s"" aria-current=" page"><?php echo $this->title ?> </li>
+                                    <li class="breadcrumb-item " aria-current="page"><a href="/">Cinemania</a></li>
+                                    <li class="breadcrumb-item active  " " aria-current=" page"><?php echo $this->title ?> </li>
                                 </ol>
                             </nav>
                         </div>

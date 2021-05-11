@@ -26,7 +26,7 @@ class Review extends DbModel
     public string $updated_at = '';
     public array $genres = [];
     public string $type = "";
-    public string $username = "(deleted user)";
+    public string $username = "";
 
     public static function tableName(): string
     {
@@ -66,6 +66,7 @@ class Review extends DbModel
 
     public function getReview($slug)
     {
+
         return $this->findOne(['slug' => $slug, 'published' => 1]);
     }
 
@@ -86,7 +87,7 @@ class Review extends DbModel
     {
         parent::loadData($request);
         $this->genres = $this->getGenre();
-        $this->username = $this->getUsername()->{"username"};
+        $this->username = $this->getUsername()->username;
     }
     
     public static function getAllPublishedReviewsSearch($search)

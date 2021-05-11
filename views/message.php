@@ -8,7 +8,7 @@ $this->title = $title
 use app\core\form\Form;
 
 ?>
-<section class="form-section pt-40 pb-20 wow fadeInUp" data-wow-delay=".8s">
+<section class="form-section pt-40 pb-20 ">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-8 mx-auto">

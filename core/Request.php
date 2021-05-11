@@ -73,6 +73,17 @@ class Request
                 //filtera datan i en associative array
                 $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
+            try {
+
+                //för varje get (t.ex. ?topic=1&genre=action)
+                foreach ($_GET as $key => $value) {
+
+                    //filtera datan i en associative array
+                    $data[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
         }
 
         //return arrayen av data

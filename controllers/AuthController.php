@@ -9,6 +9,8 @@ use app\core\GoogleAuth;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
+use app\models\EmailForm;
+use app\models\PasswordForm;
 use app\models\ForgotPassword;
 use app\models\LoginForm;
 use app\models\ResetPassword;
@@ -22,6 +24,11 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->registerMiddleware(new AuthMiddleware(['myaccount']));
+        $this->registerMiddleware(new AuthMiddleware(['editEmail']));
+        $this->registerMiddleware(new AuthMiddleware(['editPassword']));
+        $this->registerMiddleware(new AuthMiddleware(['emailPref']));
+        $this->registerMiddleware(new AuthMiddleware(['contributions']));
+        $this->registerMiddleware(new AuthMiddleware(['deleteAccount']));
     }
 
     public function login(Request $request)
@@ -159,8 +166,7 @@ class AuthController extends Controller
                             'model' => $model
                         ]);
                     }
-                }
-                else {
+                } else {
                     return $this->render('message', ["title" => "Forgot Password", "message" => "Reset token already used."]);
                 }
             }
@@ -168,5 +174,64 @@ class AuthController extends Controller
 
 
         return $this->render('reset_password');
+    }
+
+    public function editEmail(Request $request)
+    {
+        $emailForm = new EmailForm();
+        if ($request->isPost()) {
+            $emailForm->loadData($request->getData());
+            if ($emailForm->validate() && $emailForm->findEmail()) {
+                $emailForm->sendVerify();
+                Application::$app->session->remove("user");
+
+                Application::$app->session->setFlash('success', 'Please, check your inbox to verify your new email.');
+
+                Application::$app->response->redirect('/myaccount/verify');
+                return;
+            }
+        }
+        $this->setLayout('onlybanner');
+        return $this->render('edit_email', [
+            'model' => $emailForm,
+        ]);
+    }
+    public function editPassword(Request $request)
+    {
+        $passwordForm = new PasswordForm();
+        if ($request->isPost()) {
+            $passwordForm->loadData($request->getData());
+            if ($passwordForm->validate() && $passwordForm->findPassword()) {
+                $passwordForm->updatePassword();
+                Application::$app->session->setFlash('success', 'Your password is now changed.');
+
+                Application::$app->response->redirect('/myaccount');
+                return;
+            }
+        }
+        $this->setLayout('onlybanner');
+        return $this->render('edit_password', [
+            'model' => $passwordForm,
+        ]);
+    }
+    public function myaccountVerify(Request $request){
+
+        if (isset($request->getData()["t"])) {
+            $token = $request->getData()["t"];
+            $user = User::findOne(['verify_token' => $token]);
+            if (!$user) {
+                return $this->render('message', ["title" => "Verify account", "message" => "This verification token does not exist."]);
+            } else {
+                $user->verified = 1;
+                $user->verify($token);
+                $email = EmailForm::findOne(["currentEmail" => $user->email]);
+                $user->updateEmail($email);
+                Application::$app->session->setFlash('success', 'Your new email is now verified. Please login with your new email');
+                Application::$app->response->redirect('/login');
+
+            }
+        }
+        $this->setLayout('auth');
+        return $this->render('message', ["title" => "Verify email", "message" => "Please, check your inbox to verify your new email."]);
     }
 }

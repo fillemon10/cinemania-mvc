@@ -24,9 +24,6 @@
     01. Common CSS
 ===========================*/
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
-html {
-  scroll-behavior: smooth;
-}
 
 body {
   font-family: "Open Sans", sans-serif;
@@ -60,14 +57,55 @@ button:focus,
   box-shadow: none;
 }
 
-a:hover {
+a:hover  {
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
-  color: #8a0404;
+  color: #eb3737;
 }
+a h1:hover  {
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+  color: #eb3737;
+}
+a h2:hover  {
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+  color: #eb3737;
+}
+a h3:hover  {
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+  color: #eb3737;
+}
+a h4:hover  {
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+  color: #eb3737;
+}
+a h5:hover  {
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+  color: #eb3737;
+}
+
 
 a:focus,
 a:hover {
@@ -191,6 +229,19 @@ p {
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
+}
+.img-bg-subscribe {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+.page-scroll i {
+  color: #523b3b;
+  margin: 0px;
+}
+.page-scroll:hover > i {
+  color: #eb3737;
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -1222,7 +1273,7 @@ p {
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
   position: relative;
-  padding: 20px;
+  padding: 20px 15px;
   display: inline-flex;
   align-items: center;
 }
@@ -1275,6 +1326,7 @@ p {
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
 }
+
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .navbar-nav .nav-item a.dd-menu::after {
     right: 13px;
@@ -1668,15 +1720,14 @@ textarea {
   padding: 20px !important;
 }
 .closebtn {
-    position: absolute;
-    left: 238px;
-    top: 0px;
+  position: absolute;
+  left: 238px;
+  top: 0px;
   color: rgb(23, 112, 19) !important;
   font-size: 30px;
   cursor: pointer !important;
-  
 }
-.alert{
+.alert {
   padding-right: 30px !important;
   width: 270px !important;
 }
@@ -1709,7 +1760,7 @@ textarea {
 }
 
 .box-style {
-  padding: 30px 22px;
+  padding: 22px 18px;
   border: 1px solid #d1d1d1;
   border-radius: 20px;
   margin-bottom: 30px;
@@ -1770,7 +1821,6 @@ textarea {
 .box-icon-style i {
   color: #eb3737;
 }
-
 
 .box-style .box-icon-style::after {
   content: "";
@@ -2245,11 +2295,10 @@ textarea {
 .subscribe-section {
   position: relative;
   border-radius: 20px;
-    -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
   -moz-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
   box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
-    border: 1px solid #d1d1d1;
-
+  border: 1px solid #d1d1d1;
 }
 .subscribe-section .subscribe-form {
   margin-left: 10px;
@@ -2342,16 +2391,19 @@ textarea {
 }
 .contact-section .contact-item-wrapper .contact-item {
   display: flex;
-  border: 1px solid #fbeeee;
   border-radius: 20px;
   background: #fff;
   margin-bottom: 30px;
-  padding: 20px 30px;
+  border: 1px solid #d1d1d1;
+  border-radius: 20px;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
+  -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  -moz-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
 }
 .contact-section .contact-item-wrapper .contact-item:hover {
   -webkit-box-shadow: 0px 0px 30px rgba(252, 215, 215, 0.45);
@@ -2419,6 +2471,10 @@ textarea {
   color: #eb3737;
   margin-bottom: 10px;
 }
+.map-container {
+  overflow: hidden;
+}
+
 
 .comment-form-wrapper,
 .contact-form-wrapper {
@@ -2502,19 +2558,17 @@ textarea {
 input:focus,
 textarea:focus,
 .form-control:focus {
-  box-shadow: 0 0.0001px 0.1px rgba(0, 0, 0, 0.075) inset,
-    0 0 0.001px #eb3737;
+  box-shadow: 0 0.0001px 0.1px rgba(0, 0, 0, 0.075) inset, 0 0 0.001px #eb3737;
   outline: 0 none;
   border-color: #eb3737 !important;
 }
 .page-banner-section {
   margin-top: 107px;
   border-radius: 20px;
-    -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
+  -webkit-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
   -moz-box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
   box-shadow: 0px 0px 10px rgba(228, 228, 228, 0.45);
-    border: 1px solid #d1d1d1;
-
+  border: 1px solid #d1d1d1;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .page-banner-section {
@@ -2679,7 +2733,7 @@ textarea:focus,
 .footer {
   position: relative;
   z-index: 2;
-  background: #f9efef;
+  background: #f8f6f6;
 }
 .footer .footer-widget .footer-desc {
   line-height: 30px;
@@ -2694,7 +2748,7 @@ textarea:focus,
   }
 }
 .footer .footer-widget ul.footer-links li a {
-  color: #926a6a;
+  color: #523b3b;
   display: block;
   line-height: 35px;
   transition: all 0.3s;

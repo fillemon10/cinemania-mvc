@@ -6,28 +6,28 @@ use app\core\Application;
 use app\core\db\DbModel;
 
 /**
- * Class ReviewComments
+ * Class PostComments
  *
  */
-class ReviewComments extends DbModel
+class PostComments extends DbModel
 {
     public string $text = "";
-    public int $review_id = 0;
+    public int $post_id = 0;
     public int $user_id = 0;
 
-    public function __construct($review_id)
+    public function __construct($post_id)
     {
-        $this->review_id = $review_id;
+        $this->post_id = $post_id;
     }
 
     public static function tableName(): string
     {
-        return 'review_comments';
+        return 'post_comments';
     }
 
     public function attributes(): array
     {
-        return ["text", "review_id", "user_id"];
+        return ["text", "post_id", "user_id"];
     }
 
     public function labels(): array
@@ -42,9 +42,9 @@ class ReviewComments extends DbModel
         ];
     }
 
-    public function getComments($review_id)
+    public function getComments($post_id)
     {
-        return parent::findAll(['published' => '1', 'review_id' => $review_id]);
+        return parent::findAll(['published' => '1', 'post_id' => $post_id]);
     }
     public function getUsername($user_id)
     {

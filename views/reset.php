@@ -9,7 +9,7 @@ $this->title = "Forgot Password";
 
 ?>
 
-<section class="form-section pt-40 pb-20 wow fadeInUp" data-wow-delay=".8s">
+<section class="form-section pt-40 pb-20 ">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-8 mx-auto">
@@ -26,7 +26,7 @@ $this->title = "Forgot Password";
 
                                 </div>
                                 <div class="col text-right">
-                                    <button type="submit" class="theme-btn mt-20 mb-20 wow fadeInUp " data-wow-delay="1.1s" name="login_btn">Change Password</button>
+                                    <button type="submit" class="theme-btn mt-20 mb-20  " name="login_btn">Change Password</button>
                                 </div>
                             </div>
                             <div class="row">

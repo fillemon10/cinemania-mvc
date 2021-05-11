@@ -15,7 +15,7 @@ class Field extends BaseField
     const TYPE_PASSWORD = 'password';
     const TYPE_FILE = 'file';
     const TYPE_EMAIL = 'email';
-
+    const TYPE_NUMBER = "number";
 
     /**
      * Field constructor.
@@ -52,9 +52,9 @@ class Field extends BaseField
         return $this;
     }
 
-    public function numberField()
+    public function numberField($minAndMax)
     {
-        $this->type = self::TYPE_NUMBER;
+        $this->type = self::TYPE_NUMBER . $minAndMax;
         return $this;
     }
     public function emailField()
@@ -62,5 +62,4 @@ class Field extends BaseField
         $this->type = self::TYPE_EMAIL;
         return $this;
     }
-
 }

@@ -46,10 +46,8 @@ class User extends UserModel
     public function rules()
     {
         return [
-            'username' => [self::RULE_REQUIRED],
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [
-                self::RULE_UNIQUE, 'class' => self::class
-            ]],
+            'username' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 3], [self::RULE_MAX, 'max' => 10]],
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => self::class]],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8]],
             'passwordConfirm' => [[self::RULE_MATCH, 'match' => 'password']],
         ];
@@ -72,16 +70,26 @@ class User extends UserModel
         }
         $token = $randomString;
         $this->verify_token = $token;
-        Application::$app->mail->send($this->email, "Verify your account with Cinemania", "Hello " . $this->username . "<br><br> Please confirm your email address by click this link: <br>http://cinemania.sjolander.name/register/verify?t=" . $token . "<br><br> Please contact filip@sjolander.name if you believe this is an error."); 
+        Application::$app->mail->send($this->email, "Verify your account with Cinemania", "Hello " . $this->username . "<br><br> Please confirm your email address by click this link: <br>http://cinemania.sjolander.name/register/verify?t=" . $token . "<br><br> Please contact filip@sjolander.name if you believe this is an error.");
         return true;
     }
-    public function verify($token){
+    public function verify($token)
+    {
         $statement = self::prepare("UPDATE users SET verified=1 WHERE verify_token=:token");
 
         $statement->bindValue("token", $token);
 
         $statement->execute();
+    }
 
+    public function updateEmail($email)
+    {
+        $statement = self::prepare("UPDATE users SET email=:email WHERE id=:id");
+
+        $statement->bindValue("email", $email->newEmail);
+        $statement->bindValue("id", $email->user_id);   
+
+        $statement->execute();
     }
 
     public function getUsername(): string
