@@ -5,7 +5,7 @@
 use app\core\Application;
 use app\core\form\Form;
 
-$this->title = "Edit Email";
+$this->title = "My Account";
 
 ?>
 

@@ -26,7 +26,7 @@ class MemberReviewForm extends DbModel
     public string $updated_at = '';
     public array $genres = [];
     public string $type = "";
-    public string $username = "(deleted user)";
+    public string $username = "";
 
     public static function tableName(): string
     {
@@ -38,7 +38,7 @@ class MemberReviewForm extends DbModel
         return [
             'title' => 'Title Of Your Review',
             'imdb_id' => 'IMDb ID Of The Movie Or Series (Find the ID on IMDB: "http://www.imdb.com/title/<strong>tt0123456</strong>/)',
-            'our_rating' => 'Your Rating Of The Movie Or Series',
+            'our_rating' => 'Your Rating Of The Movie Or Series (1-10)',
             'body' => 'Review Text'
 
         ];

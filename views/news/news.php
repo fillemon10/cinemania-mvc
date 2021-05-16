@@ -9,7 +9,7 @@ $this->title = $title ?>
         <div class="single-news all-published box-style">
             <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-8 section-title">
-                    <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($post->created_at)); ?>&#8192;&#8192;<i class="p-mask fas fa-user"></i>&#8192;<?php echo $post->username  ?></p>
+                    <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($post->created_at)); ?>&#8192;&#8192;<?php echo $post->role ?>&#8192;<?php echo $post->username ?></p>
 
                     <div class="row">
                         <a class="mb-0" href="/news?single=<?php echo $post->slug; ?>">

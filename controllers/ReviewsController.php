@@ -9,6 +9,7 @@ use app\models\Review;
 use app\core\OMDb;
 use app\models\ReviewComments;
 use app\models\ReviewReplies;
+use app\models\User;
 
 /**
  * Class ReviewsController
@@ -37,12 +38,12 @@ class ReviewsController extends Controller
             return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Type: ' . $type_name]);
         } else  if (isset($request->getData()["single"]) ?? NULL) {
             $review = new Review();
-
-            $review->loadReview($review->getReview($request->getData()["single"]));
-
+            $slug = $request->getData()["single"];
+            $review->loadReview($review->getReview($slug));
             $apikey = Application::$omdbAPIkey;
             $omdb = new OMDb(['plot' => 'full', 'apikey' => $apikey]);
             $movie = $omdb->get_by_id($review->imdb_id);
+            $this->setLayout('single');
 
             $comments = new ReviewComments($review->id);
             $commentsArray = $comments->getComments($review->id);
@@ -50,6 +51,7 @@ class ReviewsController extends Controller
             foreach ($commentsArray as $key => $comment) {
                 $comment_user = $comments->getUsername($comment["user_id"]);
                 $commentsArray[$key]["username"] = $comment_user->username;
+                $commentsArray[$key]["role"] = User::getBadge(User::findOne(["id" => $comment["user_id"]])->role);
             }
             $commentModel = new ReviewComments($review->id);
 
@@ -64,14 +66,12 @@ class ReviewsController extends Controller
                 } else {
                     $commentModel->user_id = Application::$app->session->get("user");
                     if ($commentModel->validate() && $commentModel->save()) {
-                        Application::$app->session->setFlash('success', 'Your comment is now under review and will be published soon');
+                        Application::$app->session->setFlash('success', 'Your comment is now published');
                         Application::$app->response->redirect('/reviews?single=' . $review->slug);
                     }
                 }
             }
             $commentsArray = array_reverse($commentsArray);
-
-            $this->setLayout('single');
 
             return $this->render('reviews/single_review', ['review' => $review, 'movie' => $movie, 'comments' => $commentsArray, 'commentModel' => $commentModel]);
         } else if (isset($request->getData()["genre"]) ?? NULL) {
@@ -105,7 +105,7 @@ class ReviewsController extends Controller
             //vänd på arrayen
             $review_array = array_reverse($review_array);
             //rendera viewn reviews och för med parametrarna reviews och title
-            return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Reviews']);
+            return $this->render('reviews/reviews', ['reviews' => $review_array, 'title' => 'Cinemania Reviews']);
         }
     }
 }

@@ -131,4 +131,19 @@ class User extends UserModel
 
         return Application::$app->login($user);
     }
+    public static function getBadge($role){
+        if ($role == "Admin") {
+            return "<i class=\"fas fa-user-tie red\" title=\"Admin\"></i>";
+        } else if ($role == "Author") {
+            return "<i class=\"fas fa-user-edit text-info\" title=\"Author\"></i>";
+        } else if ($role == "Moderator") {
+            return "<i class=\"fas fa-user-cog text-success\" title=\"Moderator\"></i>";
+        } else if ($role == "Premium") {
+            return "<i class=\"fas fa-user premium-color\" title=\"Premium\"></i>";
+        } else if ($role == "Premium+") {
+            return "<i class=\"fas fa-user-plus premium-plus-color\" title=\"Premium+\"></i>";
+        }  else {
+            return "<i class=\"fas fa-user p-mask\" title=\"Member\"></i>";
+        }
+    }
 }

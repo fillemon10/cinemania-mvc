@@ -18,7 +18,7 @@ $this->title = $title ?>
         <div class="single-news all-published box-style ">
             <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-8 section-title">
-                    <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review->created_at)); ?>&#8192;&#8192;<i class="p-mask fas fa-user"></i>&#8192;<?php echo $review->username  ?></p>
+                    <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review->created_at)); ?>&#8192;&#8192;<?php echo $review->role ?>&#8192;<?php echo $review->username ?></p>
                     <?php if (count((array)$review->genres) > 1) { ?>
                         <?php foreach ($review->genres as $key => $genre) { ?>
                             <a class=" mb-10 red" href="/memberreviews?genre=<?php echo strtolower($review->genres[$key]["genre"]) ?>"><?php echo $review->genres[$key]["genre"] ?></a>

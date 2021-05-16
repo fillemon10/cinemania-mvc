@@ -49,6 +49,3 @@
   );
 })();
 
-function openSinglePost(slug) {
-  window.url = 'single_post?post-slug=' + slug;
-}

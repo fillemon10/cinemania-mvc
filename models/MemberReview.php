@@ -26,7 +26,9 @@ class MemberReview extends DbModel
     public string $updated_at = '';
     public array $genres = [];
     public string $type = "";
-    public string $username = "(deleted user)";
+    public string $username = "";
+    public string $role = "";
+
 
     public static function tableName(): string
     {
@@ -90,7 +92,8 @@ class MemberReview extends DbModel
     {
         parent::loadData($request);
         $this->genres = $this->getGenre();
-        $this->username = $this->getUsername()->{"username"};
+        $this->username = $this->getUsername()->username;
+        $this->role = User::getBadge($this->getUsername()->role);
     }
 
     public static function getAllPublishedMemberReviewsSearch($search)
@@ -108,4 +111,5 @@ class MemberReview extends DbModel
     {
         return parent::findAll(['user_id' => Application::$app->session->get("user")]);
     }
+
 }

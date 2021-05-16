@@ -10,6 +10,7 @@ use app\core\OMDb;
 use app\core\middlewares\MemberMiddleware;
 use app\models\MemberReviewComments;
 use app\models\MemberReviewForm;
+use app\models\User;
 
 /**
  * Class MemberReviewsController
@@ -39,6 +40,8 @@ class MemberReviewsController extends Controller
             foreach ($commentsArray as $key => $comment) {
                 $comment_user = $comments->getUsername($comment["user_id"]);
                 $commentsArray[$key]["username"] = $comment_user->username;
+                $commentsArray[$key]["role"] = User::getBadge(User::findOne(["id" => $comment["user_id"]])->role);
+
             }
             $commentModel = new MemberReviewComments($review->id);
 
@@ -53,7 +56,7 @@ class MemberReviewsController extends Controller
                 } else {
                     $commentModel->user_id = Application::$app->session->get("user");
                     if ($commentModel->validate() && $commentModel->save()) {
-                        Application::$app->session->setFlash('success', 'Your comment is now under review and will be published soon');
+                        Application::$app->session->setFlash('success', 'Your comment is now published');
                         Application::$app->response->redirect('/memberreviews?single=' . $review->slug);
                     }
                 }
@@ -163,10 +166,6 @@ class MemberReviewsController extends Controller
         ]);
     }
 
-    public function delete()
-    {
-        $review_id = $request->getData()['r'];
-    }
 
     public function create(Request $request)
     {

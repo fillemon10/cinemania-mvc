@@ -57,7 +57,7 @@ button:focus,
   box-shadow: none;
 }
 
-a:hover  {
+a:hover {
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -65,7 +65,7 @@ a:hover  {
   transition: all 0.3s ease-out 0s;
   color: #eb3737;
 }
-a h1:hover  {
+a h1:hover {
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -73,7 +73,7 @@ a h1:hover  {
   transition: all 0.3s ease-out 0s;
   color: #eb3737;
 }
-a h2:hover  {
+a h2:hover {
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -81,7 +81,7 @@ a h2:hover  {
   transition: all 0.3s ease-out 0s;
   color: #eb3737;
 }
-a h3:hover  {
+a h3:hover {
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -89,7 +89,7 @@ a h3:hover  {
   transition: all 0.3s ease-out 0s;
   color: #eb3737;
 }
-a h4:hover  {
+a h4:hover {
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -97,7 +97,7 @@ a h4:hover  {
   transition: all 0.3s ease-out 0s;
   color: #eb3737;
 }
-a h5:hover  {
+a h5:hover {
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -105,7 +105,6 @@ a h5:hover  {
   transition: all 0.3s ease-out 0s;
   color: #eb3737;
 }
-
 
 a:focus,
 a:hover {
@@ -1264,6 +1263,14 @@ p {
 .navbar-nav .nav-item:hover a {
   color: #eb3737;
 }
+.navbar-nav .nav-item:hover a > i {
+  color: #eb3737;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
 .navbar-nav .nav-item a {
   font-size: 16px;
   color: #410505;
@@ -1968,6 +1975,128 @@ textarea {
   font-weight: 500;
   margin-bottom: 10px;
 }
+/*===========================
+    07. Pricing CSS 
+===========================*/
+.pricing-section .pricing-btn ul {
+  display: inline-flex;
+  border: 1px solid #fbeeee;
+  border-radius: 50px;
+}
+@media (max-width: 767px) {
+  .pricing-section .pricing-btn ul {
+    margin-bottom: 40px;
+  }
+}
+.pricing-section .pricing-btn ul li.nav-item a {
+  background: #fff;
+  padding: 24px 35px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #410505;
+  box-shadow: 0px 0px 47px rgba(255, 161, 161, 0.16);
+}
+@media (max-width: 767px) {
+  .pricing-section .pricing-btn ul li.nav-item a {
+    padding: 20px;
+    font-size: 14px;
+  }
+}
+.pricing-section .pricing-btn ul li.nav-item a.active {
+  color: #fff;
+  background: linear-gradient(
+    to left,
+    #eb3737 0%,
+    #e85858 50.39%,
+    #eb3737 100%
+  );
+  background-size: 200%;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
+.pricing-section .pricing-btn ul li.nav-item:first-child .nav-link {
+  border-radius: 50px 0 0 50px;
+}
+@media (max-width: 767px) {
+  .pricing-section .pricing-btn ul li.nav-item:first-child .nav-link {
+    border-radius: 50px;
+    padding: 20px 35px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .pricing-section .pricing-btn ul li.nav-item:first-child .nav-link {
+    border-radius: 50px 0 0 50px;
+    padding: 20px 30px;
+  }
+}
+.pricing-section .pricing-btn ul li.nav-item:last-child .nav-link {
+  border-radius: 0 50px 50px 0;
+}
+@media (max-width: 767px) {
+  .pricing-section .pricing-btn ul li.nav-item:last-child .nav-link {
+    border-radius: 50px;
+    padding: 20px 35px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .pricing-section .pricing-btn ul li.nav-item:last-child .nav-link {
+    border-radius: 0 50px 50px 0;
+    padding: 20px 30px;
+  }
+}
+.premium-color {
+  color: #4900f3 !important;
+}
+.premium-plus-color {
+  color: #a70082 !important;
+}
+.pricing-section .single-pricing {
+  text-align: center;
+  padding: 50px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 47px rgba(255, 161, 161, 0.16);
+  position: relative;
+  z-index: 1;
+}
+.pricing-section .single-pricing h4 {
+  margin-bottom: 25px;
+  color: #926a6a;
+  font-weight: 600;
+}
+.pricing-section .single-pricing h3 {
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 40px;
+}
+.pricing-section .single-pricing ul {
+  margin-bottom: 30px;
+}
+.pricing-section .single-pricing ul li {
+  font-size: 16px;
+  line-height: 40px;
+}
+.pricing-section .single-pricing a {
+  margin-bottom: 20px;
+}
+.pricing-section .single-pricing a.border-btn:hover {
+  background: rgba(235, 55, 55, 0.8);
+  color: #fff;
+}
+.pricing-section .single-pricing.active {
+  -webkit-transform: scale(1.15);
+  -moz-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  -o-transform: scale(1.15);
+  transform: scale(1.15);
+  z-index: 2;
+}
+.pricing-section .single-pricing.active h3 {
+  color: #eb3737;
+}
 
 /*===========================
     07. news CSS 
@@ -2250,6 +2379,7 @@ textarea {
 .review-section .single-review a.border-btn:hover {
   background: rgba(235, 55, 55, 0.8);
   color: #fff;
+  max-width: 150px;
 }
 .review-section .single-review.active {
   -webkit-transform: scale(1.15);
@@ -2285,9 +2415,12 @@ textarea {
   padding: 19px !important;
 }
 .rating-logo {
-  height: 48px;
   width: auto;
   max-width: 134px;
+}
+#rating {
+  display: flex;
+  align-items: center;
 }
 /*===========================
     10. Subscribe CSS 
@@ -2474,7 +2607,6 @@ textarea {
 .map-container {
   overflow: hidden;
 }
-
 
 .comment-form-wrapper,
 .contact-form-wrapper {

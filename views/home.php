@@ -7,7 +7,7 @@
             <div class="col-xl-5 col-lg-6">
                 <div class="hero-content-wrapper">
                     <h2 class="mb-25 ">Cinemania</h2>
-                    <h1 class="mb-25 ">Reviews Of <br>New And Old Movies</h1>
+                    <h1 class="mb-25 ">Professional <br> Reviews Of New <br> And Old Movies</h1>
                     <p class="mb-35 ">
                         The #1 place to find good movies to watch
                     </p>

@@ -14,6 +14,7 @@ class ReviewComments extends DbModel
     public string $text = "";
     public int $review_id = 0;
     public int $user_id = 0;
+    public string $role = "";
 
     public function __construct($review_id)
     {

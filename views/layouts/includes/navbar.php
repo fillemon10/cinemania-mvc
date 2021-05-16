@@ -22,10 +22,10 @@ use app\core\Application;
                         <div class="collapse navbar-collapse sub-menu-bar float-right" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="/">&nbsp;<i class="fas fa-home"></i></a>
+                                    <a class="page-scroll" href="/">&nbsp;<i class="fas fa-home" title="Home"></i></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll dd-menu" href="/reviews">Reviews</a>
+                                    <a title="Cinemania Reviews" class="page-scroll dd-menu" href="/reviews"><i class="fas fa-thumbs-up"></i>&nbsp;Reviews</a>
                                     <ul class="sub-menu">
                                         <li class="nav-item"><a href="/reviews?type=0">Latests Movie Reviews</a></li>
                                         <li class="nav-item"><a href="/reviews?type=1">Latests TV/Streaming Reviews</a></li>
@@ -36,20 +36,31 @@ use app\core\Application;
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll dd-menu" href="/news">News</a>
+                                    <a href="/memberreviews" class="page-scroll dd-menu" title="Member Reviews"><i class="fas fa-users p-mask"></i>&nbsp;Reviews</a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item"><a href="/memberreviews?type=0">Latests Member Movie Reviews</a></li>
+                                        <li class="nav-item"><a href="/memberreviews?type=1">Latests Member TV/Streaming Reviews</a></li>
+                                        <li class="nav-item"><a href="/memberreviews?genre=drama">Member Drama Reviews</a></li>
+                                        <li class="nav-item"><a href="/memberreviews?genre=action">Member Action Reviews</a></li>
+                                        <li class="nav-item"><a href="/memberreviews?genre=thriller">Member Thriller Reviews</a></li>
+                                        <li class="nav-item"><a href="/memberreviews">All Member Reviews</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll dd-menu" href="/news"><i class="fas fa-newspaper"></i>&nbsp;News</a>
                                     <ul class="sub-menu">
                                         <li class="nav-item"><a href="/news?topic=5">Latests New Releases</a></li>
                                         <li class="nav-item"><a href="/news?topic=4">Latests Cinema Talk</a></li>
                                         <li class="nav-item"><a href="/news">All News</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="/memberreviews">Member Reviews</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/contact">Contact</a>
-                                </li>
 
+                                <li class="nav-item">
+                                    <a title="Buy Premium" class="page-scroll" href="/premium"><i class="fas fa-shopping-cart p-mask"></i>&nbsp;</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a title="Contact" href="/contact"><i class="fas fa-phone-alt p-mask"></i>&nbsp;</a>
+                                </li>
                                 <li class="nav-item">
                                     <form action="search" class="search-form">
                                         <input name="q" type="text" placeholder="Search" />
@@ -65,7 +76,7 @@ use app\core\Application;
                                     </li>
                                 <?php else : ?>
                                     <li class="nav-item">
-                                        <a class="page-scroll dd-menu" href="javascript:void(0)"><?php echo $user->GetUsername() ?></a>
+                                        <a class="page-scroll dd-menu" href="javascript:void(0)"><?php echo $user->getBadge($user->role) ?>&nbsp;<?php echo $user->GetUsername() ?></a>
 
                                         <ul class="sub-menu">
                                             <?php if (!Application::isMember()) : ?>

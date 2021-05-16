@@ -34,12 +34,6 @@ $config = [
         'user' => $_ENV['MAIL_USERNAME'],
         'password' => $_ENV['MAIL_PASSWORD']
     ],
-    'google' => [
-        'client_id' => $_ENV["GOOGLE_CLIENT_ID"],
-        'secret' => $_ENV["GOOGLE_SECRET"],
-        'uri' => $_ENV["GOOGLE_REDIRECT_URI"]
-
-    ],
     'omdb' => $_ENV["OMDB_APIKEY"]
 ];
 
@@ -71,6 +65,10 @@ $app->router->get('/myaccount/email', [AuthController::class, 'editEmail']);
 $app->router->post('/myaccount/password', [AuthController::class, 'editPassword']);
 $app->router->post('/myaccount/email', [AuthController::class, 'editEmail']);
 $app->router->get('/myaccount/verify', [AuthController::class, 'myaccountVerify']);
+$app->router->get('/myaccount/delete', [AuthController::class, 'myaccountDelete']);
+$app->router->get('/myaccount/email_pref', [AuthController::class, 'myaccountPref']);
+$app->router->get('/myaccount/contributions', [AuthController::class, 'myaccountCon']);
+
 
 
 $app->router->get('/forgot_password', [AuthController::class, 'forgotPassword']);
@@ -78,14 +76,14 @@ $app->router->post('/forgot_password', [AuthController::class, 'forgotPassword']
 $app->router->get('/reset', [AuthController::class, 'resetPassword']);
 $app->router->post('/reset', [AuthController::class, 'resetPassword']);
 
-//google login
-$app->router->get('/register/google', [AuthController::class, 'googleRegister']);
 
 //news
 $app->router->get('/news', [NewsController::class, 'news']);
+$app->router->post('/news', [NewsController::class, 'news']);
 
 //reviews
 $app->router->get('/reviews', [ReviewsController::class, 'reviews']);
+$app->router->post('/reviews', [ReviewsController::class, 'reviews']);
 
 //admin
 $app->router->get('/admin', [AdminController::class, 'dashboard']);
@@ -95,10 +93,11 @@ $app->router->get('/admin/reviews', [AdminController::class, 'reviews']);
 
 //Member Reviews
 $app->router->get('/memberreviews', [MemberReviewsController::class, 'reviews']);
+$app->router->post('/memberreviews', [MemberReviewsController::class, 'reviews']);
+
 $app->router->get('/memberreviews/manage', [MemberReviewsController::class, 'manage']);
 $app->router->get('/memberreviews/manage/edit', [MemberReviewsController::class, 'edit']);
 $app->router->post('/memberreviews/manage/edit', [MemberReviewsController::class, 'edit']);
-$app->router->get('/memberreviews/manage/delete', [MemberReviewsController::class, 'delete']);
 $app->router->get('/memberreviews/create', [MemberReviewsController::class, 'create']);
 $app->router->post('/memberreviews/create', [MemberReviewsController::class, 'create']);
 
@@ -107,6 +106,9 @@ $app->router->get('/search', [SiteController::class, 'search']);
 
 //verify newsletter
 $app->router->get('/newsletter-confirm', [SiteController::class, 'newsletter_verify']);
+
+
+$app->router->get('/premium', [SiteController::class, 'premium']);
 
 //kör applikationen
 $app->run();

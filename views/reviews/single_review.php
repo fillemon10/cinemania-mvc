@@ -3,6 +3,7 @@
     use app\core\Application;
     use app\core\form\Form;
     use app\core\form\TextareaField;
+    use app\models\MemberReview;
 
     $this->title = "'" . $review->title_of . "' review: " . $review->title; ?>
  <section id="review" class="review-section mt-100 pt-20 pb-20">
@@ -10,7 +11,7 @@
          <div class="single-review pb-15">
              <div class="row">
                  <div class="col-xl-8 col-lg-8 col-md-8 section-title">
-                     <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review->created_at)); ?>&#8192;&#8192;<i class="p-mask fas fa-user"></i>&#8192;<?php echo $review->username ?></p>
+                     <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($review->created_at)); ?>&#8192;&#8192;<?php echo $review->role ?>&#8192;<?php echo $review->username ?></p>
                      <?php if (count((array)$review->genres) > 1) { ?>
                          <?php foreach ($review->genres as $key => $genre) { ?>
                              <a class=" mb-10 red" href="/reviews?genre=<?php echo strtolower($review->genres[$key]["genre"]) ?>"><?php echo $review->genres[$key]["genre"] ?></a>
@@ -26,14 +27,19 @@
                      <?php endif ?>
 
 
-                     <p class=""><?php echo $review->body ?></p>
+                     <p class=""><?php echo htmlspecialchars_decode($review->body) ?></p>
                      <p class=" mt-10"><strong>Plot: </strong><?php echo $movie['Plot'] ?></p>
                  </div>
                  <div class="col-xl-4 col-lg-4 col-md-4">
                      <div class=" box-style ratings mb-20 ">
                          <div class="row">
-                             <div class="col">
-                                 <img class="rating-logo" src="/assets/img/logo/logo.svg" alt="cinemania-logo">
+                             <div class="col" id="rating">
+                                 <?php if (is_a($review, "app\models\MemberReview")) : ?>
+                                     <h5><?php echo $review->role ?>&#8192;<?php echo $review->username ?></h5>
+                                 <?php else : ?>
+                                     <img class="rating-logo" src="/assets/img/logo/logo.svg" alt="cinemania-logo">
+
+                                 <?php endif ?>
                              </div>
                              <div class="col">
                                  <h3 class="mb-0 text-right"><?php echo $review->{'our_rating'} ?>/10</h3>
@@ -54,7 +60,7 @@
                      <img class=" box-style p-0 poster-img " src="<?php echo $review->poster; ?>" alt="poster-<?php echo  str_replace(" ", "-", strtolower($review->{"title_of"})); ?>">
                  </div>
              </div>
-             <div class="row box-style">
+             <div class="row box-style mt-20">
                  <?php $form = Form::begin('', 'post') ?>
                  <?php echo new TextareaField($commentModel, 'text')  ?>
                  <div class="row">

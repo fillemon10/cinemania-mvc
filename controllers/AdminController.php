@@ -5,7 +5,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
-use app\core\middlewares\AuthMiddleware;
+use app\core\middlewares\AdminMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
@@ -19,7 +19,13 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware(['dashboard']));
+        //bara admin, author och moderator får komma åt de här sidorna.
+        $this->registerMiddleware(new AdminMiddleware(['dashboard']));
+        $this->registerMiddleware(new AdminMiddleware(['users']));
+        $this->registerMiddleware(new AdminMiddleware(['posts']));
+        $this->registerMiddleware(new AdminMiddleware(['reviews']));
+
+
     }
     public function dashboard()
     {

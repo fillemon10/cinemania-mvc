@@ -1,18 +1,10 @@
 <?php
 
-/** @var $model \app\models\LoginForm */
-
-use app\core\Application;
-use app\core\form\Form;
+/** @var $this \app\core\View */
 
 $this->title = "My Account";
 
-?>
-
-<?php
-
-/** @var $this \app\core\View */
-
+use \app\core\Application;
 
 $user = Application::$app->user;
 
@@ -38,23 +30,9 @@ $user = Application::$app->user;
                 </ul>
             </div>
             <div class="col-10">
-                <h3 class="mb-20 mt-10">Set new Email</h3>
-                <?php $form = Form::begin('', 'post') ?>
-                <?php echo $form->field($model, 'currentEmail')->emailField() ?>
-                <?php echo $form->field($model, 'newEmail')->emailField() ?>
-                <?php echo $form->field($model, 'confirmNewEmail')->emailField() ?>
-
-                <div class="row">
-                    <div class="col">
-
-                    </div>
-                    <div class="col text-right">
-                        <button type="submit" class="theme-btn mt-20 mb-10  " name="login_btn">Change Email</button>
-                    </div>
-                </div>
-                <div class="row">
-                </div>
-                <?php Form::end() ?>
+                <h3 class="mt-10 mb-10">Email Preferneces</h3>
+                <h5 class="mb-20">This service is currently unavailable</h5>
+                <a href="/contact/" class="theme-btn">Contact</a>
             </div>
         </div>
     </div>

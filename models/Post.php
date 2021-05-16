@@ -22,8 +22,10 @@ class Post extends DbModel
     public string $updated_at = '';
     public string $topic = "";
     public string $topic_id = "";
-    public string $username = "(deleted user)";
+    public string $username = "";
     public string $short_body = "";
+    public string $role = "";
+
 
 
     public static function tableName(): string
@@ -79,10 +81,12 @@ class Post extends DbModel
     public function loadPost($request)
     {
         parent::loadData($request);
-        $this->username = $this->getUsername()->{"username"};
         $this->topic = $this->getTopic()->{'name'};
         $this->topic_id = $this->getTopic()->{'id'};
-        $this->short_body = $this->shorten_string($this->body, 40);   
+        $this->short_body = $this->shorten_string($this->body, 40);
+        $this->username = $this->getUsername()->username;
+        $this->role = User::getBadge($this->getUsername()->role);
+
     }
 
     public function shorten_string($string, $wordsreturned)

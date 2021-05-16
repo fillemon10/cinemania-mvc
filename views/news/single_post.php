@@ -24,7 +24,7 @@ $this->title = $post->{'title'};
                     </div>
                 <?php else : ?>
                     <div class="col-xl-8 col-lg-8 col-md-8 section-title">
-                        <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($post->{'created_at'})) ?>&#8192;&#8192;<i class="p-mask fas fa-user"></i>&#8192;<?php echo $post->{'username'}  ?></p>
+                        <p class=""><i class="p-mask fas fa-calendar-alt"></i>&#8192;<?php echo date("F j, Y ", strtotime($post->created_at)); ?>&#8192;&#8192;<?php echo $post->role ?>&#8192;<?php echo $post->username ?></p>
                         <h1 class=""><?php echo $post->title ?></h1>
                         <?php if (isset($post->topic)) : ?>
                             <a class="mb-10 mt-10" href="/news?topic=<?php echo $post->topic_id  ?>"> <span class=""> <?php echo $post->topic  ?></span></a>

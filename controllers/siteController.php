@@ -109,4 +109,8 @@ class SiteController extends Controller
 
         return $this->render('message', ["title" => "Confirm newsletter", "message" => "Please, check your inbox to confirm your newsletter subscription."]);
     }
+    public function premium()
+    {
+        return $this->render('premium');
+    }
 }
